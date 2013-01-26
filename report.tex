@@ -11,12 +11,9 @@
 \usepackage{fancyhdr}
 \DeclareMathOperator*{\argmax}{argmax}
 \DeclareMathOperator*{\argmin}{argmin}
-\usepackage{sectsty}
 \usepackage[dvipsnames,usenames]{color}
 \usepackage{multicol}
 \definecolor{orange}{rgb}{1,0.5,0}
-\usepackage{multirow}
-\usepackage{sidecap}
 \usepackage{caption}
 \renewcommand{\captionfont}{\small}
 \setlength{\oddsidemargin}{-0.04cm}
@@ -25,7 +22,6 @@
 \setlength{\headheight}{0in}
 \setlength{\headsep}{0in}
 \setlength{\textheight}{22.94cm}
-\allsectionsfont{\normalsize}
 \newcommand{\ignore}[1]{}
 \newenvironment{enumeratesquish}{\begin{list}{\addtocounter{enumi}{1}\arabic{enumi}.}{\setlength{\itemsep}{-0.25em}\setlength{\leftmargin}{1em}\addtolength{\leftmargin}{\labelsep}}}{\end{list}}
 \newenvironment{itemizesquish}{\begin{list}{\setcounter{enumi}{0}\labelitemi}{\setlength{\itemsep}{-0.25em}\setlength{\labelwidth}{0.5em}\setlength{\leftmargin}{\labelwidth}\addtolength{\leftmargin}{\labelsep}}}{\end{list}}
@@ -68,6 +64,29 @@ Croatian.  As with many Slavic languages, Slovene is highly inflected and has
 relatively free word order~\citep{wikipedia-slovene}.
 
 \section{Past Work on the Morphology of Slovene}
+
+There has been some work on the Slovene language by linguists.  There is a
+grammar written by \cite{greenberg-2006-slovene-grammar} that gives some 75
+pages to the morphology of the language.  There is also a more comprehensive
+grammar written by \cite{herrity-2000-slovene-grammar}.  There are a few other
+papers on Slovene morphology to be found in English by searching Google scholar
+(e.g., \cite{bidwell-1969-outline-slovene-morphology}), and more that is
+written in Slovene.
+
+As far as work in computational linguists on Slovene, a small body of
+literature exists.  One main contributor to this research is Toma\v{z} Erjavec
+at the Jo\v{z}ef Stefan Institute, who in 1990 published a description of an
+early morphological analyzer for Slovene.  The paper is only a two-and-a-half
+page, very high-level description, and the system was implemented in Prolog on
+a VAX machine~\citep{erjavec-1990-slovene-analyzer}.  Erjavec also was a main
+contributor to the Slovene Dependency Treebank, which includes morphological
+information and was a part of the CoNLL-X Shared Task on multilingual
+dependency parsing in 2006~\citep{dvzeroski-2006-sdt}.
+
+More recently, there was a Slovene morphological analyzer released on
+SourceFourge in May of 2012.  This analyzer uses a maximum entropy model and
+achieves 92.5\% accuracy~\citep{grcar-2012-obeliks}.  The system (called
+Obeliks) was trained on a corpus of five hundred thousand words.
 
 \section{Available Resources}
 
