@@ -74,11 +74,11 @@ papers on Slovene morphology to be found in English by searching Google scholar
 written in Slovene.
 
 As far as work in computational linguists on Slovene, a small body of
-literature exists.  One main contributor to this research is Toma\v{z} Erjavec
-at the Jo\v{z}ef Stefan Institute, who in 1990 published a description of an
-early morphological analyzer for Slovene.  The paper is only a two-and-a-half
-page, very high-level description, and the system was implemented in Prolog on
-a VAX machine~\citep{erjavec-1990-slovene-analyzer}.  Erjavec also was a main
+literature exists.  Toma\v{z} Erjavec, from the Jo\v{z}ef Stefan Institute,
+published a description of an early morphological analyzer for Slovene.  The
+paper is only a two-and-a-half page, very high-level description, and the
+system was implemented in Prolog on a VAX
+machine~\citep{erjavec-1990-slovene-analyzer}.  Erjavec also was a main
 contributor to the Slovene Dependency Treebank, which includes morphological
 information and was a part of the CoNLL-X Shared Task on multilingual
 dependency parsing in 2006~\citep{dvzeroski-2006-sdt}.
@@ -104,6 +104,52 @@ and the lexicon has over 15,000 lemmas, with full inflectional paradigms for
 each lemma.
 
 \section{Survey of Phenomena in Slovene}
+
+For the phenomena my morphological analyzer will cover, I will follow exactly
+the morphosyntactic specifications given by~\cite{erjavec-mds}.  This
+specification gives twelve parts of speech.  Each part of speech has a set of
+features or attributes that are marked in words of that part of speech.  These
+are the parts of speech, with their features:
+
+\begin{itemize}
+  \item \textbf{Noun}: type (common / proper), gender
+    (masculine / feminine / neuter), number (singular / dual / plural),
+    case (nominative / genitive / dative / accusative / locative /
+    instrumental), animate (yes / no)
+  \item \textbf{Verb}: type (main / auxiliary), aspect (perfective /
+    progressive / biaspectual), form (infinitive / supine / participle /
+    present / future / conditional / imperative), person (first / second /
+    third), number, gender, negative (yes / no)
+  \item \textbf{Preposition}: case (specifies the case it governs, not the case
+    it is inflected for)
+  \item \textbf{Conjunction}: type (coordinating / subordinating)
+  \item \textbf{Adjective}: type (general / possessive / participle), degree
+    (positive / comparative / superlative), gender, number, case, definiteness
+    (yes / no)
+  \item \textbf{Pronoun}: type (personal / possessive / demonstrative /
+    relative / reflexive / general / interrogative / indefinite / negative),
+    person, gender, number, case, owner number (for possessive pronouns), owner
+    gender, clitic (yes / bound)
+  \item \textbf{Adverb}: type (general / participle), degree
+  \item \textbf{Numeral}: form (digit / roman / letter), type (cardinal /
+    ordinal / pronominal / special), gedner, number, case, definiteness
+  \item \textbf{Particle}: (no features)
+  \item \textbf{Interjection}: (no features)
+  \item \textbf{Abbreviation}: (no features)
+  \item \textbf{Residual}: type (foreign / typo / program)
+\end{itemize}
+
+This list is roughly in the order I would assign them priority.  I doubt that I
+would be able to handle open class abbreviations or interjections, or the
+loosely-defined ``residual'' part of speech.  The closed classes should be
+relatively easy, as I have a large corpus that has been labeled with these
+morphosyntactic descriptions, so I will only need to produce a few small
+lexicons for these words.  I will probably not try to handle common nouns vs.
+proper nouns at first, nor to distinguish main verb vs. auxiliary verb (which
+depends on context).  Aspect of verbs will also be difficult, and so I will
+save it for later, and there are a few features listed above that only rarely
+show up in word forms (like noun animacy and verb negativity) which could be
+ignored at the beginning.
 
 \section{Initial Design}
 
