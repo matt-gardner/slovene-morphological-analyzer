@@ -1,0 +1,12 @@
+LEXICON Root
+Noun ;
+Verb ;
+Adj ;
+
+LEXICON Noun
+NounMasc ;
+NounFem ;
+NounNeut ;
+ProperNounMasc ;
+ProperNounFem ;
+ProperNounNeut ;

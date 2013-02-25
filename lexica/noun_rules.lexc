@@ -1,0 +1,22 @@
+Multichar_Symbols +N +Common +Proper +Masc +Fem +Neut +Nom +Gen +Dat +Acc +Loc +Ins +Sing +Dual +Plural
+
+LEXICON NFem
+
++N+Fem+Sing+Nom:+Fem^a #;
++N+Fem+Sing+Gen:+Fem^e #;
++N+Fem+Sing+Dat:+Fem^i #;
++N+Fem+Sing+Acc:+Fem^o #;
++N+Fem+Sing+Loc:+Fem^i #;
++N+Fem+Sing+Ins:+Fem^o #;
++N+Fem+Dual+Nom:+Fem^i #;
++N+Fem+Dual+Gen:+Fem^ #;
++N+Fem+Dual+Dat:+Fem^ama #;
++N+Fem+Dual+Acc:+Fem^i #;
++N+Fem+Dual+Loc:+Fem^ah #;
++N+Fem+Dual+Ins:+Fem^ama #;
++N+Fem+Plural+Nom:+Fem^e #;
++N+Fem+Plural+Gen:+Fem^ #;
++N+Fem+Plural+Dat:+Fem^am #;
++N+Fem+Plural+Acc:+Fem^e #;
++N+Fem+Plural+Loc:+Fem^ah #;
++N+Fem+Plural+Ins:+Fem^ami #;

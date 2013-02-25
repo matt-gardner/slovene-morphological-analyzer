@@ -1,0 +1,9 @@
+read lexc lexicon.lexc
+define Lexicon
+
+define FemNounStemming a "+Fem" -> 0 || _ "^";
+
+define Cleanup "^" -> 0;
+
+define Grammar Lexicon .o. FemNounStemming .o. Cleanup;
+regex Grammar;
