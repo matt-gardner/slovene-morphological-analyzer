@@ -1,2 +1,4 @@
-foma/lexicon.lexc
+lexicon.lexc
+results/
+slovene.bin
 *.swp

@@ -7,3 +7,5 @@ define Cleanup "^" -> 0;
 
 define Grammar Lexicon .o. FemNounStemming .o. Cleanup;
 regex Grammar;
+save stack slovene.bin
+exit;
