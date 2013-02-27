@@ -1,6 +1,6 @@
 Multichar_Symbols +N +Common +Proper +Masc +Fem +Neut +Nom +Gen +Dat +Acc +Loc +Ins +Sing +Dual +Plural
 
-LEXICON NFem
+LEXICON NFemA
 
 +N+Fem+Sing+Nom:+Fem^a #;
 +N+Fem+Sing+Gen:+Fem^e #;
@@ -20,3 +20,45 @@ LEXICON NFem
 +N+Fem+Plural+Acc:+Fem^e #;
 +N+Fem+Plural+Loc:+Fem^ah #;
 +N+Fem+Plural+Ins:+Fem^ami #;
+
+LEXICON NFemEv
+
++N+Fem+Sing+Nom:+Fem^ev #;
++N+Fem+Sing+Gen:+Fem^ve #;
++N+Fem+Sing+Dat:+Fem^vi #;
++N+Fem+Sing+Acc:+Fem^ev #;
++N+Fem+Sing+Loc:+Fem^vi #;
++N+Fem+Sing+Ins:+Fem^vijo #;
++N+Fem+Dual+Nom:+Fem^vi #;
++N+Fem+Dual+Gen:+Fem^ev #;
++N+Fem+Dual+Dat:+Fem^vama #;
++N+Fem+Dual+Acc:+Fem^vi #;
++N+Fem+Dual+Loc:+Fem^vah #;
++N+Fem+Dual+Ins:+Fem^vama #;
++N+Fem+Plural+Nom:+Fem^ve #;
++N+Fem+Plural+Gen:+Fem^ev #;
++N+Fem+Plural+Dat:+Fem^vam #;
++N+Fem+Plural+Acc:+Fem^ve #;
++N+Fem+Plural+Loc:+Fem^vah #;
++N+Fem+Plural+Ins:+Fem^vami #;
+
+LEXICON NFemOst
+
++N+Fem+Sing+Nom:^ #;
++N+Fem+Sing+Gen:^i #;
++N+Fem+Sing+Dat:^i #;
++N+Fem+Sing+Acc:^ #;
++N+Fem+Sing+Loc:^i #;
++N+Fem+Sing+Ins:^jo #;
++N+Fem+Dual+Nom:^i #;
++N+Fem+Dual+Gen:^i #;
++N+Fem+Dual+Dat:^ma #;
++N+Fem+Dual+Acc:^i #;
++N+Fem+Dual+Loc:^ih #;
++N+Fem+Dual+Ins:^ma #;
++N+Fem+Plural+Nom:^i #;
++N+Fem+Plural+Gen:^i #;
++N+Fem+Plural+Dat:^im #;
++N+Fem+Plural+Acc:^i #;
++N+Fem+Plural+Loc:^ih #;
++N+Fem+Plural+Ins:^mi #;

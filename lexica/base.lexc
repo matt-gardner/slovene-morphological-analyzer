@@ -5,7 +5,9 @@ Adj ;
 
 LEXICON Noun
 NounMasc ;
-NounFem ;
+NounFemA ;
+NounFemEv ;
+NounFemOst ;
 NounNeut ;
 ProperNounMasc ;
 ProperNounFem ;
