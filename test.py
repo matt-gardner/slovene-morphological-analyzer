@@ -8,7 +8,7 @@ from subprocess import Popen, PIPE
 from dirutil import create_dirs_and_open
 
 
-def main(lexica, foma_file, test_files, results_dir):
+def main(lexica, foma_file, test_files, results_dir, verbose):
     proc = Popen('cat %s > lexicon.lexc' % ' '.join(lexica), shell=True)
     proc.wait()
     proc = Popen(('foma', '-l', foma_file))
@@ -59,6 +59,10 @@ def main(lexica, foma_file, test_files, results_dir):
             else:
                 precision = len(intersection) / len(seen_set)
             if recall != 1.0 or precision != 1.0:
+                if verbose:
+                    print 'Form incorrect:', form
+                    print '  Predicted:', ' '.join(x for x in seen_set)
+                    print '  Gold:', ' '.join(x for x in gold_set)
                 incorrect_file.write('%s\n' % form)
                 num_incorrect += 1
                 lemma = list(gold_set)[0].split('-')[0]
@@ -90,11 +94,25 @@ def analysis_to_msd(analysis):
 
 
 if __name__ == '__main__':
+    from optparse import OptionParser
+    parser = OptionParser()
+    parser.add_option('-s', '--small',
+            help='Run small test instead of full test',
+            dest='small',
+            action='store_true')
+    parser.add_option('-v', '--verbose',
+            help='Show detailed error output',
+            dest='verbose',
+            action='store_true')
+    opts, args = parser.parse_args()
     lexica = ['lexica/base.lexc', 'lexica/common_fem_nouns.lexc',
             'lexica/noun_rules.lexc']
     foma_file = 'foma/nouns.foma'
-    test_files = ['tests/common_fem_nouns.tsv']
+    if opts.small:
+        test_files = ['tests/nouns_small.tsv']
+    else:
+        test_files = ['tests/common_fem_nouns.tsv']
     results_dir = 'results/'
-    main(lexica, foma_file, test_files, results_dir)
+    main(lexica, foma_file, test_files, results_dir, opts.verbose)
 
 # vim: et sw=4 sts=4
