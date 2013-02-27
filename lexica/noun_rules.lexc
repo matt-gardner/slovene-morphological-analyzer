@@ -1,4 +1,35 @@
-Multichar_Symbols +N +Common +Proper +Masc +Fem +Neut +Nom +Gen +Dat +Acc +Loc +Ins +Sing +Dual +Plural
+Multichar_Symbols +N +Common +Proper +Masc +Fem +Neut +Nom +Gen +Dat +Acc +Loc +Ins +Sing +Dual +Plural +Ending +Animate +Inanimate
+
+LEXICON NMascAn
+
++N+Masc+Sing+Acc+Animate:+Masc^a #;
+NMasc ;
+
+LEXICON NMascIn
+
++N+Masc+Sing+Acc+Inanimate:^ #;
+NMasc ;
+
+LEXICON NMasc
+
++N+Masc+Sing+Nom:^ #;
++N+Masc+Sing+Gen:+Masc^a #;
++N+Masc+Sing+Dat:+Masc^u #;
+!+N+Masc+Sing+Acc:^ #; ! This is handled by NMascAn and NMascIn
++N+Masc+Sing+Loc:+Masc^u #;
++N+Masc+Sing+Ins:+Masc^om #;
++N+Masc+Dual+Nom:+Masc^a #;
++N+Masc+Dual+Gen:+Masc^ov #;
++N+Masc+Dual+Dat:+Masc^oma #;
++N+Masc+Dual+Acc:+Masc^a #;
++N+Masc+Dual+Loc:+Masc^ih #;
++N+Masc+Dual+Ins:+Masc^oma #;
++N+Masc+Plural+Nom:+Masc^i #;
++N+Masc+Plural+Gen:+Masc^ov #;
++N+Masc+Plural+Dat:+Masc^om #;
++N+Masc+Plural+Acc:+Masc^e #;
++N+Masc+Plural+Loc:+Masc^ih #;
++N+Masc+Plural+Ins:+Masc^i #;
 
 LEXICON NFemA
 

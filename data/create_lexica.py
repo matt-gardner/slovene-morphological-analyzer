@@ -23,7 +23,7 @@ def main(sloleks_file, lex_dir):
         elif msd.startswith('Npn'):
             npns.add(lemma)
         elif msd.startswith('Ncm'):
-            ncms.add(lemma)
+            ncms.add((lemma, msd))
         elif msd.startswith('Ncf'):
             ncfs.add(lemma)
         elif msd.startswith('Ncn'):
@@ -34,7 +34,7 @@ def main(sloleks_file, lex_dir):
             verbs.add(lemma)
         else:
             others.add(lemma)
-    write_lexicon(lex_dir+'common_masc_nouns.lexc', ncms, 'NounMasc', 'NMasc')
+    write_masculine_nouns(ncms, lex_dir)
     write_feminine_nouns(ncfs, lex_dir)
     write_lexicon(lex_dir+'common_neut_nouns.lexc', ncns, 'NounNeut', 'NNeut')
     write_lexicon(lex_dir+'proper_masc_nouns.lexc', npms, 'ProperNounMasc',
@@ -46,6 +46,23 @@ def main(sloleks_file, lex_dir):
     write_lexicon(lex_dir+'verbs.lexc', verbs, 'Verb', 'Vinf')
     write_lexicon(lex_dir+'adjs.lexc', adjs, 'Adj', 'AdjInf')
     write_lexicon(lex_dir+'others.lexc', others, 'Other', 'OtherInf')
+
+
+def write_masculine_nouns(lemmas, lex_dir):
+    # We separate animate from inanimate by adding all lemmas with explicitly
+    # marked animate declensions to a set, then subtracting that set from the
+    # set of all lemmas to get the inanimate ones.
+    animate = set()
+    all_lemmas = set()
+    for l, msd in lemmas:
+        if msd.endswith('say'):
+            animate.add(l)
+        all_lemmas.add(l)
+    out = open(lex_dir + 'common_masc_nouns.lexc', 'w')
+    write_lexicon_to_open_file(out, animate, 'NounMascAnimate', 'NMascAn')
+    write_lexicon_to_open_file(out, all_lemmas - animate,
+            'NounMascInanimate', 'NMascIn')
+    out.close()
 
 
 def write_feminine_nouns(lemmas, lex_dir):
@@ -67,6 +84,7 @@ def write_feminine_nouns(lemmas, lex_dir):
     write_lexicon_to_open_file(out, ev_lemmas, 'NounFemEv', 'NFemEv')
     write_lexicon_to_open_file(out, ost_lemmas.union(other_lemmas),
             'NounFemOst', 'NFemOst')
+    out.close()
 
 
 def write_lexicon(filename, lemmas, name, continuation):

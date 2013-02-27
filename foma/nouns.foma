@@ -1,11 +1,23 @@
 read lexc lexicon.lexc
 define Lexicon
 
-define FemNounStemming a "+Fem" -> 0 || _ "^";
+define ConsonantForFleeting [c | k | l | m | n | r |  n j];
 
-define Cleanup "^" -> 0;
+define FemNounStemming a "+Fem" -> 0 || _ "^" ,,
+                       e v "+Fem" -> 0 || _ "^";
 
-define Grammar Lexicon .o. FemNounStemming .o. Cleanup;
+define MascNouns e -> 0 || _ ConsonantForFleeting "+Masc" "^" .o.
+                 [..] -> j || a r | o r | u r | i r | e r _ "+Masc" "^" .o.
+                 o -> e || [c | č | š | ž | j] "+Masc" "^" _;
+
+define Cleanup "^" -> 0 ,,
+               "+Ending" -> 0 ,,
+               "+Masc" -> 0;
+
+define Grammar Lexicon .o.
+               FemNounStemming .o.
+               MascNouns .o.
+               Cleanup;
 regex Grammar;
 save stack slovene.bin
 exit;

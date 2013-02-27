@@ -4,7 +4,8 @@ Verb ;
 Adj ;
 
 LEXICON Noun
-NounMasc ;
+NounMascAnimate ;
+NounMascInanimate ;
 NounFemA ;
 NounFemEv ;
 NounFemOst ;

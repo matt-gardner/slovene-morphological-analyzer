@@ -83,8 +83,10 @@ def main(lexica, foma_file, test_files, results_dir, verbose):
 
 def analysis_to_msd(analysis):
     replacements = [('+Nom', 'n'), ('+Gen', 'g'), ('+Dat', 'd'), ('+Acc', 'a'),
-            ('+Loc', 'l'), ('+Ins', 'i'), ('+Sing', 's'), ('+Dual', 'd'),
-            ('+Plural', 'p'), ('+Masc', 'm'), ('+Fem', 'f'), ('+Neut', 'n'),
+            ('+Loc', 'l'), ('+Ins', 'i'),
+            ('+Sing', 's'), ('+Dual', 'd'), ('+Plural', 'p'),
+            ('+Masc', 'm'), ('+Fem', 'f'), ('+Neut', 'n'),
+            ('+Animate', 'y'), ('+Inanimate', 'n'),
             ]
     replacements.append(('+N', '-Nc')) # not general, yet
     msd = analysis
@@ -105,13 +107,16 @@ if __name__ == '__main__':
             dest='verbose',
             action='store_true')
     opts, args = parser.parse_args()
-    lexica = ['lexica/base.lexc', 'lexica/common_fem_nouns.lexc',
+    lexica = ['lexica/base.lexc',
+            'lexica/common_fem_nouns.lexc',
+            'lexica/common_masc_nouns.lexc',
             'lexica/noun_rules.lexc']
     foma_file = 'foma/nouns.foma'
     if opts.small:
         test_files = ['tests/nouns_small.tsv']
     else:
-        test_files = ['tests/common_fem_nouns.tsv']
+        test_files = ['tests/common_fem_nouns.tsv',
+                'tests/common_masc_nouns.tsv']
     results_dir = 'results/'
     main(lexica, foma_file, test_files, results_dir, opts.verbose)
 
