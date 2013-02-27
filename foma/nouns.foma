@@ -10,6 +10,9 @@ define MascNouns e -> 0 || _ ConsonantForFleeting "+Masc" "^" .o.
                  [..] -> j || a r | o r | u r | i r | e r _ "+Masc" "^" .o.
                  o -> e || [c | č | š | ž | j] "+Masc" "^" _;
 
+define NeutNounStemming o "+Neut" -> 0 || _ "^" ,,
+                        e "+Neut" -> 0 || _ "^";
+
 define Cleanup "^" -> 0 ,,
                "+Ending" -> 0 ,,
                "+Masc" -> 0;
@@ -17,6 +20,7 @@ define Cleanup "^" -> 0 ,,
 define Grammar Lexicon .o.
                FemNounStemming .o.
                MascNouns .o.
+               NeutNounStemming .o.
                Cleanup;
 regex Grammar;
 save stack slovene.bin

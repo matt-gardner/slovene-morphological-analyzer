@@ -93,3 +93,46 @@ LEXICON NFemOst
 +N+Fem+Plural+Acc:^i #;
 +N+Fem+Plural+Loc:^ih #;
 +N+Fem+Plural+Ins:^mi #;
+
+LEXICON NNeutO
+
++N+Neut+Sing+Nom:+Neut^o #;
++N+Neut+Sing+Gen:+Neut^a #;
++N+Neut+Sing+Dat:+Neut^u #;
++N+Neut+Sing+Acc:+Neut^o #;
++N+Neut+Sing+Loc:+Neut^u #;
++N+Neut+Sing+Ins:+Neut^om #;
++N+Neut+Dual+Nom:+Neut^i #;
++N+Neut+Dual+Gen:+Neut^ #;
++N+Neut+Dual+Dat:+Neut^oma #;
++N+Neut+Dual+Acc:+Neut^i #;
++N+Neut+Dual+Loc:+Neut^ih #;
++N+Neut+Dual+Ins:+Neut^oma #;
++N+Neut+Plural+Nom:+Neut^a #;
++N+Neut+Plural+Gen:+Neut^ #;
++N+Neut+Plural+Dat:+Neut^om #;
++N+Neut+Plural+Acc:+Neut^a #;
++N+Neut+Plural+Loc:+Neut^ih #;
++N+Neut+Plural+Ins:+Neut^i #;
+
+LEXICON NNeutE
+
++N+Neut+Sing+Nom:+Neut^e #;
++N+Neut+Sing+Gen:+Neut^a #;
++N+Neut+Sing+Dat:+Neut^u #;
++N+Neut+Sing+Acc:+Neut^e #;
++N+Neut+Sing+Loc:+Neut^u #;
++N+Neut+Sing+Ins:+Neut^em #;
++N+Neut+Dual+Nom:+Neut^i #;
++N+Neut+Dual+Gen:+Neut^ #;
++N+Neut+Dual+Dat:+Neut^ema #;
++N+Neut+Dual+Acc:+Neut^i #;
++N+Neut+Dual+Loc:+Neut^ih #;
++N+Neut+Dual+Ins:+Neut^ema #;
++N+Neut+Plural+Nom:+Neut^a #;
++N+Neut+Plural+Gen:+Neut^ #;
++N+Neut+Plural+Dat:+Neut^em #;
++N+Neut+Plural+Acc:+Neut^a #;
++N+Neut+Plural+Loc:+Neut^ih #;
++N+Neut+Plural+Ins:+Neut^i #;
+

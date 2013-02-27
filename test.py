@@ -107,16 +107,22 @@ if __name__ == '__main__':
             dest='verbose',
             action='store_true')
     opts, args = parser.parse_args()
-    lexica = ['lexica/base.lexc',
+    lexica = [
+            'lexica/base.lexc',
             'lexica/common_fem_nouns.lexc',
             'lexica/common_masc_nouns.lexc',
-            'lexica/noun_rules.lexc']
+            'lexica/common_neut_nouns.lexc',
+            'lexica/noun_rules.lexc',
+            ]
     foma_file = 'foma/nouns.foma'
     if opts.small:
         test_files = ['tests/nouns_small.tsv']
     else:
-        test_files = ['tests/common_fem_nouns.tsv',
-                'tests/common_masc_nouns.tsv']
+        test_files = [
+                'tests/common_fem_nouns.tsv',
+                'tests/common_masc_nouns.tsv',
+                'tests/common_neut_nouns.tsv',
+                ]
     results_dir = 'results/'
     main(lexica, foma_file, test_files, results_dir, opts.verbose)
 

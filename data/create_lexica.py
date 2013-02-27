@@ -36,7 +36,7 @@ def main(sloleks_file, lex_dir):
             others.add(lemma)
     write_masculine_nouns(ncms, lex_dir)
     write_feminine_nouns(ncfs, lex_dir)
-    write_lexicon(lex_dir+'common_neut_nouns.lexc', ncns, 'NounNeut', 'NNeut')
+    write_neuter_nouns(ncns, lex_dir)
     write_lexicon(lex_dir+'proper_masc_nouns.lexc', npms, 'ProperNounMasc',
             'NMasc')
     write_lexicon(lex_dir+'proper_fem_nouns.lexc', npfs, 'ProperNounFem',
@@ -84,6 +84,19 @@ def write_feminine_nouns(lemmas, lex_dir):
     write_lexicon_to_open_file(out, ev_lemmas, 'NounFemEv', 'NFemEv')
     write_lexicon_to_open_file(out, ost_lemmas.union(other_lemmas),
             'NounFemOst', 'NFemOst')
+    out.close()
+
+def write_neuter_nouns(lemmas, lex_dir):
+    e_lemmas = set()
+    o_lemmas = set()
+    for l in lemmas:
+        if l.endswith('e'):
+            e_lemmas.add(l)
+        else:
+            o_lemmas.add(l)
+    out = open(lex_dir + 'common_neut_nouns.lexc', 'w')
+    write_lexicon_to_open_file(out, o_lemmas, 'NounNeutO', 'NNeutO')
+    write_lexicon_to_open_file(out, e_lemmas, 'NounNeutE', 'NNeutE')
     out.close()
 
 
