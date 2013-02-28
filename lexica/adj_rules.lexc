@@ -14,7 +14,7 @@ LEXICON AdjInf
 
 ! The +A on the right means to check for fleeting e
 +A+General+Positive:+A AdjNormalDefiniteness;
-!+A+General+Comparative:+Aejš AdjNormalDefiniteness;
++A+General+Comparative:+Aejš AdjNormalDefiniteness;
 
 LEXICON AdjInfPoss
 
