@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 from collections import defaultdict
 import gzip
@@ -37,6 +38,7 @@ def main(sloleks_file, lex_dir):
     write_masculine_nouns(ncms, lex_dir)
     write_feminine_nouns(ncfs, lex_dir)
     write_neuter_nouns(ncns, lex_dir)
+    write_adjectives(adjs, lex_dir)
     write_lexicon(lex_dir+'proper_masc_nouns.lexc', npms, 'ProperNounMasc',
             'NMasc')
     write_lexicon(lex_dir+'proper_fem_nouns.lexc', npfs, 'ProperNounFem',
@@ -44,7 +46,6 @@ def main(sloleks_file, lex_dir):
     write_lexicon(lex_dir+'proper_neut_nouns.lexc', npns, 'ProperNounNeut',
             'NNeut')
     write_lexicon(lex_dir+'verbs.lexc', verbs, 'Verb', 'Vinf')
-    write_lexicon(lex_dir+'adjs.lexc', adjs, 'Adj', 'AdjInf')
     write_lexicon(lex_dir+'others.lexc', others, 'Other', 'OtherInf')
 
 
@@ -97,6 +98,29 @@ def write_neuter_nouns(lemmas, lex_dir):
     out = open(lex_dir + 'common_neut_nouns.lexc', 'w')
     write_lexicon_to_open_file(out, o_lemmas, 'NounNeutO', 'NNeutO')
     write_lexicon_to_open_file(out, e_lemmas, 'NounNeutE', 'NNeutE')
+    out.close()
+
+
+def write_adjectives(lemmas, lex_dir):
+    i_lemmas = set()
+    poss_lemmas = set()
+    part_lemmas = set()
+    other_lemmas = set()
+    for l in lemmas:
+        if l.endswith('i'):
+            i_lemmas.add(l)
+        elif l.endswith('ev') or l.endswith('ov'):
+            poss_lemmas.add(l)
+        elif (l.endswith(u'oč'.encode('utf-8')) or
+                l.endswith(u'eč'.encode('utf-8'))):
+            part_lemmas.add(l)
+        else:
+            other_lemmas.add(l)
+    out = open(lex_dir + 'adjs.lexc', 'w')
+    write_lexicon_to_open_file(out, i_lemmas, 'AdjI', 'AdjInfI')
+    write_lexicon_to_open_file(out, poss_lemmas, 'AdjPoss', 'AdjInfPoss')
+    write_lexicon_to_open_file(out, part_lemmas, 'AdjPart', 'AdjInfPart')
+    write_lexicon_to_open_file(out, other_lemmas, 'AdjNormal', 'AdjInf')
     out.close()
 
 

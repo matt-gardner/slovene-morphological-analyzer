@@ -46,20 +46,26 @@ def main(lexica, foma_file, test_files, results_dir, verbose):
         base = results_dir + test.split('/')[-1][:-4] + '_'
         incorrect_file = create_dirs_and_open(base + 'incorrect.txt')
         correct_file = create_dirs_and_open(base + 'correct.txt')
+        overanalyzed_file = create_dirs_and_open(base + 'overanalyzed.txt')
         num_correct = 0
         num_incorrect = 0
-        num_complete_recall = 0
+        num_precise = 0
+        num_both = 0
         incorrect_lemmas = set()
+        unparseable = set()
         for form in cases:
             gold_set = cases[form]
             seen_set = seen[form]
+            for analysis in seen_set:
+                if '?' in analysis:
+                    unparseable.add(form)
             intersection = gold_set.intersection(seen_set)
             recall = len(intersection) / len(gold_set)
             if len(seen_set) == 0:
                 precision = 0.0
             else:
                 precision = len(intersection) / len(seen_set)
-            if recall != 1.0 or precision != 1.0:
+            if recall != 1.0:
                 if verbose:
                     print 'Form incorrect:', form
                     print '  Predicted:', ' '.join(x for x in seen_set)
@@ -71,18 +77,29 @@ def main(lexica, foma_file, test_files, results_dir, verbose):
             else:
                 correct_file.write('%s\n' % form)
                 num_correct += 1
-            if recall == 1.0:
-                num_complete_recall += 1
+            if precision == 1.0:
+                num_precise += 1
+            elif precision != 0.0:
+                overanalyzed_file.write('%s\n' % form)
+            if precision == 1.0 and recall == 1.0:
+                num_both += 1
         incorrect_file.close()
         correct_file.close()
+        overanalyzed_file.close()
         total = len(cases)
         print 'Forms tested:', total
-        print 'Percent completely correct:', num_correct / total
-        print 'Percent with 100% recall:', num_complete_recall / total
+        print 'Percent with 100% recall:', num_correct / total
+        print 'Percent with 100% precision:', num_precise / total
+        print 'Percent with both:', num_both / total
+        print 'Percent unparseable:', len(unparseable) / total
         incorrect_lemma_file = open(base + 'incorrect_lemmas.txt', 'w')
         for lemma in incorrect_lemmas:
             incorrect_lemma_file.write('%s\n' % lemma)
         incorrect_lemma_file.close()
+        unparseable_file = open(base + 'unparseable.txt', 'w')
+        for form in unparseable:
+            unparseable_file.write('%s\n' % form)
+        unparseable_file.close()
 
 
 def analysis_to_msd(analysis):

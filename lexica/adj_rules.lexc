@@ -1,64 +1,98 @@
+! My grammar book says that only nominative singular adjectives specify for
+! definiteness, but the JOS MSDs say that accusative singular adjectives do
+! too, so we'll go with theirs, as they are natives.
+
+LEXICON AdjInfI
+
+! It seems to me that this should be unspecified for definiteness, but the JOS
+! MSDs give it as +Definite, so that's what I'm doing.
++A+General+Positive+Masc+Sing+Nom+Definite:^ #;
++A+General+Positive+Masc+Sing+Acc+Definite:^ #;
++A+General+Positive:+AdjRemoveI AdjInfBase;
 
 LEXICON AdjInf
 
-+A+General+Positive+Masc+Sing+Nom+Indefinite:^ #;
-+A+General+Positive+Masc+Sing+Nom+Definite:+A^i #;
-+A+General+Positive+Masc+Sing+Gen:+A^ega #;
-+A+General+Positive+Masc+Sing+Dat:+A^emu #;
-+A+General+Positive+Masc+Sing+Acc+Indefinite:+A^ #;
-+A+General+Positive+Masc+Sing+Acc+Definite:+A^i #;
-+A+General+Positive+Masc+Sing+Acc:+A^ega #;
-+A+General+Positive+Masc+Sing+Loc:+A^em #;
-+A+General+Positive+Masc+Sing+Ins:+A^im #;
-+A+General+Positive+Masc+Dual+Nom:+A^a #;
-+A+General+Positive+Masc+Dual+Gen:+A^ih #;
-+A+General+Positive+Masc+Dual+Dat:+A^ima #;
-+A+General+Positive+Masc+Dual+Acc:+A^a #;
-+A+General+Positive+Masc+Dual+Loc:+A^ih #;
-+A+General+Positive+Masc+Dual+Ins:+A^ima #;
-+A+General+Positive+Masc+Plural+Nom:+A^i #;
-+A+General+Positive+Masc+Plural+Gen:+A^ih #;
-+A+General+Positive+Masc+Plural+Dat:+A^im #;
-+A+General+Positive+Masc+Plural+Acc:+A^e #;
-+A+General+Positive+Masc+Plural+Loc:+A^ih #;
-+A+General+Positive+Masc+Plural+Ins:+A^imi #;
+! The +A on the right means to check for fleeting e
++A+General+Positive:+A AdjNormalDefiniteness;
+!+A+General+Comparative:+Aejš AdjNormalDefiniteness;
 
-+A+General+Positive+Fem+Sing+Nom:+A^a #;
-+A+General+Positive+Fem+Sing+Gen:+A^e #;
-+A+General+Positive+Fem+Sing+Dat:+A^i #;
-+A+General+Positive+Fem+Sing+Acc:+A^o #;
-+A+General+Positive+Fem+Sing+Loc:+A^i #;
-+A+General+Positive+Fem+Sing+Ins:+A^o #;
-+A+General+Positive+Fem+Dual+Nom:+A^i #;
-+A+General+Positive+Fem+Dual+Gen:+A^ih #;
-+A+General+Positive+Fem+Dual+Dat:+A^ima #;
-+A+General+Positive+Fem+Dual+Acc:+A^i #;
-+A+General+Positive+Fem+Dual+Loc:+A^ih #;
-+A+General+Positive+Fem+Dual+Ins:+A^ima #;
-+A+General+Positive+Fem+Plural+Nom:+A^e #;
-+A+General+Positive+Fem+Plural+Gen:+A^ih #;
-+A+General+Positive+Fem+Plural+Dat:+A^im #;
-+A+General+Positive+Fem+Plural+Acc:+A^e #;
-+A+General+Positive+Fem+Plural+Loc:+A^ih #;
-+A+General+Positive+Fem+Plural+Ins:+A^imi #;
+LEXICON AdjInfPoss
+
+! No +A on the right here, as these don't have fleeting e's
++A+Possessive+Positive: AdjNormalDefiniteness;
+
+LEXICON AdjInfPart
+
++A+Participle+Positive: AdjNormalDefiniteness;
+
+LEXICON AdjNormalDefiniteness
+
++Masc+Sing+Nom+Indefinite:^ #;
++Masc+Sing+Nom+Definite:^i #;
++Masc+Sing+Acc+Indefinite:^ #;
++Masc+Sing+Acc+Definite:^i #;
+AdjInfBase;
+
+LEXICON AdjInfBase
+
+!+Masc+Sing+Nom+Indefinite:^ #; ! handled in subclasses
+!+Masc+Sing+Nom+Definite:^i #; ! handled in subclasses
++Masc+Sing+Gen:^ega #;
++Masc+Sing+Dat:^emu #;
+!+Masc+Sing+Acc+Indefinite:^ #; ! handled in subclasses
+!+Masc+Sing+Acc+Definite:^i #; ! handled in subclasses
++Masc+Sing+Acc:^ega #;
++Masc+Sing+Loc:^em #;
++Masc+Sing+Ins:^im #;
++Masc+Dual+Nom:^a #;
++Masc+Dual+Gen:^ih #;
++Masc+Dual+Dat:^ima #;
++Masc+Dual+Acc:^a #;
++Masc+Dual+Loc:^ih #;
++Masc+Dual+Ins:^ima #;
++Masc+Plural+Nom:^i #;
++Masc+Plural+Gen:^ih #;
++Masc+Plural+Dat:^im #;
++Masc+Plural+Acc:^e #;
++Masc+Plural+Loc:^ih #;
++Masc+Plural+Ins:^imi #;
+
++Fem+Sing+Nom:^a #;
++Fem+Sing+Gen:^e #;
++Fem+Sing+Dat:^i #;
++Fem+Sing+Acc:^o #;
++Fem+Sing+Loc:^i #;
++Fem+Sing+Ins:^o #;
++Fem+Dual+Nom:^i #;
++Fem+Dual+Gen:^ih #;
++Fem+Dual+Dat:^ima #;
++Fem+Dual+Acc:^i #;
++Fem+Dual+Loc:^ih #;
++Fem+Dual+Ins:^ima #;
++Fem+Plural+Nom:^e #;
++Fem+Plural+Gen:^ih #;
++Fem+Plural+Dat:^im #;
++Fem+Plural+Acc:^e #;
++Fem+Plural+Loc:^ih #;
++Fem+Plural+Ins:^imi #;
 
 ! The +Masc here in the singular nominative and accusative is to take advantage
-! rules already written to convert an o to an e in certain circumstances.
-+A+General+Positive+Neut+Sing+Nom:+A+Masc^o #;
-+A+General+Positive+Neut+Sing+Gen:+A^ega #;
-+A+General+Positive+Neut+Sing+Dat:+A^emu #;
-+A+General+Positive+Neut+Sing+Acc:+A+Masc^o #;
-+A+General+Positive+Neut+Sing+Loc:+A^em #;
-+A+General+Positive+Neut+Sing+Ins:+A^im #;
-+A+General+Positive+Neut+Dual+Nom:+A^i #;
-+A+General+Positive+Neut+Dual+Gen:+A^ih #;
-+A+General+Positive+Neut+Dual+Dat:+A^ima #;
-+A+General+Positive+Neut+Dual+Acc:+A^i #;
-+A+General+Positive+Neut+Dual+Loc:+A^ih #;
-+A+General+Positive+Neut+Dual+Ins:+A^ima #;
-+A+General+Positive+Neut+Plural+Nom:+A^a #;
-+A+General+Positive+Neut+Plural+Gen:+A^ih #;
-+A+General+Positive+Neut+Plural+Dat:+A^im #;
-+A+General+Positive+Neut+Plural+Acc:+A^a #;
-+A+General+Positive+Neut+Plural+Loc:+A^ih #;
-+A+General+Positive+Neut+Plural+Ins:+A^imi #;
+! of rules already written to convert an o to an e in certain circumstances.
++Neut+Sing+Nom:+Masc^o #;
++Neut+Sing+Gen:^ega #;
++Neut+Sing+Dat:^emu #;
++Neut+Sing+Acc:+Masc^o #;
++Neut+Sing+Loc:^em #;
++Neut+Sing+Ins:^im #;
++Neut+Dual+Nom:^i #;
++Neut+Dual+Gen:^ih #;
++Neut+Dual+Dat:^ima #;
++Neut+Dual+Acc:^i #;
++Neut+Dual+Loc:^ih #;
++Neut+Dual+Ins:^ima #;
++Neut+Plural+Nom:^a #;
++Neut+Plural+Gen:^ih #;
++Neut+Plural+Dat:^im #;
++Neut+Plural+Acc:^a #;
++Neut+Plural+Loc:^ih #;
++Neut+Plural+Ins:^imi #;

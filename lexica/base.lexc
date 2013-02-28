@@ -7,11 +7,18 @@ Multichar_Symbols +N +A +V
                   +Definite +Indefinite  ! in a few cases, adjs specify this
                   +General +Possessive +Participle  ! types of adjectives
                   +Positive +Comparative +Superlative  ! degrees of adjectives
+                  +AdjRemoveI
 
 LEXICON Root
 Noun ;
 Verb ;
 Adj ;
+
+LEXICON Adj
+AdjI ;
+AdjPoss ;
+AdjPart ;
+AdjNormal ;
 
 LEXICON Noun
 NounMascAnimate ;
