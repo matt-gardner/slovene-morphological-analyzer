@@ -1,5 +1,3 @@
-Multichar_Symbols +N +Common +Proper +Masc +Fem +Neut +Nom +Gen +Dat +Acc +Loc +Ins +Sing +Dual +Plural +Ending +Animate +Inanimate
-
 LEXICON NMascAn
 
 +N+Masc+Sing+Acc+Animate:+Masc^a #;

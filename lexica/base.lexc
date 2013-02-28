@@ -1,3 +1,13 @@
+Multichar_Symbols +N +A +V
+                  +Common +Proper
+                  +Masc +Fem +Neut
+                  +Nom +Gen +Dat +Acc +Loc +Ins
+                  +Sing +Dual +Plural
+                  +Animate +Inanimate  ! in a few cases, nouns specify this
+                  +Definite +Indefinite  ! in a few cases, adjs specify this
+                  +General +Possessive +Participle  ! types of adjectives
+                  +Positive +Comparative +Superlative  ! degrees of adjectives
+
 LEXICON Root
 Noun ;
 Verb ;
