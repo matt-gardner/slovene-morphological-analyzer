@@ -135,16 +135,71 @@ def analysis_to_msd(analysis):
 if __name__ == '__main__':
     from optparse import OptionParser
     parser = OptionParser()
-    parser.add_option('-s', '--small',
-            help='Run small test instead of full test',
+    parser.add_option('', '--small',
+            help='Run small test',
             dest='small',
             action='store_true')
     parser.add_option('-v', '--verbose',
             help='Show detailed error output',
             dest='verbose',
             action='store_true')
+    parser.add_option('', '--adjs',
+            help='Test adjectives',
+            dest='adjs',
+            action='store_true')
+    parser.add_option('', '--nouns',
+            help='Test nouns',
+            dest='nouns',
+            action='store_true')
+    parser.add_option('', '--verbs',
+            help='Test verbs',
+            dest='verbs',
+            action='store_true')
+    parser.add_option('', '--all',
+            help='Test everything together (note that this is different from '
+            'specifying all other options individually)',
+            dest='everything',
+            action='store_true')
     opts, args = parser.parse_args()
-    lexica = [
+    adjs = {'lexica': [
+            'lexica/base.lexc',
+            'lexica/adjs.lexc',
+            'lexica/adj_rules.lexc',
+        ],
+        'test_files': [
+            'tests/adjs.tsv',
+        ]}
+    nouns = {'lexica': [
+            'lexica/base.lexc',
+            'lexica/common_fem_nouns.lexc',
+            'lexica/common_masc_nouns.lexc',
+            'lexica/common_neut_nouns.lexc',
+            'lexica/noun_rules.lexc',
+        ],
+        'test_files': [
+            'tests/common_fem_nouns.tsv',
+            'tests/common_masc_nouns.tsv',
+            'tests/common_neut_nouns.tsv',
+        ]}
+    verbs = {'lexica': [
+            'lexica/base.lexc',
+            'lexica/verbs.lexc',
+            'lexica/verb_rules.lexc',
+        ],
+        'test_files': [
+            'tests/verbs.tsv',
+        ]}
+    # Though it's a big obnoxious, this one just should be modified by hand if
+    # you want to run a different small test.
+    small = {'lexica': [
+            'lexica/base.lexc',
+            'lexica/adjs.lexc',
+            'lexica/adj_rules.lexc',
+        ],
+        'test_files': [
+            'tests/adjs_small.tsv',
+        ]}
+    everything = {'lexica': [
             'lexica/base.lexc',
             'lexica/adjs.lexc',
             'lexica/adj_rules.lexc',
@@ -154,19 +209,28 @@ if __name__ == '__main__':
             'lexica/noun_rules.lexc',
             'lexica/verbs.lexc',
             'lexica/verb_rules.lexc',
-            ]
+        ],
+        'test_files': [
+            'tests/all.tsv',
+        ]}
     foma_file = 'foma/slovene.foma'
-    if opts.small:
-        test_files = ['tests/adjs_small.tsv']
-    else:
-        test_files = [
-                #'tests/common_fem_nouns.tsv',
-                #'tests/common_masc_nouns.tsv',
-                #'tests/common_neut_nouns.tsv',
-                #'tests/adjs.tsv',
-                'tests/verbs.tsv',
-                ]
     results_dir = 'results/'
-    main(lexica, foma_file, test_files, results_dir, opts.verbose)
+    to_test = []
+    if opts.adjs:
+        to_test.append(adjs)
+    if opts.nouns:
+        to_test.append(nouns)
+    if opts.verbs:
+        to_test.append(verbs)
+    if opts.small:
+        to_test.append(small)
+    if opts.everything:
+        to_test.append(everything)
+    if not to_test:
+        print 'No tests specified.  Exiting.'
+        exit(0)
+    for test in to_test:
+        main(test['lexica'], foma_file, test['test_files'],
+                results_dir, opts.verbose)
 
 # vim: et sw=4 sts=4

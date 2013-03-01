@@ -19,7 +19,14 @@ define NeutNounStemming o "+Neut" -> 0 || _ "^" ,,
                         e "+Neut" -> 0 || _ "^" .o.
                         "+Neut" -> 0;
 
-define VerbStemming t i "+V" -> 0;
+define VerbStemming t i "+V" -> 0 .o.
+                    n i -> n e || _ "+Present" "^" ,,
+                    e -> i "+StemChanged" || _ "+Present" "^" ,,
+                    [o v a | e v a] -> u j e || _ "+Present" "^" ,,
+                    [o v a | e v a] -> u j || _ "+Imperative" "^" .o.
+                    "+Present" -> 0 ,,
+                    "+StemChanged" -> 0 ,,
+                    "+Imperative" -> 0;
 
 define Cleanup "^" -> 0;
 

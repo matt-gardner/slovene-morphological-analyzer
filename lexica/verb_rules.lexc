@@ -12,20 +12,20 @@ LEXICON VBiInf
 
 LEXICON VInfBase
 
-+Present+First+Sing:m #;
-+Present+Second+Sing:š #;
-+Present+Third+Sing: #;
-+Present+First+Dual:va #;
-+Present+Second+Dual:ta #;
-+Present+Third+Dual:ta #;
-+Present+First+Plural:mo #;
-+Present+Second+Plural:te #;
-+Present+Third+Plural:jo #;
-+Imperative+Second+Sing:j #;
-+Imperative+First+Dual:jva #;
-+Imperative+Second+Dual:jta #;
-+Imperative+First+Plural:jmo #;
-+Imperative+Second+Plural:jte #;
++Present+First+Sing:+Present^m #;
++Present+Second+Sing:+Present^š #;
++Present+Third+Sing:+Present^ #;
++Present+First+Dual:+Present^va #;
++Present+Second+Dual:+Present^ta #;
++Present+Third+Dual:+Present^ta #;
++Present+First+Plural:+Present^mo #;
++Present+Second+Plural:+Present^te #;
++Present+Third+Plural:+Present^jo #;
++Imperative+Second+Sing:+Imperative^j #;
++Imperative+First+Dual:+Imperative^jva #;
++Imperative+Second+Dual:+Imperative^jta #;
++Imperative+First+Plural:+Imperative^jmo #;
++Imperative+Second+Plural:+Imperative^jte #;
 
 +Infinite:ti #;
 +Supine:t #;

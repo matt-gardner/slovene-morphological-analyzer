@@ -16,6 +16,7 @@ Multichar_Symbols +N +A +V
                   +General +Possessive +Participle  ! types of adjectives
                   +Positive +Comparative +Superlative  ! degrees of adjectives
                   +AdjRemoveI
+                  +StemChanged
 
 LEXICON Root
 Noun ;
