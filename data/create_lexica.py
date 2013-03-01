@@ -32,20 +32,20 @@ def main(sloleks_file, lex_dir):
         elif msd[0] == 'A':
             adjs.add(lemma)
         elif msd[0] == 'V':
-            verbs.add(lemma)
+            verbs.add((lemma, msd))
         else:
             others.add(lemma)
     write_masculine_nouns(ncms, lex_dir)
     write_feminine_nouns(ncfs, lex_dir)
     write_neuter_nouns(ncns, lex_dir)
     write_adjectives(adjs, lex_dir)
+    write_verbs(verbs, lex_dir)
     write_lexicon(lex_dir+'proper_masc_nouns.lexc', npms, 'ProperNounMasc',
             'NMasc')
     write_lexicon(lex_dir+'proper_fem_nouns.lexc', npfs, 'ProperNounFem',
             'NFem')
     write_lexicon(lex_dir+'proper_neut_nouns.lexc', npns, 'ProperNounNeut',
             'NNeut')
-    write_lexicon(lex_dir+'verbs.lexc', verbs, 'Verb', 'Vinf')
     write_lexicon(lex_dir+'others.lexc', others, 'Other', 'OtherInf')
 
 
@@ -87,6 +87,7 @@ def write_feminine_nouns(lemmas, lex_dir):
             'NounFemOst', 'NFemOst')
     out.close()
 
+
 def write_neuter_nouns(lemmas, lex_dir):
     e_lemmas = set()
     o_lemmas = set()
@@ -121,6 +122,29 @@ def write_adjectives(lemmas, lex_dir):
     write_lexicon_to_open_file(out, poss_lemmas, 'AdjPoss', 'AdjInfPoss')
     write_lexicon_to_open_file(out, part_lemmas, 'AdjPart', 'AdjInfPart')
     write_lexicon_to_open_file(out, other_lemmas, 'AdjNormal', 'AdjInf')
+    out.close()
+
+
+def write_verbs(lemmas, lex_dir):
+    progressive = set()
+    perfective = set()
+    biaspectual = set()
+    biti = set(['biti'])
+    for l, msd in lemmas:
+        if msd[2] == 'b':
+            biaspectual.add(l)
+        elif msd[2] == 'e':
+            perfective.add(l)
+        elif msd[2] == 'p':
+            progressive.add(l)
+        else:
+            # The only other option is '-', which only happens with biti
+            pass
+    out = open(lex_dir + 'verbs.lexc', 'w')
+    write_lexicon_to_open_file(out, progressive, 'VerbProg', 'VProgInf')
+    write_lexicon_to_open_file(out, perfective, 'VerbPerf', 'VPerfInf')
+    write_lexicon_to_open_file(out, biaspectual, 'VerbBi', 'VBiInf')
+    write_lexicon_to_open_file(out, biti, 'VerbBiti', 'BitiInf')
     out.close()
 
 

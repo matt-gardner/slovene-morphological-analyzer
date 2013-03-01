@@ -111,11 +111,19 @@ def analysis_to_msd(analysis):
             ('+Positive', 'p'), ('+Comparative', 'c'), ('+Superlative', 's'),
             ('+Animate', 'y'), ('+Inanimate', 'n'),
             ('+Definite', 'y'), ('+Indefinite', 'n'),
+            ('+Main', 'm'), ('+Auxiliary', 'a'),
+            ('+Perfective', 'e'), ('+Progressive', 'p'), ('+Biaspectual', 'b'),
+            ('+First', '1'), ('+Second', '2'), ('+Third', '3'),
+            ('+NoPerson', '-'), ('+NoAspect', '-'),
+            ('+Infinitive', 'n'), ('+Supine', 'u'), ('+Present', 'r'),
+            ('+Future', 'f'), ('+Conditional', 'c'), ('+Imperative', 'm'),
+            ('+Negative', 'y'), ('+NotNegative', 'n'),
             ('+Nom', 'n'), ('+Gen', 'g'), ('+Dat', 'd'), ('+Acc', 'a'),
             ('+Loc', 'l'), ('+Ins', 'i'),
             ('+Sing', 's'), ('+Dual', 'd'), ('+Plural', 'p'),
             ('+Masc', 'm'), ('+Fem', 'f'), ('+Neut', 'n'),
             ('+A', '-A'),
+            ('+V', '-V'),
             ('+N', '-Nc'), # Not general, yet; still need to handle propers
             ]
     msd = analysis
@@ -144,6 +152,8 @@ if __name__ == '__main__':
             'lexica/common_masc_nouns.lexc',
             'lexica/common_neut_nouns.lexc',
             'lexica/noun_rules.lexc',
+            'lexica/verbs.lexc',
+            'lexica/verb_rules.lexc',
             ]
     foma_file = 'foma/slovene.foma'
     if opts.small:
@@ -153,7 +163,8 @@ if __name__ == '__main__':
                 #'tests/common_fem_nouns.tsv',
                 #'tests/common_masc_nouns.tsv',
                 #'tests/common_neut_nouns.tsv',
-                'tests/adjs.tsv',
+                #'tests/adjs.tsv',
+                'tests/verbs.tsv',
                 ]
     results_dir = 'results/'
     main(lexica, foma_file, test_files, results_dir, opts.verbose)

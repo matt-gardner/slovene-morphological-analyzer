@@ -1,9 +1,17 @@
 Multichar_Symbols +N +A +V
+                  ! Nouns
                   +Common +Proper
                   +Masc +Fem +Neut
                   +Nom +Gen +Dat +Acc +Loc +Ins
                   +Sing +Dual +Plural
                   +Animate +Inanimate  ! in a few cases, nouns specify this
+                  ! Verbs
+                  +Perfective +Progressive +Biaspectual +NoAspect
+                  +Main +Auxiliary
+                  +Infinitive +Supine +Present +Future +Conditional +Imperative
+                  +First +Second +Third +NoPerson
+                  +Negative +NotNegative ! in a few cases, verbs specify this
+                  ! Adjectives
                   +Definite +Indefinite  ! in a few cases, adjs specify this
                   +General +Possessive +Participle  ! types of adjectives
                   +Positive +Comparative +Superlative  ! degrees of adjectives
@@ -13,6 +21,13 @@ LEXICON Root
 Noun ;
 Verb ;
 Adj ;
+
+LEXICON Verb
+VerbProg ;
+VerbPerf ;
+VerbBi ;
+VerbBiti ;
+
 
 LEXICON Adj
 AdjI ;

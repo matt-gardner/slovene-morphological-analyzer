@@ -1,0 +1,46 @@
+LEXICON VProgInf
+
++V+Main+Progressive:+V VInfBase;
+
+LEXICON VPerfInf
+
++V+Main+Perfective:+V VInfBase;
+
+LEXICON VBiInf
+
++V+Main+Biaspectual:+V VInfBase;
+
+LEXICON VInfBase
+
++Present+First+Sing:m #;
++Present+Second+Sing:š #;
++Present+Third+Sing: #;
++Present+First+Dual:va #;
++Present+Second+Dual:ta #;
++Present+Third+Dual:ta #;
++Present+First+Plural:mo #;
++Present+Second+Plural:te #;
++Present+Third+Plural:jo #;
++Imperative+Second+Sing:j #;
++Imperative+First+Dual:jva #;
++Imperative+Second+Dual:jta #;
++Imperative+First+Plural:jmo #;
++Imperative+Second+Plural:jte #;
+
++Infinite:ti #;
++Supine:t #;
+
++Participle+NoPerson+Sing+Masc:l #;
++Participle+NoPerson+Dual+Masc:la #;
++Participle+NoPerson+Plural+Masc:li #;
++Participle+NoPerson+Sing+Fem:la #;
++Participle+NoPerson+Dual+Fem:li #;
++Participle+NoPerson+Plural+Fem:le #;
++Participle+NoPerson+Sing+Neut:lo #;
++Participle+NoPerson+Dual+Neut:li #;
++Participle+NoPerson+Plural+Neut:la #;
+
+
+
+!LEXICON BitiInf
+!;
