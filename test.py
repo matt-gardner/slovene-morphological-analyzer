@@ -141,6 +141,8 @@ def main(lexica, foma_file, test_files, results_dir, verbose):
                         percent_complete, stats[msd]['complete'],
                         percent_correct, stats[msd]['correct'],
                         num_seen))
+    proc = Popen('rm -f lexicon.lexc', shell=True)
+    proc.wait()
 
 
 def analysis_to_msd(analysis):
@@ -183,7 +185,7 @@ if __name__ == '__main__':
             'conjunctions',
             'nouns',
             'particles',
-            'prepsitions',
+            'prepositions',
             'verbs',
             ]
     from optparse import OptionParser
@@ -207,7 +209,7 @@ if __name__ == '__main__':
                 dest='%s' % pos,
                 action='store_true')
     opts, args = parser.parse_args()
-    testcases = {]
+    testcases = {}
     for pos in parts_of_speech:
         testcases[pos] = {'lexica': [
                 'lexica/base.lexc',
@@ -240,15 +242,16 @@ if __name__ == '__main__':
         'test_files': [
             'tests/adjs_small.tsv',
         ]}
-    everything = {'lexica': [
-            'lexica/base.lexc',
-        ],
+    everything = {'lexica': set(
+            ['lexica/base.lexc',]
+        ),
         'test_files': [
             'tests/everything.tsv',
         ]}
     for pos in parts_of_speech:
-        everything['lexica'].append('lexica/%s.lexc' % pos)
-        everything['lexica'].append('lexica/%s_rules.lexc' % pos)
+        for l in testcases[pos]['lexica']:
+            everything['lexica'].add(l)
+    everything['lexica'] = list(everything['lexica'])
     foma_file = 'foma/slovene.foma'
     results_dir = 'results/'
     to_test = []
@@ -258,7 +261,7 @@ if __name__ == '__main__':
         to_test.append(everything)
     for pos in parts_of_speech:
         if getattr(opts, pos):
-            to_test.append(testcases['pos'])
+            to_test.append(testcases[pos])
     if not to_test:
         print 'No tests specified.  Exiting.'
         exit(0)
