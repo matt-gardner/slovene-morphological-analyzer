@@ -7,18 +7,21 @@ from subprocess import Popen, PIPE
 
 from dirutil import create_dirs_and_open
 
+from data.create_tests import SEPARATOR
+
 
 def main(lexica, foma_file, test_files, results_dir, verbose):
     proc = Popen('cat %s > lexicon.lexc' % ' '.join(lexica), shell=True)
     proc.wait()
     proc = Popen(('foma', '-l', foma_file))
     proc.wait()
+    stats = defaultdict(lambda: defaultdict(int))
     for test in test_files:
         print 'Testing forms in', test
         cases = defaultdict(set)
         for line in open(test):
             form, analyses = line.strip().split('\t')
-            analyses = analyses.split(',')
+            analyses = analyses.split(SEPARATOR)
             for a in analyses:
                 cases[form].add(a)
 
@@ -54,11 +57,13 @@ def main(lexica, foma_file, test_files, results_dir, verbose):
         incorrect_lemmas = set()
         unparseable = set()
         for form in cases:
+            form_unparseable = False
             gold_set = cases[form]
             seen_set = seen[form]
             for analysis in seen_set:
                 if '?' in analysis:
                     unparseable.add(form)
+                    form_unparseable = True
             intersection = gold_set.intersection(seen_set)
             recall = len(intersection) / len(gold_set)
             if len(seen_set) == 0:
@@ -83,6 +88,21 @@ def main(lexica, foma_file, test_files, results_dir, verbose):
                 overanalyzed_file.write('%s\n' % form)
             if precision == 1.0 and recall == 1.0:
                 num_both += 1
+            for analysis in gold_set:
+                fields = analysis.split('-', 1)
+                if len(fields) == 1:
+                    print 'Weird analysis:', analysis
+                    continue
+                lemma, msd = fields
+                stats[msd]['seen'] += 1
+                if precision == 1.0:
+                    stats[msd]['precise'] += 1
+                if recall == 1.0:
+                    stats[msd]['complete'] += 1
+                if recall == 1.0 and precision == 1.0:
+                    stats[msd]['correct'] += 1
+                if form_unparseable:
+                    stats[msd]['unparseable'] += 1
         incorrect_file.close()
         correct_file.close()
         overanalyzed_file.close()
@@ -100,6 +120,27 @@ def main(lexica, foma_file, test_files, results_dir, verbose):
         for form in unparseable:
             unparseable_file.write('%s\n' % form)
         unparseable_file.close()
+        stats_file = open(base + 'stats.tsv', 'w')
+        headers = 'lemma\t'
+        headers += '%%unparseable\tnum_unparseable\t'
+        headers += '%%precise\tnum_precise\t'
+        headers += '%%complete\tnum_complete\t'
+        headers += '%%correct\tnum_correct\t'
+        headers += 'seen\n'
+        stats_file.write(headers)
+        for msd in stats:
+            num_seen = stats[msd]['seen']
+            percent_unparseable = stats[msd]['unparseable'] / num_seen
+            percent_precise = stats[msd]['precise'] / num_seen
+            percent_complete = stats[msd]['complete'] / num_seen
+            percent_correct = stats[msd]['correct'] / num_seen
+            stats_file.write('%s\t%.2f\t%d\t%.2f\t%d\t%.2f\t%d\t%.2f\t%d\t%d\n'
+                    % (msd,
+                        percent_unparseable, stats[msd]['unparseable'],
+                        percent_precise, stats[msd]['precise'],
+                        percent_complete, stats[msd]['complete'],
+                        percent_correct, stats[msd]['correct'],
+                        num_seen))
 
 
 def analysis_to_msd(analysis):
@@ -125,6 +166,7 @@ def analysis_to_msd(analysis):
             ('+Masc', 'm'), ('+Fem', 'f'), ('+Neut', 'n'),
             ('+Preposition', '-S'),
             ('+Conjunction', '-C'),
+            ('+Particle', '-Q'),
             ('+A', '-A'),
             ('+V', '-V'),
             ('+N', '-Nc'), # Not general, yet; still need to handle propers
@@ -136,6 +178,14 @@ def analysis_to_msd(analysis):
 
 
 if __name__ == '__main__':
+    parts_of_speech = [
+            'adjectives',
+            'conjunctions',
+            'nouns',
+            'particles',
+            'prepsitions',
+            'verbs',
+            ]
     from optparse import OptionParser
     parser = OptionParser()
     parser.add_option('', '--small',
@@ -146,75 +196,39 @@ if __name__ == '__main__':
             help='Show detailed error output',
             dest='verbose',
             action='store_true')
-    parser.add_option('', '--adjs',
-            help='Test adjectives',
-            dest='adjs',
-            action='store_true')
-    parser.add_option('', '--conjunctions',
-            help='Test conjunctions',
-            dest='conjunctions',
-            action='store_true')
-    parser.add_option('', '--nouns',
-            help='Test nouns',
-            dest='nouns',
-            action='store_true')
-    parser.add_option('', '--prepositions',
-            help='Test prepositions',
-            dest='prepositions',
-            action='store_true')
-    parser.add_option('', '--verbs',
-            help='Test verbs',
-            dest='verbs',
-            action='store_true')
-    parser.add_option('', '--all',
+    parser.add_option('', '--everything',
             help='Test everything together (note that this is different from '
             'specifying all other options individually)',
             dest='everything',
             action='store_true')
+    for pos in parts_of_speech:
+        parser.add_option('', '--%s' % pos,
+                help='Test %s' % pos,
+                dest='%s' % pos,
+                action='store_true')
     opts, args = parser.parse_args()
-    adjs = {'lexica': [
-            'lexica/base.lexc',
-            'lexica/adjs.lexc',
-            'lexica/adj_rules.lexc',
-        ],
-        'test_files': [
-            'tests/adjs.tsv',
-        ]}
-    conjunctions = {'lexica': [
-            'lexica/base.lexc',
-            'lexica/conjunctions.lexc',
-            'lexica/conj_rules.lexc',
-        ],
-        'test_files': [
-            'tests/conjunctions.tsv',
-        ]}
-    nouns = {'lexica': [
+    testcases = {]
+    for pos in parts_of_speech:
+        testcases[pos] = {'lexica': [
+                'lexica/base.lexc',
+                'lexica/%s.lexc' % pos,
+                'lexica/%s_rules.lexc' % pos,
+                ],
+                'test_files': [
+                    'tests/%s.tsv' % pos,
+                ]}
+    # We special case this one, to have more fine-grained tests
+    testcases['nouns'] = {'lexica': [
             'lexica/base.lexc',
             'lexica/common_fem_nouns.lexc',
             'lexica/common_masc_nouns.lexc',
             'lexica/common_neut_nouns.lexc',
-            'lexica/noun_rules.lexc',
+            'lexica/nouns_rules.lexc',
         ],
         'test_files': [
             'tests/common_fem_nouns.tsv',
             'tests/common_masc_nouns.tsv',
             'tests/common_neut_nouns.tsv',
-        ]}
-    prepositions = {'lexica': [
-            'lexica/base.lexc',
-            'lexica/prepositions.lexc',
-            'lexica/prep_rules.lexc',
-        ],
-        'test_files': [
-            'tests/prepositions.tsv',
-        ]}
-    verbs = {'lexica': [
-            'lexica/base.lexc',
-            'lexica/verbs.lexc',
-            'lexica/verb_rules.lexc',
-        ],
-        'test_files': [
-            'tests/verbs.tsv',
         ]}
     # Though it's a big obnoxious, this one just should be modified by hand if
     # you want to run a different small test.
@@ -228,35 +242,23 @@ if __name__ == '__main__':
         ]}
     everything = {'lexica': [
             'lexica/base.lexc',
-            'lexica/adjs.lexc',
-            'lexica/adj_rules.lexc',
-            'lexica/common_fem_nouns.lexc',
-            'lexica/common_masc_nouns.lexc',
-            'lexica/common_neut_nouns.lexc',
-            'lexica/noun_rules.lexc',
-            'lexica/verbs.lexc',
-            'lexica/verb_rules.lexc',
         ],
         'test_files': [
-            'tests/all.tsv',
+            'tests/everything.tsv',
         ]}
+    for pos in parts_of_speech:
+        everything['lexica'].append('lexica/%s.lexc' % pos)
+        everything['lexica'].append('lexica/%s_rules.lexc' % pos)
     foma_file = 'foma/slovene.foma'
     results_dir = 'results/'
     to_test = []
-    if opts.adjs:
-        to_test.append(adjs)
-    if opts.conjunctions:
-        to_test.append(conjunctions)
-    if opts.nouns:
-        to_test.append(nouns)
-    if opts.prepositions:
-        to_test.append(prepositions)
-    if opts.verbs:
-        to_test.append(verbs)
     if opts.small:
         to_test.append(small)
     if opts.everything:
         to_test.append(everything)
+    for pos in parts_of_speech:
+        if getattr(opts, pos):
+            to_test.append(testcases['pos'])
     if not to_test:
         print 'No tests specified.  Exiting.'
         exit(0)

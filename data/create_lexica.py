@@ -15,6 +15,7 @@ def main(sloleks_file, lex_dir):
     adjs = set()
     prepositions = set()
     conjunctions = set()
+    particles = set()
     others = set()
     for line in gzip.open(sloleks_file):
         form, lemma, msd, freq, irreg = line.split('\t')
@@ -39,6 +40,8 @@ def main(sloleks_file, lex_dir):
             prepositions.add((lemma, msd))
         elif msd[0] == 'C':
             conjunctions.add((lemma, msd))
+        elif msd[0] == 'Q':
+            particles.add(lemma)
         else:
             others.add(lemma)
     write_masculine_nouns(ncms, lex_dir)
@@ -48,6 +51,7 @@ def main(sloleks_file, lex_dir):
     write_verbs(verbs, lex_dir)
     write_prepositions(prepositions, lex_dir)
     write_conjunctions(conjunctions, lex_dir)
+    write_lexicon(lex_dir+'particles.lexc', particles, 'Particle', 'PartInf')
     write_lexicon(lex_dir+'proper_masc_nouns.lexc', npms, 'ProperNoun', 'NMasc')
     write_lexicon(lex_dir+'proper_fem_nouns.lexc', npfs, 'ProperNoun', 'NFem')
     write_lexicon(lex_dir+'proper_neut_nouns.lexc', npns, 'ProperNoun', 'NNeut')
@@ -120,7 +124,7 @@ def write_adjectives(lemmas, lex_dir):
             part_lemmas.add(l)
         else:
             other_lemmas.add(l)
-    out = open(lex_dir + 'adjs.lexc', 'w')
+    out = open(lex_dir + 'adjectives.lexc', 'w')
     write_lexicon_to_open_file(out, i_lemmas, 'Adj', 'AdjInfI')
     write_lexicon_to_open_file(out, poss_lemmas, 'Adj', 'AdjInfPoss')
     write_lexicon_to_open_file(out, part_lemmas, 'Adj', 'AdjInfPart')

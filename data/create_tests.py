@@ -3,7 +3,10 @@
 from collections import defaultdict
 import gzip
 
+SEPARATOR = '-,*,-'
+
 def main(sloleks_file, test_dir):
+    everything = defaultdict(list)
     npms = defaultdict(list)
     npfs = defaultdict(list)
     npns = defaultdict(list)
@@ -24,6 +27,7 @@ def main(sloleks_file, test_dir):
     for line in gzip.open(sloleks_file):
         form, lemma, msd, freq, irreg = line.split('\t')
         if '*' in irreg: continue
+        everything[form].append((lemma, msd))
         if msd.startswith('Npm'):
             npms[form].append((lemma, msd))
         elif msd.startswith('Npf'):
@@ -75,6 +79,7 @@ def main(sloleks_file, test_dir):
     write_test_file(test_dir + 'interjections.tsv', interjections)
     write_test_file(test_dir + 'abbreviations.tsv', abbreviations)
     write_test_file(test_dir + 'residuals.tsv', residuals)
+    write_test_file(test_dir + 'everything.tsv', everything)
 
 
 def write_test_file(filename, dictionary):
@@ -82,7 +87,7 @@ def write_test_file(filename, dictionary):
     keys = dictionary.keys()
     keys.sort()
     for key in keys:
-        analyses = ','.join(x[0]+'-'+x[1] for x in dictionary[key])
+        analyses = SEPARATOR.join(x[0]+'-'+x[1] for x in dictionary[key])
         tests.write('%s\t%s\n' % (key, analyses))
 
 

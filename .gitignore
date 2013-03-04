@@ -2,3 +2,4 @@ lexicon.lexc
 results/
 slovene.bin
 *.swp
+*.pyc
