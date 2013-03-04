@@ -766,7 +766,7 @@ dišeče	dišeče-Rgp
 dlakavo	dlakavo-Rgp
 dlakocepsko	dlakocepsko-Rgp
 dlanasto	dlanasto-Rgp
-dlje	daleč-Rgc-,*,-dolgo-Rgc
+dlje	daleč-Rgc,-*-,dolgo-Rgc
 dnevno	dnevno-Rgp
 dobesedno	dobesedno-Rgp
 dobivši	dobivši-Rr
@@ -3186,7 +3186,7 @@ najdiferencialneje	diferencialno-Rgs
 najdiferencialnejše	diferencialno-Rgs
 najdisciplinarneje	disciplinarno-Rgs
 najdisciplinarnejše	disciplinarno-Rgs
-najdlje	daleč-Rgs-,*,-dolgo-Rgs
+najdlje	daleč-Rgs,-*-,dolgo-Rgs
 najdobrotljiveje	dobrotljivo-Rgs
 najdobrotljivejše	dobrotljivo-Rgs
 najdobrovoljneje	dobrovoljno-Rgs
@@ -4075,7 +4075,7 @@ najpozitivnejše	pozitivno-Rgs
 najpozneje	pozno-Rgs
 najpozorneje	pozorno-Rgs
 najpozornejše	pozorno-Rgs
-najpočasneje	počasi-Rgs-,*,-počasno-Rgs
+najpočasneje	počasi-Rgs,-*-,počasno-Rgs
 najpočasnejše	počasno-Rgs
 najpožrešneje	požrešno-Rgs
 najpožrešnejše	požrešno-Rgs
@@ -6834,7 +6834,7 @@ pozorneje	pozorno-Rgc
 pozornejše	pozorno-Rgc
 pozorno	pozorno-Rgp
 počasi	počasi-Rgp
-počasneje	počasi-Rgc-,*,-počasno-Rgc
+počasneje	počasi-Rgc,-*-,počasno-Rgc
 počasnejše	počasno-Rgc
 počasno	počasno-Rgp
 počemu	počemu-Rgp
@@ -7198,7 +7198,7 @@ prevarantsko	prevarantsko-Rgp
 prevejano	prevejano-Rgp
 preventivno	preventivno-Rgp
 preveselo	preveselo-Rgp
-preveč	preveč-Rgp-,*,-preveliko-Rgp
+preveč	preveč-Rgp,-*-,preveliko-Rgp
 prevečkrat	prevečkrat-Rgp
 previdneje	previdno-Rgc
 previdnejše	previdno-Rgc

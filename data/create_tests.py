@@ -3,7 +3,7 @@
 from collections import defaultdict
 import gzip
 
-SEPARATOR = '-,*,-'
+SEPARATOR = ',-*-,'
 
 def main(sloleks_file, test_dir):
     everything = defaultdict(list)
@@ -69,7 +69,7 @@ def main(sloleks_file, test_dir):
     write_test_file(test_dir + 'proper_fem_nouns.tsv', npfs)
     write_test_file(test_dir + 'proper_neut_nouns.tsv', npns)
     write_test_file(test_dir + 'verbs.tsv', verbs)
-    write_test_file(test_dir + 'adjs.tsv', adjs)
+    write_test_file(test_dir + 'adjectives.tsv', adjs)
     write_test_file(test_dir + 'adverbs.tsv', adverbs)
     write_test_file(test_dir + 'pronouns.tsv', pronouns)
     write_test_file(test_dir + 'numerals.tsv', numerals)
