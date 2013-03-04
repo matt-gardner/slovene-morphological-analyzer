@@ -23,6 +23,8 @@ define NeutNounStemming o "+Neut" -> 0 || _ "^" ,,
                         e "+Neut" -> 0 || _ "^" .o.
                         "+Neut" -> 0;
 
+define PronounStemming [i | a] "+StemPronoun" -> 0;
+
 define VerbStemming t i "+V" -> 0 .o.
                     n i -> n e || _ "+Present" "^" ,,
                     e -> i "+StemChanged" || _ "+Present" "^" ,,
@@ -35,6 +37,7 @@ define VerbStemming t i "+V" -> 0 .o.
 define Cleanup "^" -> 0;
 
 define Grammar Lexicon .o.
+               PronounStemming .o.
                FemNounStemming .o.
                Adjectives .o.
                Adverbs .o.

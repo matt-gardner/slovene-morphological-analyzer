@@ -243,7 +243,7 @@ def write_pronouns(lemmas, lex_dir):
     possessive = set()
     demonstrative = set()
     relative = set()
-    reflexive = set()
+    reflexive_bound = set()
     general = set()
     interrogative = set()
     indefinite = set()
@@ -257,8 +257,8 @@ def write_pronouns(lemmas, lex_dir):
             demonstrative.add(l)
         elif msd[1] == 'r':
             relative.add(l)
-        elif msd[1] == 'x':
-            reflexive.add(l)
+        elif msd[1] == 'x' and msd[-1] == 'b':
+            reflexive_bound.add(l)
         elif msd[1] == 'g':
             general.add(l)
         elif msd[1] == 'q':
@@ -274,7 +274,9 @@ def write_pronouns(lemmas, lex_dir):
     #write_lexicon_to_open_file(out, possessive, 'Pronoun', 'PronPoss')
     write_lexicon_to_open_file(out, demonstrative, 'Pronoun', 'PronDemon')
     write_lexicon_to_open_file(out, relative, 'Pronoun', 'PronRel')
-    write_lexicon_to_open_file(out, reflexive, 'Pronoun', 'PronRefl')
+    # We just do bound reflexvies here, and handle the small number of other
+    # reflexives in pronoun_rules.lexc
+    write_lexicon_to_open_file(out, reflexive_bound, 'Pronoun', 'PronBoundRefl')
     write_lexicon_to_open_file(out, general, 'Pronoun', 'PronGen')
     write_lexicon_to_open_file(out, interrogative, 'Pronoun', 'PronInterr')
     write_lexicon_to_open_file(out, indefinite, 'Pronoun', 'PronIndef')

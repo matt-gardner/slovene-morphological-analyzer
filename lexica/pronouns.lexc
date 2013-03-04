@@ -62,18 +62,16 @@ kolikršen PronRel;
 čigavršnji PronRel;
 LEXICON Pronoun
 
-medse PronRefl;
-nadse PronRefl;
-nase PronRefl;
-obse PronRefl;
-podse PronRefl;
-predse PronRefl;
-se PronRefl;
-skozse PronRefl;
-svoj PronRefl;
-vase PronRefl;
-zase PronRefl;
-čezse PronRefl;
+medse PronBoundRefl;
+nadse PronBoundRefl;
+nase PronBoundRefl;
+obse PronBoundRefl;
+podse PronBoundRefl;
+predse PronBoundRefl;
+skozse PronBoundRefl;
+vase PronBoundRefl;
+zase PronBoundRefl;
+čezse PronBoundRefl;
 LEXICON Pronoun
 
 oba PronGen;

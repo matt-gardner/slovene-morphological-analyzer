@@ -180,14 +180,14 @@ def analysis_to_msd(analysis):
             ('+Main', 'm'), ('+Auxiliary', 'a'),
             ('+Perfective', 'e'), ('+Progressive', 'p'), ('+Biaspectual', 'b'),
             ('+First', '1'), ('+Second', '2'), ('+Third', '3'),
-            ('+NoPerson', '-'), ('+NoAspect', '-'),
+            ('+NoPerson', '-'), ('+NoAspect', '-'), ('+NoNumber', '-'),
             ('+Infinitive', 'n'), ('+Supine', 'u'), ('+Present', 'r'),
             ('+Future', 'f'), ('+Conditional', 'c'), ('+Imperative', 'm'),
             ('+Negative', 'y'), ('+NotNegative', 'n'),
             ('+Nom', 'n'), ('+Gen', 'g'), ('+Dat', 'd'), ('+Acc', 'a'),
-            ('+Loc', 'l'), ('+Ins', 'i'),
+            ('+Loc', 'l'), ('+Ins', 'i'), ('+NoCase', '-'),
             ('+Sing', 's'), ('+Dual', 'd'), ('+Plural', 'p'),
-            ('+Masc', 'm'), ('+Fem', 'f'), ('+Neut', 'n'),
+            ('+Masc', 'm'), ('+Fem', 'f'), ('+Neut', 'n'), ('+NoGender', '-'),
             ('+Preposition', '-S'),
             ('+Conjunction', '-C'),
             ('+Interjection', '-I'),
@@ -207,7 +207,7 @@ def analysis_to_msd(analysis):
     shift_replace = [
             ('+OwnerSing', 's'), ('+OwnerDual', 'd'), ('+OwnerPlural', 'p'),
             ('+OwnerMasc', 'm'), ('+OwnerFem', 'f'), ('+OwnerNeut', 'n'),
-            ('+Clitic', 'y'), ('+BoundClitic', 'b'),
+            ('+Clitic', '--y'), ('+BoundClitic', '--b'),
             ]
     msd = analysis
     for a, m in replacements:

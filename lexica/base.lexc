@@ -24,6 +24,7 @@ Multichar_Symbols +N +A +V
                   +Adverb
                   +AdvParticiple
                   +StemChanged
+                  +StemPronoun
                   @P.SUP.POS@
                   @R.SUP@
                   @D.SUP@

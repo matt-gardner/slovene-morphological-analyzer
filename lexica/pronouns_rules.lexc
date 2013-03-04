@@ -1,6 +1,8 @@
 LEXICON PronPersonal
 LEXICON Pronoun
 
+!Possessive pronouns here
+
 moj+Pronoun+Possessive+First+OwnerSing:moj AdjNoDefiniteness;
 najin+Pronoun+Possessive+First+OwnerDual:najin AdjNoDefiniteness;
 naš+Pronoun+Possessive+First+OwnerPlural:naš AdjNoDefiniteness;
@@ -14,9 +16,31 @@ njun+Pronoun+Possessive+Third+OwnerDual:njun AdjNoDefiniteness;
 njihen+Pronoun+Possessive+Third+OwnerPlural:njihen+A AdjNoDefiniteness;
 njihnji+Pronoun+Possessive+Third+OwnerPlural:njihnji AdjNoDefiniteness;
 njihov+Pronoun+Possessive+Third+OwnerPlural:njihov AdjNoDefiniteness;
+
 LEXICON PronDemon
+
++Pronoun+Demonstrative+NoPerson:+StemPronoun+A AdjNoDefiniteness;
+
 LEXICON PronRel
-LEXICON PronRefl
+
+LEXICON Pronoun
+
+! Reflexive pronouns here
+
+svoj+Pronoun+Reflexive+NoPerson:svoj AdjNoDefiniteness;
+se+Pronoun+Reflexive+NoPerson+NoGender+NoNumber+NoCase+Clitic:se #;
+se+Pronoun+Reflexive+NoPerson+NoGender+NoNumber+Gen:sebe #;
+se+Pronoun+Reflexive+NoPerson+NoGender+NoNumber+Dat:sebi #;
+se+Pronoun+Reflexive+NoPerson+NoGender+NoNumber+Dat+Clitic:si #;
+se+Pronoun+Reflexive+NoPerson+NoGender+NoNumber+Acc:sebe #;
+se+Pronoun+Reflexive+NoPerson+NoGender+NoNumber+Loc:sebi #;
+se+Pronoun+Reflexive+NoPerson+NoGender+NoNumber+Ins:seboj #;
+se+Pronoun+Reflexive+NoPerson+NoGender+NoNumber+Ins:sabo #;
+
+LEXICON PronBoundRefl
+
++Pronoun+Reflexive+NoPerson+NoGender+NoNumber+Acc+BoundClitic: #;
+
 LEXICON PronGen
 LEXICON PronInterr
 LEXICON PronIndef
