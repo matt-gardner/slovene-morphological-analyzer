@@ -54,7 +54,7 @@ def main(sloleks_file, lex_dir):
         elif msd[0] == 'X':
             residuals.add(lemma)
         elif msd[0] == 'R':
-            adverbs.add(lemma)
+            adverbs.add((lemma, msd))
         elif msd[0] == 'P':
             pronouns.add(lemma)
         elif msd[0] == 'M':
@@ -69,7 +69,7 @@ def main(sloleks_file, lex_dir):
     write_verbs(verbs, lex_dir)
     write_prepositions(prepositions, lex_dir)
     write_conjunctions(conjunctions, lex_dir)
-    write_lexicon(lex_dir+'adverbs.lexc', adverbs, 'Adverb', 'AdverbInf')
+    write_adverbs(adverbs, lex_dir)
     write_lexicon(lex_dir+'pronouns.lexc', pronouns, 'Pronoun', 'PronounInf')
     write_lexicon(lex_dir+'numerals.lexc', numerals, 'Numeral', 'NumeralInf')
     write_lexicon(lex_dir+'particles.lexc', particles, 'Particle', 'PartInf')
@@ -222,6 +222,20 @@ def write_conjunctions(lemmas, lex_dir):
     out = open(lex_dir + 'conjunctions.lexc', 'w')
     write_lexicon_to_open_file(out, coordinating, 'Conj', 'ConjCoord')
     write_lexicon_to_open_file(out, subordinating, 'Conj', 'ConjSubord')
+    out.close()
+
+
+def write_adverbs(lemmas, lex_dir):
+    general = set()
+    participle = set()
+    for l, msd in lemmas:
+        if msd[1] == 'g':
+            general.add(l)
+        elif msd[1] == 'r':
+            participle.add(l)
+    out = open(lex_dir + 'adverbs.lexc', 'w')
+    write_lexicon_to_open_file(out, general, 'Adverb', 'AdverbInf')
+    write_lexicon_to_open_file(out, participle, 'Adverb', 'AdverbPart')
     out.close()
 
 

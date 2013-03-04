@@ -165,6 +165,7 @@ def analysis_to_msd(analysis):
     # by phenomenon, so hopefully it will be easier to spot.
     replacements = [
             ('+Coordinating', 'c'), ('+Subordinating', 's'),
+            ('+AdvParticiple', 'r'),
             ('+General', 'g'), ('+Possessive', 's'), ('+Participle', 'p'),
             ('+Positive', 'p'), ('+Comparative', 'c'), ('+Superlative', 's'),
             ('+Animate', 'y'), ('+Inanimate', 'n'),

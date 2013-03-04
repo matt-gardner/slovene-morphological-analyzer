@@ -4,3 +4,6 @@ LEXICON AdverbInf
 +Adverb+General+Comparative@D.SUP@:+Adverb^ejše@D.SUP@ #;
 +Adverb+General+Superlative@R.SUP@:+Adverb^eje@R.SUP@ #;
 +Adverb+General+Superlative@R.SUP@:+Adverb^ejše@R.SUP@ #;
+
+LEXICON AdverbPart
++Adverb+AdvParticiple@D.SUP@:@D.SUP@ #;

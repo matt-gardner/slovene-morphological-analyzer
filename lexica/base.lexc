@@ -19,6 +19,7 @@ Multichar_Symbols +N +A +V
                   ! Others
                   +Preposition
                   +Adverb
+                  +AdvParticiple
                   +StemChanged
                   @P.SUP.POS@
                   @R.SUP@
