@@ -1,0 +1,6 @@
+LEXICON AdverbInf
++Adverb+General+Positive@D.SUP@:@D.SUP@ #;
++Adverb+General+Comparative@D.SUP@:+Adverb^eje@D.SUP@ #;
++Adverb+General+Comparative@D.SUP@:+Adverb^ejše@D.SUP@ #;
++Adverb+General+Superlative@R.SUP@:+Adverb^eje@R.SUP@ #;
++Adverb+General+Superlative@R.SUP@:+Adverb^ejše@R.SUP@ #;

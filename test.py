@@ -31,7 +31,7 @@ def main(lexica, foma_file, test_files, results_dir, verbose):
         # This randomizes the order, which is good, if you want to just pick
         # the first N, or something
         keys = list(cases.keys())
-        while start == 0 or start+blocksize < len(keys):
+        while start < len(keys):
             if start % 20000 == 0:
                 print start
             block = keys[start:start+blocksize]
@@ -146,7 +146,7 @@ def main(lexica, foma_file, test_files, results_dir, verbose):
             if num_predicted != 0:
                 percent_overpred = stats[msd]['overpredicted'] / num_predicted
             else:
-                percent_overpred = 1.00
+                percent_overpred = 0.0
             stats_file.write('%10s\t%d\t%.2f\t%d\t%.2f\t%d\t%d\t%.2f\t%d\n'
                     % (msd,
                         num_seen,
@@ -185,6 +185,7 @@ def analysis_to_msd(analysis):
             ('+Interjection', '-I'),
             ('+Particle', '-Q'),
             ('+Abbreviation', '-Y'),
+            ('+Adverb', '-R'),
             ('+A', '-A'),
             ('+V', '-V'),
             ('+N', '-Nc'), # Not general, yet; still need to handle propers
@@ -199,11 +200,13 @@ if __name__ == '__main__':
     parts_of_speech = [
             'abbreviations',
             'adjectives',
+            'adverbs',
             'conjunctions',
             'interjections',
             'nouns',
             'particles',
             'prepositions',
+            'residuals',
             'verbs',
             ]
     from optparse import OptionParser
@@ -254,11 +257,11 @@ if __name__ == '__main__':
     # you want to run a different small test.
     small = {'lexica': [
             'lexica/base.lexc',
-            'lexica/adjs.lexc',
-            'lexica/adj_rules.lexc',
+            'lexica/adverbs_small.lexc',
+            'lexica/adverbs_rules.lexc',
         ],
         'test_files': [
-            'tests/adjs_small.tsv',
+            'tests/adverbs_small.tsv',
         ]}
     everything = {
         'test_files': [

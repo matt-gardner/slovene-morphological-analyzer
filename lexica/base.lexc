@@ -18,13 +18,18 @@ Multichar_Symbols +N +A +V
                   +AdjRemoveI
                   ! Others
                   +Preposition
+                  +Adverb
                   +StemChanged
+                  @P.SUP.POS@
+                  @R.SUP@
+                  @D.SUP@
 
 LEXICON Root
 Noun ;
 Verb ;
 Adj ;
 Adverb ;
+@P.SUP.POS@:@P.SUP.POS@naj Adverb;
 Pronoun ;
 Numeral ;
 Prep ;

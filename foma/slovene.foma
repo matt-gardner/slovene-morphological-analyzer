@@ -10,6 +10,9 @@ define Adjectives e -> 0 || _ ConsonantForFleeting "+A" ,,
                   i "+AdjRemoveI" -> 0  .o.
                   "+A" -> 0;
 
+define Adverbs o -> 0 || _ "+Adverb" .o.
+                  "+Adverb" -> 0;
+
 define MascNouns e -> 0 || _ ConsonantForFleeting "+Masc" "^" .o.
                  [..] -> j || a r | o r | u r | i r | e r _ "+Masc" "^" .o.
                  o -> e || [c | č | š | ž | j] "+Masc" "^" _ .o.
@@ -33,6 +36,7 @@ define Cleanup "^" -> 0;
 define Grammar Lexicon .o.
                FemNounStemming .o.
                Adjectives .o.
+               Adverbs .o.
                MascNouns .o.
                NeutNounStemming .o.
                VerbStemming .o.
