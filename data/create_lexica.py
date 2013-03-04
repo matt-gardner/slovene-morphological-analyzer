@@ -56,7 +56,7 @@ def main(sloleks_file, lex_dir):
         elif msd[0] == 'R':
             adverbs.add((lemma, msd))
         elif msd[0] == 'P':
-            pronouns.add(lemma)
+            pronouns.add((lemma, msd))
         elif msd[0] == 'M':
             numerals.add(lemma)
         else:
@@ -70,7 +70,7 @@ def main(sloleks_file, lex_dir):
     write_prepositions(prepositions, lex_dir)
     write_conjunctions(conjunctions, lex_dir)
     write_adverbs(adverbs, lex_dir)
-    write_lexicon(lex_dir+'pronouns.lexc', pronouns, 'Pronoun', 'PronounInf')
+    write_pronouns(pronouns, lex_dir)
     write_lexicon(lex_dir+'numerals.lexc', numerals, 'Numeral', 'NumeralInf')
     write_lexicon(lex_dir+'particles.lexc', particles, 'Particle', 'PartInf')
     write_lexicon(lex_dir+'interjections.lexc', interjections, 'Interjection',
@@ -235,6 +235,50 @@ def write_adverbs(lemmas, lex_dir):
     out = open(lex_dir + 'adverbs.lexc', 'w')
     write_lexicon_to_open_file(out, general, 'Adverb', 'AdverbInf')
     write_lexicon_to_open_file(out, participle, 'Adverb', 'AdverbPart')
+    out.close()
+
+
+def write_pronouns(lemmas, lex_dir):
+    personal = set()
+    possessive = set()
+    demonstrative = set()
+    relative = set()
+    reflexive = set()
+    general = set()
+    interrogative = set()
+    indefinite = set()
+    negative = set()
+    for l, msd in lemmas:
+        if msd[1] == 'p':
+            personal.add(l)
+        elif msd[1] == 's':
+            possessive.add(l)
+        elif msd[1] == 'd':
+            demonstrative.add(l)
+        elif msd[1] == 'r':
+            relative.add(l)
+        elif msd[1] == 'x':
+            reflexive.add(l)
+        elif msd[1] == 'g':
+            general.add(l)
+        elif msd[1] == 'q':
+            interrogative.add(l)
+        elif msd[1] == 'i':
+            indefinite.add(l)
+        elif msd[1] == 'z':
+            negative.add(l)
+    out = open(lex_dir + 'pronouns.lexc', 'w')
+    write_lexicon_to_open_file(out, personal, 'Pronoun', 'PronPersonal')
+    # Possessives are too hard to do automatically; we'll just put these in
+    # pronouns_rules.lexc
+    #write_lexicon_to_open_file(out, possessive, 'Pronoun', 'PronPoss')
+    write_lexicon_to_open_file(out, demonstrative, 'Pronoun', 'PronDemon')
+    write_lexicon_to_open_file(out, relative, 'Pronoun', 'PronRel')
+    write_lexicon_to_open_file(out, reflexive, 'Pronoun', 'PronRefl')
+    write_lexicon_to_open_file(out, general, 'Pronoun', 'PronGen')
+    write_lexicon_to_open_file(out, interrogative, 'Pronoun', 'PronInterr')
+    write_lexicon_to_open_file(out, indefinite, 'Pronoun', 'PronIndef')
+    write_lexicon_to_open_file(out, negative, 'Pronoun', 'PronNeg')
     out.close()
 
 

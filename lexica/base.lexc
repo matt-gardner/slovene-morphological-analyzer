@@ -5,6 +5,9 @@ Multichar_Symbols +N +A +V
                   +Nom +Gen +Dat +Acc +Loc +Ins
                   +Sing +Dual +Plural
                   +Animate +Inanimate  ! in a few cases, nouns specify this
+                  ! Pronouns
+                  +Personal +Demonstrative +Relative +Reflexive +Interrogative
+                  +Indefinite +NegativePronoun
                   ! Verbs
                   +Perfective +Progressive +Biaspectual +NoAspect
                   +Main +Auxiliary

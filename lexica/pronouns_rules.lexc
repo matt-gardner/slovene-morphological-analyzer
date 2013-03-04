@@ -1,0 +1,24 @@
+LEXICON PronPersonal
+LEXICON Pronoun
+
+moj+Pronoun+Possessive+First+OwnerSing:moj AdjNoDefiniteness;
+najin+Pronoun+Possessive+First+OwnerDual:najin AdjNoDefiniteness;
+naš+Pronoun+Possessive+First+OwnerPlural:naš AdjNoDefiniteness;
+tvoj+Pronoun+Possessive+Second+OwnerSing:tvoj AdjNoDefiniteness;
+vajin+Pronoun+Possessive+Second+OwnerDual:vajin AdjNoDefiniteness;
+vaš+Pronoun+Possessive+Second+OwnerPlural:vaš AdjNoDefiniteness;
+njegov+Pronoun+Possessive+Third+OwnerSing+OwnerMasc:njegov AdjNoDefiniteness;
+njen+Pronoun+Possessive+Third+OwnerSing+OwnerFem:njen AdjNoDefiniteness;
+njegov+Pronoun+Possessive+Third+OwnerSing+OwnerNeut:njegov AdjNoDefiniteness;
+njun+Pronoun+Possessive+Third+OwnerDual:njun AdjNoDefiniteness;
+njihen+Pronoun+Possessive+Third+OwnerPlural:njihen+A AdjNoDefiniteness;
+njihnji+Pronoun+Possessive+Third+OwnerPlural:njihnji AdjNoDefiniteness;
+njihov+Pronoun+Possessive+Third+OwnerPlural:njihov AdjNoDefiniteness;
+LEXICON PronDemon
+LEXICON PronRel
+LEXICON PronRefl
+LEXICON PronGen
+LEXICON PronInterr
+LEXICON PronIndef
+LEXICON PronNeg
+

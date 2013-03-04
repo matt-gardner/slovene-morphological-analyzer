@@ -34,6 +34,14 @@ LEXICON AdjNormalDefiniteness
 +Masc+Sing+Acc+Definite:^i #;
 AdjInfBase;
 
+LEXICON AdjNoDefiniteness
+! The JOS MSDs seems to say that pronouns can't specify definiteness, and that
+! is what this is used for right now.  So there's only one ending for each of
+! these two.
++Masc+Sing+Nom:^ #;
++Masc+Sing+Acc:^ #;
+AdjInfBase;
+
 LEXICON AdjInfBase
 
 !+Masc+Sing+Nom+Indefinite:^ #; ! handled in subclasses

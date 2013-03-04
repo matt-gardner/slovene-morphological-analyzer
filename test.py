@@ -84,20 +84,24 @@ def main(lexica, foma_file, test_files, results_dir, verbose):
                 num_correct += 1
             if precision == 1.0:
                 num_precise += 1
-            elif precision != 0.0:
+            elif not form_unparseable:
                 overanalyzed_file.write('%s\n' % form)
+                if verbose:
+                    print 'Form incorrect:', form
+                    print '  Predicted:', ' '.join(x for x in seen_set)
+                    print '  Gold:', ' '.join(x for x in gold_set)
             if precision == 1.0 and recall == 1.0:
                 num_both += 1
             gold_msds = set([x.split('-', 1)[1] for x in gold_set])
             seen_msds = set()
             for analysis in seen_set:
                 if analysis == '+?': continue
-                #fields = analysis.split('-', 1)
-                #if len(fields) == 1:
-                    #print 'Weird analysis:', analysis
-                    #continue
-                #lemma, msd = fields
-                lemma, msd = analysis.split('-', 1)
+                fields = analysis.split('-', 1)
+                if len(fields) == 1:
+                    print 'Weird analysis:', analysis
+                    continue
+                lemma, msd = fields
+                #lemma, msd = analysis.split('-', 1)
                 seen_msds.add(msd)
             for msd in gold_msds:
                 stats[msd]['seen'] += 1
@@ -165,9 +169,12 @@ def analysis_to_msd(analysis):
     # by phenomenon, so hopefully it will be easier to spot.
     replacements = [
             ('+Coordinating', 'c'), ('+Subordinating', 's'),
+            ('+IndefinitePronoun', 'i'), ('+NegativePronoun', 'z'),
             ('+AdvParticiple', 'r'),
             ('+General', 'g'), ('+Possessive', 's'), ('+Participle', 'p'),
             ('+Positive', 'p'), ('+Comparative', 'c'), ('+Superlative', 's'),
+            ('+Personal', 'p'), ('+Demonstrative', 'd'), ('+Relative', 'r'),
+            ('+Reflexive', 'x'), ('+Interrogative', 'q'),
             ('+Animate', 'y'), ('+Inanimate', 'n'),
             ('+Definite', 'y'), ('+Indefinite', 'n'),
             ('+Main', 'm'), ('+Auxiliary', 'a'),
@@ -185,15 +192,30 @@ def analysis_to_msd(analysis):
             ('+Conjunction', '-C'),
             ('+Interjection', '-I'),
             ('+Particle', '-Q'),
+            ('+Pronoun', '-P'),
             ('+Abbreviation', '-Y'),
             ('+Adverb', '-R'),
             ('+A', '-A'),
             ('+V', '-V'),
             ('+N', '-Nc'), # Not general, yet; still need to handle propers
             ]
+    # Some MSDs for pronouns are very difficult to replicate in finite state
+    # machines without some more complicated post-processing.  For example,
+    # 'moj' specifies that its owner is singular, but must do so before endings
+    # get applied, and to match the order of the MSD, we have to shift things
+    # around out here.
+    shift_replace = [
+            ('+OwnerSing', 's'), ('+OwnerDual', 'd'), ('+OwnerPlural', 'p'),
+            ('+OwnerMasc', 'm'), ('+OwnerFem', 'f'), ('+OwnerNeut', 'n'),
+            ('+Clitic', 'y'), ('+BoundClitic', 'b'),
+            ]
     msd = analysis
     for a, m in replacements:
         msd = msd.replace(a, m)
+    for a, m in shift_replace:
+        if a in msd:
+            msd = msd.replace(a, '')
+            msd += m
     return msd
 
 
@@ -207,6 +229,7 @@ if __name__ == '__main__':
             'nouns',
             'particles',
             'prepositions',
+            'pronouns',
             'residuals',
             'verbs',
             ]
@@ -254,15 +277,17 @@ if __name__ == '__main__':
             'tests/common_masc_nouns.tsv',
             'tests/common_neut_nouns.tsv',
         ]}
+    # We also need to special case the pronouns, to add adjective rules to them
+    testcases['pronouns']['lexica'].append('lexica/adjectives_rules.lexc')
     # Though it's a big obnoxious, this one just should be modified by hand if
     # you want to run a different small test.
     small = {'lexica': [
             'lexica/base.lexc',
-            'lexica/adverbs_small.lexc',
-            'lexica/adverbs_rules.lexc',
+            'lexica/pronouns_rules.lexc',
+            'lexica/adjectives_rules.lexc',
         ],
         'test_files': [
-            'tests/adverbs_small.tsv',
+            'tests/pronouns_small.tsv',
         ]}
     everything = {
         'test_files': [
