@@ -88,21 +88,27 @@ def main(lexica, foma_file, test_files, results_dir, verbose):
                 overanalyzed_file.write('%s\n' % form)
             if precision == 1.0 and recall == 1.0:
                 num_both += 1
-            for analysis in gold_set:
-                fields = analysis.split('-', 1)
-                if len(fields) == 1:
-                    print 'Weird analysis:', analysis
-                    continue
-                lemma, msd = fields
+            gold_msds = set([x.split('-', 1)[1] for x in gold_set])
+            seen_msds = set()
+            for analysis in seen_set:
+                if analysis == '+?': continue
+                #fields = analysis.split('-', 1)
+                #if len(fields) == 1:
+                    #print 'Weird analysis:', analysis
+                    #continue
+                #lemma, msd = fields
+                lemma, msd = analysis.split('-', 1)
+                seen_msds.add(msd)
+            for msd in gold_msds:
                 stats[msd]['seen'] += 1
-                if precision == 1.0:
-                    stats[msd]['precise'] += 1
-                if recall == 1.0:
-                    stats[msd]['complete'] += 1
-                if recall == 1.0 and precision == 1.0:
-                    stats[msd]['correct'] += 1
+                if msd not in seen_msds:
+                    stats[msd]['missed'] += 1
                 if form_unparseable:
                     stats[msd]['unparseable'] += 1
+            for msd in seen_msds:
+                stats[msd]['predicted'] += 1
+                if msd not in gold_msds:
+                    stats[msd]['overpredicted'] += 1
         incorrect_file.close()
         correct_file.close()
         overanalyzed_file.close()
@@ -121,26 +127,34 @@ def main(lexica, foma_file, test_files, results_dir, verbose):
             unparseable_file.write('%s\n' % form)
         unparseable_file.close()
         stats_file = open(base + 'stats.tsv', 'w')
-        headers = 'lemma\t'
-        headers += '%%unparseable\tnum_unparseable\t'
-        headers += '%%precise\tnum_precise\t'
-        headers += '%%complete\tnum_complete\t'
-        headers += '%%correct\tnum_correct\t'
-        headers += 'seen\n'
+        headers = 'msd\t'
+        headers += 'num_seen\t'
+        headers += '%missed\tnum_missed\t'
+        headers += '%unparseable\tnum_unparseable\t'
+        headers += 'num_predicted\t'
+        headers += '%overpredicted\tnum_overpredicted\n'
         stats_file.write(headers)
         for msd in stats:
             num_seen = stats[msd]['seen']
-            percent_unparseable = stats[msd]['unparseable'] / num_seen
-            percent_precise = stats[msd]['precise'] / num_seen
-            percent_complete = stats[msd]['complete'] / num_seen
-            percent_correct = stats[msd]['correct'] / num_seen
-            stats_file.write('%s\t%.2f\t%d\t%.2f\t%d\t%.2f\t%d\t%.2f\t%d\t%d\n'
+            if num_seen != 0:
+                percent_missed = stats[msd]['missed'] / num_seen
+                percent_unparseable = stats[msd]['unparseable'] / num_seen
+            else:
+                percent_missed = 0.0
+                percent_unparseable = 0.0
+            num_predicted = stats[msd]['predicted']
+            if num_predicted != 0:
+                percent_overpred = stats[msd]['overpredicted'] / num_predicted
+            else:
+                percent_overpred = 1.00
+            stats_file.write('%10s\t%d\t%.2f\t%d\t%.2f\t%d\t%d\t%.2f\t%d\n'
                     % (msd,
+                        num_seen,
+                        percent_missed, stats[msd]['missed'],
                         percent_unparseable, stats[msd]['unparseable'],
-                        percent_precise, stats[msd]['precise'],
-                        percent_complete, stats[msd]['complete'],
-                        percent_correct, stats[msd]['correct'],
-                        num_seen))
+                        num_predicted,
+                        percent_overpred, stats[msd]['overpredicted'],
+                        ))
     proc = Popen('rm -f lexicon.lexc', shell=True)
     proc.wait()
 
@@ -246,16 +260,23 @@ if __name__ == '__main__':
         'test_files': [
             'tests/adjs_small.tsv',
         ]}
-    everything = {'lexica': set(
-            ['lexica/base.lexc',]
-        ),
+    everything = {
         'test_files': [
             'tests/everything.tsv',
         ]}
+    # This mess is because it's really important that lexica/base.lexc comes
+    # first, because it defines the multicharacter symbols. If lexica/base.lexc
+    # is not first, FOMA segfaults.
+    lexica = set()
     for pos in parts_of_speech:
         for l in testcases[pos]['lexica']:
-            everything['lexica'].add(l)
-    everything['lexica'] = list(everything['lexica'])
+            if l != 'lexica/base.lexc':
+                lexica.add(l)
+    lexica = list(lexica)
+    lexica.sort()
+    everything['lexica'] = ['lexica/base.lexc']
+    everything['lexica'].extend(lexica)
+
     foma_file = 'foma/slovene.foma'
     results_dir = 'results/'
     to_test = []
