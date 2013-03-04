@@ -1,4 +1,4 @@
-LEXICON NounMascAnimate
+LEXICON Noun
 
 abbe NMascAn;
 abderit NMascAn;
@@ -6953,7 +6953,7 @@ zvonarček NMascAn;
 žvižgalec NMascAn;
 žvižgavec NMascAn;
 žvižgač NMascAn;
-LEXICON NounMascInanimate
+LEXICON Noun
 
 A NMascIn;
 AC NMascIn;

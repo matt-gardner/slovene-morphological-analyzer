@@ -1,4 +1,4 @@
-LEXICON NounNeutO
+LEXICON Noun
 
 DP NNeutO;
 EP NNeutO;
@@ -1436,7 +1436,7 @@ zvočilo NNeutO;
 županstvo NNeutO;
 žužnjalo NNeutO;
 žveplo NNeutO;
-LEXICON NounNeutE
+LEXICON Noun
 
 aboniranje NNeutE;
 abortiranje NNeutE;

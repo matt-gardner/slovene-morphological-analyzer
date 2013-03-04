@@ -14,6 +14,7 @@ def main(sloleks_file, lex_dir):
     verbs = set()
     adjs = set()
     prepositions = set()
+    conjunctions = set()
     others = set()
     for line in gzip.open(sloleks_file):
         form, lemma, msd, freq, irreg = line.split('\t')
@@ -36,6 +37,8 @@ def main(sloleks_file, lex_dir):
             verbs.add((lemma, msd))
         elif msd[0] == 'S':
             prepositions.add((lemma, msd))
+        elif msd[0] == 'C':
+            conjunctions.add((lemma, msd))
         else:
             others.add(lemma)
     write_masculine_nouns(ncms, lex_dir)
@@ -44,12 +47,10 @@ def main(sloleks_file, lex_dir):
     write_adjectives(adjs, lex_dir)
     write_verbs(verbs, lex_dir)
     write_prepositions(prepositions, lex_dir)
-    write_lexicon(lex_dir+'proper_masc_nouns.lexc', npms, 'ProperNounMasc',
-            'NMasc')
-    write_lexicon(lex_dir+'proper_fem_nouns.lexc', npfs, 'ProperNounFem',
-            'NFem')
-    write_lexicon(lex_dir+'proper_neut_nouns.lexc', npns, 'ProperNounNeut',
-            'NNeut')
+    write_conjunctions(conjunctions, lex_dir)
+    write_lexicon(lex_dir+'proper_masc_nouns.lexc', npms, 'ProperNoun', 'NMasc')
+    write_lexicon(lex_dir+'proper_fem_nouns.lexc', npfs, 'ProperNoun', 'NFem')
+    write_lexicon(lex_dir+'proper_neut_nouns.lexc', npns, 'ProperNoun', 'NNeut')
 
 
 def write_masculine_nouns(lemmas, lex_dir):
@@ -63,9 +64,8 @@ def write_masculine_nouns(lemmas, lex_dir):
             animate.add(l)
         all_lemmas.add(l)
     out = open(lex_dir + 'common_masc_nouns.lexc', 'w')
-    write_lexicon_to_open_file(out, animate, 'NounMascAnimate', 'NMascAn')
-    write_lexicon_to_open_file(out, all_lemmas - animate,
-            'NounMascInanimate', 'NMascIn')
+    write_lexicon_to_open_file(out, animate, 'Noun', 'NMascAn')
+    write_lexicon_to_open_file(out, all_lemmas - animate, 'Noun', 'NMascIn')
     out.close()
 
 
@@ -83,11 +83,11 @@ def write_feminine_nouns(lemmas, lex_dir):
             ost_lemmas.add(l)
         else:
             other_lemmas.add(l)
+    consonant = ost_lemmas.union(other_lemmas)
     out = open(lex_dir + 'common_fem_nouns.lexc', 'w')
-    write_lexicon_to_open_file(out, a_lemmas, 'NounFemA', 'NFemA')
-    write_lexicon_to_open_file(out, ev_lemmas, 'NounFemEv', 'NFemEv')
-    write_lexicon_to_open_file(out, ost_lemmas.union(other_lemmas),
-            'NounFemOst', 'NFemOst')
+    write_lexicon_to_open_file(out, a_lemmas, 'Noun', 'NFemA')
+    write_lexicon_to_open_file(out, ev_lemmas, 'Noun', 'NFemEv')
+    write_lexicon_to_open_file(out, consonant, 'Noun', 'NFemOst')
     out.close()
 
 
@@ -100,8 +100,8 @@ def write_neuter_nouns(lemmas, lex_dir):
         else:
             o_lemmas.add(l)
     out = open(lex_dir + 'common_neut_nouns.lexc', 'w')
-    write_lexicon_to_open_file(out, o_lemmas, 'NounNeutO', 'NNeutO')
-    write_lexicon_to_open_file(out, e_lemmas, 'NounNeutE', 'NNeutE')
+    write_lexicon_to_open_file(out, o_lemmas, 'Noun', 'NNeutO')
+    write_lexicon_to_open_file(out, e_lemmas, 'Noun', 'NNeutE')
     out.close()
 
 
@@ -121,10 +121,10 @@ def write_adjectives(lemmas, lex_dir):
         else:
             other_lemmas.add(l)
     out = open(lex_dir + 'adjs.lexc', 'w')
-    write_lexicon_to_open_file(out, i_lemmas, 'AdjI', 'AdjInfI')
-    write_lexicon_to_open_file(out, poss_lemmas, 'AdjPoss', 'AdjInfPoss')
-    write_lexicon_to_open_file(out, part_lemmas, 'AdjPart', 'AdjInfPart')
-    write_lexicon_to_open_file(out, other_lemmas, 'AdjNormal', 'AdjInf')
+    write_lexicon_to_open_file(out, i_lemmas, 'Adj', 'AdjInfI')
+    write_lexicon_to_open_file(out, poss_lemmas, 'Adj', 'AdjInfPoss')
+    write_lexicon_to_open_file(out, part_lemmas, 'Adj', 'AdjInfPart')
+    write_lexicon_to_open_file(out, other_lemmas, 'Adj', 'AdjInf')
     out.close()
 
 
@@ -144,10 +144,10 @@ def write_verbs(lemmas, lex_dir):
             # The only other option is '-', which only happens with biti
             pass
     out = open(lex_dir + 'verbs.lexc', 'w')
-    write_lexicon_to_open_file(out, progressive, 'VerbProg', 'VProgInf')
-    write_lexicon_to_open_file(out, perfective, 'VerbPerf', 'VPerfInf')
-    write_lexicon_to_open_file(out, biaspectual, 'VerbBi', 'VBiInf')
-    write_lexicon_to_open_file(out, biti, 'VerbBiti', 'BitiInf')
+    write_lexicon_to_open_file(out, progressive, 'Verb', 'VProgInf')
+    write_lexicon_to_open_file(out, perfective, 'Verb', 'VPerfInf')
+    write_lexicon_to_open_file(out, biaspectual, 'Verb', 'VBiInf')
+    write_lexicon_to_open_file(out, biti, 'Verb', 'BitiInf')
     out.close()
 
 
@@ -178,6 +178,20 @@ def write_prepositions(lemmas, lex_dir):
     write_lexicon_to_open_file(out, acc, 'Prep', 'PrepAcc')
     write_lexicon_to_open_file(out, loc, 'Prep', 'PrepLoc')
     write_lexicon_to_open_file(out, ins, 'Prep', 'PrepIns')
+    out.close()
+
+
+def write_conjunctions(lemmas, lex_dir):
+    coordinating = set()
+    subordinating = set()
+    for l, msd in lemmas:
+        if msd[1] == 'c':
+            coordinating.add(l)
+        elif msd[1] == 's':
+            subordinating.add(l)
+    out = open(lex_dir + 'conjunctions.lexc', 'w')
+    write_lexicon_to_open_file(out, coordinating, 'Conj', 'ConjCoord')
+    write_lexicon_to_open_file(out, subordinating, 'Conj', 'ConjSubord')
     out.close()
 
 

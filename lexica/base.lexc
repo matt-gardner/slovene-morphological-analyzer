@@ -25,28 +25,5 @@ Noun ;
 Verb ;
 Adj ;
 Prep ;
+Conj ;
 
-LEXICON Verb
-VerbProg ;
-VerbPerf ;
-VerbBi ;
-VerbBiti ;
-
-
-LEXICON Adj
-AdjI ;
-AdjPoss ;
-AdjPart ;
-AdjNormal ;
-
-LEXICON Noun
-NounMascAnimate ;
-NounMascInanimate ;
-NounFemA ;
-NounFemEv ;
-NounFemOst ;
-NounNeutO ;
-NounNeutE ;
-ProperNounMasc ;
-ProperNounFem ;
-ProperNounNeut ;

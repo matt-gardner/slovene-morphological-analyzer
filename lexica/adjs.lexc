@@ -1,4 +1,4 @@
-LEXICON AdjI
+LEXICON Adj
 
 Arji AdjInfI;
 Babni AdjInfI;
@@ -5486,7 +5486,7 @@ züriški AdjInfI;
 žuželčji AdjInfI;
 žužemberski AdjInfI;
 žužemberški AdjInfI;
-LEXICON AdjPoss
+LEXICON Adj
 
 Abbottov AdjInfPoss;
 Abdićev AdjInfPoss;
@@ -13123,7 +13123,7 @@ zvonarjev AdjInfPoss;
 žurnalistov AdjInfPoss;
 žužkov AdjInfPoss;
 žveplov AdjInfPoss;
-LEXICON AdjPart
+LEXICON Adj
 
 Mršeč AdjInfPart;
 begajoč AdjInfPart;
@@ -13925,7 +13925,7 @@ zvijajoč AdjInfPart;
 žuboreč AdjInfPart;
 žugajoč AdjInfPart;
 žvižgajoč AdjInfPart;
-LEXICON AdjNormal
+LEXICON Adj
 
 Adelin AdjInf;
 Adin AdjInf;

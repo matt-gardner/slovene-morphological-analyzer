@@ -1,4 +1,4 @@
-LEXICON NounFemA
+LEXICON Noun
 
 abdikacija NFemA;
 abdukcija NFemA;
@@ -13268,7 +13268,7 @@ zvočnica NFemA;
 žvižgavka NFemA;
 žvižgovka NFemA;
 žvrklja NFemA;
-LEXICON NounFemEv
+LEXICON Noun
 
 apnitev NFemEv;
 belitev NFemEv;
@@ -14096,7 +14096,7 @@ zvrstitev NFemEv;
 ženitev NFemEv;
 žetev NFemEv;
 žrtev NFemEv;
-LEXICON NounFemOst
+LEXICON Noun
 
 DNK NFemOst;
 EDS NFemOst;

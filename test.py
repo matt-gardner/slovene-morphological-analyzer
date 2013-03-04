@@ -107,6 +107,7 @@ def analysis_to_msd(analysis):
     # symbols, so the longer symbols must be placed first.  I'm grouping them
     # by phenomenon, so hopefully it will be easier to spot.
     replacements = [
+            ('+Coordinating', 'c'), ('+Subordinating', 's'),
             ('+General', 'g'), ('+Possessive', 's'), ('+Participle', 'p'),
             ('+Positive', 'p'), ('+Comparative', 'c'), ('+Superlative', 's'),
             ('+Animate', 'y'), ('+Inanimate', 'n'),
@@ -123,6 +124,7 @@ def analysis_to_msd(analysis):
             ('+Sing', 's'), ('+Dual', 'd'), ('+Plural', 'p'),
             ('+Masc', 'm'), ('+Fem', 'f'), ('+Neut', 'n'),
             ('+Preposition', '-S'),
+            ('+Conjunction', '-C'),
             ('+A', '-A'),
             ('+V', '-V'),
             ('+N', '-Nc'), # Not general, yet; still need to handle propers
@@ -147,6 +149,10 @@ if __name__ == '__main__':
     parser.add_option('', '--adjs',
             help='Test adjectives',
             dest='adjs',
+            action='store_true')
+    parser.add_option('', '--conjunctions',
+            help='Test conjunctions',
+            dest='conjunctions',
             action='store_true')
     parser.add_option('', '--nouns',
             help='Test nouns',
@@ -173,6 +179,14 @@ if __name__ == '__main__':
         ],
         'test_files': [
             'tests/adjs.tsv',
+        ]}
+    conjunctions = {'lexica': [
+            'lexica/base.lexc',
+            'lexica/conjunctions.lexc',
+            'lexica/conj_rules.lexc',
+        ],
+        'test_files': [
+            'tests/conjunctions.tsv',
         ]}
     nouns = {'lexica': [
             'lexica/base.lexc',
@@ -231,6 +245,8 @@ if __name__ == '__main__':
     to_test = []
     if opts.adjs:
         to_test.append(adjs)
+    if opts.conjunctions:
+        to_test.append(conjunctions)
     if opts.nouns:
         to_test.append(nouns)
     if opts.prepositions:

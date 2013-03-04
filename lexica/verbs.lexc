@@ -1,4 +1,4 @@
-LEXICON VerbProg
+LEXICON Verb
 
 afnati VProgInf;
 ahtati VProgInf;
@@ -3370,7 +3370,7 @@ zvrščati VProgInf;
 žvižgati VProgInf;
 žvrgoleti VProgInf;
 žvrkljati VProgInf;
-LEXICON VerbPerf
+LEXICON Verb
 
 ahniti VPerfInf;
 bevskniti VPerfInf;
@@ -8045,7 +8045,7 @@ zvrtinčiti VPerfInf;
 žariti VPerfInf;
 žarčiti VPerfInf;
 žveplati VPerfInf;
-LEXICON VerbBi
+LEXICON Verb
 
 abdicirati VBiInf;
 abolirati VBiInf;
@@ -10222,6 +10222,6 @@ zvračati VBiInf;
 žvepliti VBiInf;
 žvižgljati VBiInf;
 žvižgniti VBiInf;
-LEXICON VerbBiti
+LEXICON Verb
 
 biti BitiInf;
