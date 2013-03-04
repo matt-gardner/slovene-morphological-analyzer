@@ -1,6 +1,7 @@
 read lexc lexicon.lexc
 define Lexicon
 
+define Flags ["@D.SUP@" | "@R.SUP@" | "@P.SUP.POS@"];
 define ConsonantForFleeting [c | k | l | m | n | r |  n j];
 
 define FemNounStemming a "+Fem" -> 0 || _ "^" ,,
@@ -15,7 +16,7 @@ define Adverbs o -> 0 || _ "+Adverb" .o.
 
 define MascNouns e -> 0 || _ ConsonantForFleeting "+Masc" "^" .o.
                  [..] -> j || a r | o r | u r | i r | e r _ "+Masc" "^" .o.
-                 o -> e || [c | č | š | ž | j] "+Masc" "^" _ .o.
+                 o -> e || [c | č | š | ž | j] (Flags) "+Masc" "^" _ .o.
                  "+Masc" -> 0;
 
 define NeutNounStemming o "+Neut" -> 0 || _ "^" ,,

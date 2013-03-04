@@ -38,7 +38,7 @@ def main(sloleks_file, lex_dir):
         elif msd.startswith('Ncn'):
             ncns.add(lemma)
         elif msd[0] == 'A':
-            adjs.add(lemma)
+            adjs.add((lemma, msd))
         elif msd[0] == 'V':
             verbs.add((lemma, msd))
         elif msd[0] == 'S':
@@ -140,14 +140,13 @@ def write_adjectives(lemmas, lex_dir):
     poss_lemmas = set()
     part_lemmas = set()
     other_lemmas = set()
-    for l in lemmas:
-        if l.endswith('i'):
-            i_lemmas.add(l)
-        elif l.endswith('ev') or l.endswith('ov'):
-            poss_lemmas.add(l)
-        elif (l.endswith(u'oč'.encode('utf-8')) or
-                l.endswith(u'eč'.encode('utf-8'))):
+    for l, msd in lemmas:
+        if msd[1] == 'p':
             part_lemmas.add(l)
+        elif msd[1] == 's':
+            poss_lemmas.add(l)
+        elif l.endswith('i'):
+            i_lemmas.add(l)
         else:
             other_lemmas.add(l)
     out = open(lex_dir + 'adjectives.lexc', 'w')

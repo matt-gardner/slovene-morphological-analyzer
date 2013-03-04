@@ -29,6 +29,7 @@ LEXICON Root
 Noun ;
 Verb ;
 Adj ;
+@P.SUP.POS@:@P.SUP.POS@naj Adj;
 Adverb ;
 @P.SUP.POS@:@P.SUP.POS@naj Adverb;
 Pronoun ;

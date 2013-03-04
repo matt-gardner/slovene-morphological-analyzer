@@ -6,24 +6,25 @@ LEXICON AdjInfI
 
 ! It seems to me that this should be unspecified for definiteness, but the JOS
 ! MSDs give it as +Definite, so that's what I'm doing.
-+A+General+Positive+Masc+Sing+Nom+Definite:^ #;
-+A+General+Positive+Masc+Sing+Acc+Definite:^ #;
-+A+General+Positive:+AdjRemoveI AdjInfBase;
+@D.SUP@+A+General+Positive+Masc+Sing+Nom+Definite:^@D.SUP@ #;
+@D.SUP@+A+General+Positive+Masc+Sing+Acc+Definite:^@D.SUP@ #;
+@D.SUP@+A+General+Positive:+AdjRemoveI@D.SUP@ AdjInfBase;
 
 LEXICON AdjInf
 
 ! The +A on the right means to check for fleeting e
-+A+General+Positive:+A AdjNormalDefiniteness;
-+A+General+Comparative:+Aejš AdjNormalDefiniteness;
+@D.SUP@+A+General+Positive:+A@D.SUP@ AdjNormalDefiniteness;
+@D.SUP@+A+General+Comparative:+Aejš@D.SUP@ AdjNormalDefiniteness;
+@R.SUP@+A+General+Superlative:+Aejš@R.SUP@ AdjNormalDefiniteness;
 
 LEXICON AdjInfPoss
 
 ! No +A on the right here, as these don't have fleeting e's
-+A+Possessive+Positive: AdjNormalDefiniteness;
+@D.SUP@+A+Possessive+Positive:@D.SUP@ AdjNormalDefiniteness;
 
 LEXICON AdjInfPart
 
-+A+Participle+Positive: AdjNormalDefiniteness;
+@D.SUP@+A+Participle+Positive:@D.SUP@ AdjNormalDefiniteness;
 
 LEXICON AdjNormalDefiniteness
 
