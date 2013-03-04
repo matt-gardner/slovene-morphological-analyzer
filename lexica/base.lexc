@@ -24,7 +24,13 @@ LEXICON Root
 Noun ;
 Verb ;
 Adj ;
+Adverb ;
+Pronoun ;
+Numeral ;
 Prep ;
 Conj ;
 Particle ;
+Interjection ;
+Abbrev ;
+Residual ;
 

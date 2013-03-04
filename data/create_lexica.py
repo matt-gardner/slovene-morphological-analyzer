@@ -16,7 +16,12 @@ def main(sloleks_file, lex_dir):
     prepositions = set()
     conjunctions = set()
     particles = set()
-    others = set()
+    interjections = set()
+    abbreviations = set()
+    residuals = set()
+    adverbs = set()
+    pronouns = set()
+    numerals = set()
     for line in gzip.open(sloleks_file):
         form, lemma, msd, freq, irreg = line.split('\t')
         if '*' in irreg: continue
@@ -42,8 +47,21 @@ def main(sloleks_file, lex_dir):
             conjunctions.add((lemma, msd))
         elif msd[0] == 'Q':
             particles.add(lemma)
+        elif msd[0] == 'I':
+            interjections.add(lemma)
+        elif msd[0] == 'Y':
+            abbreviations.add(lemma)
+        elif msd[0] == 'X':
+            residuals.add(lemma)
+        elif msd[0] == 'R':
+            adverbs.add(lemma)
+        elif msd[0] == 'P':
+            pronouns.add(lemma)
+        elif msd[0] == 'M':
+            numerals.add(lemma)
         else:
-            others.add(lemma)
+            raise RuntimeError("Found an MSD category I didn't recognize: " +
+                    msd[0])
     write_masculine_nouns(ncms, lex_dir)
     write_feminine_nouns(ncfs, lex_dir)
     write_neuter_nouns(ncns, lex_dir)
@@ -51,7 +69,15 @@ def main(sloleks_file, lex_dir):
     write_verbs(verbs, lex_dir)
     write_prepositions(prepositions, lex_dir)
     write_conjunctions(conjunctions, lex_dir)
+    write_lexicon(lex_dir+'adverbs.lexc', adverbs, 'Adverb', 'AdverbInf')
+    write_lexicon(lex_dir+'pronouns.lexc', pronouns, 'Pronoun', 'PronounInf')
+    write_lexicon(lex_dir+'numerals.lexc', numerals, 'Numeral', 'NumeralInf')
     write_lexicon(lex_dir+'particles.lexc', particles, 'Particle', 'PartInf')
+    write_lexicon(lex_dir+'interjections.lexc', interjections, 'Interjection',
+            'InterjInf')
+    write_lexicon(lex_dir+'abbreviations.lexc', abbreviations, 'Abbrev',
+            'AbbrevInf')
+    write_lexicon(lex_dir+'residuals.lexc', residuals, 'Residual', 'ResidInf')
     write_lexicon(lex_dir+'proper_masc_nouns.lexc', npms, 'ProperNoun', 'NMasc')
     write_lexicon(lex_dir+'proper_fem_nouns.lexc', npfs, 'ProperNoun', 'NFem')
     write_lexicon(lex_dir+'proper_neut_nouns.lexc', npns, 'ProperNoun', 'NNeut')

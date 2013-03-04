@@ -168,7 +168,9 @@ def analysis_to_msd(analysis):
             ('+Masc', 'm'), ('+Fem', 'f'), ('+Neut', 'n'),
             ('+Preposition', '-S'),
             ('+Conjunction', '-C'),
+            ('+Interjection', '-I'),
             ('+Particle', '-Q'),
+            ('+Abbreviation', '-Y'),
             ('+A', '-A'),
             ('+V', '-V'),
             ('+N', '-Nc'), # Not general, yet; still need to handle propers
@@ -181,8 +183,10 @@ def analysis_to_msd(analysis):
 
 if __name__ == '__main__':
     parts_of_speech = [
+            'abbreviations',
             'adjectives',
             'conjunctions',
+            'interjections',
             'nouns',
             'particles',
             'prepositions',
