@@ -13,6 +13,7 @@ def main(sloleks_file, lex_dir):
     ncns = set()
     verbs = set()
     adjs = set()
+    prepositions = set()
     others = set()
     for line in gzip.open(sloleks_file):
         form, lemma, msd, freq, irreg = line.split('\t')
@@ -33,6 +34,8 @@ def main(sloleks_file, lex_dir):
             adjs.add(lemma)
         elif msd[0] == 'V':
             verbs.add((lemma, msd))
+        elif msd[0] == 'S':
+            prepositions.add((lemma, msd))
         else:
             others.add(lemma)
     write_masculine_nouns(ncms, lex_dir)
@@ -40,13 +43,13 @@ def main(sloleks_file, lex_dir):
     write_neuter_nouns(ncns, lex_dir)
     write_adjectives(adjs, lex_dir)
     write_verbs(verbs, lex_dir)
+    write_prepositions(prepositions, lex_dir)
     write_lexicon(lex_dir+'proper_masc_nouns.lexc', npms, 'ProperNounMasc',
             'NMasc')
     write_lexicon(lex_dir+'proper_fem_nouns.lexc', npfs, 'ProperNounFem',
             'NFem')
     write_lexicon(lex_dir+'proper_neut_nouns.lexc', npns, 'ProperNounNeut',
             'NNeut')
-    write_lexicon(lex_dir+'others.lexc', others, 'Other', 'OtherInf')
 
 
 def write_masculine_nouns(lemmas, lex_dir):
@@ -145,6 +148,36 @@ def write_verbs(lemmas, lex_dir):
     write_lexicon_to_open_file(out, perfective, 'VerbPerf', 'VPerfInf')
     write_lexicon_to_open_file(out, biaspectual, 'VerbBi', 'VBiInf')
     write_lexicon_to_open_file(out, biti, 'VerbBiti', 'BitiInf')
+    out.close()
+
+
+def write_prepositions(lemmas, lex_dir):
+    nom = set()
+    gen = set()
+    dat = set()
+    acc = set()
+    loc = set()
+    ins = set()
+    for l, msd in lemmas:
+        if msd[1] == 'n':
+            nom.add(l)
+        elif msd[1] == 'g':
+            gen.add(l)
+        elif msd[1] == 'd':
+            dat.add(l)
+        elif msd[1] == 'a':
+            acc.add(l)
+        elif msd[1] == 'l':
+            loc.add(l)
+        elif msd[1] == 'i':
+            ins.add(l)
+    out = open(lex_dir + 'prepositions.lexc', 'w')
+    write_lexicon_to_open_file(out, nom, 'Prep', 'PrepNom')
+    write_lexicon_to_open_file(out, gen, 'Prep', 'PrepGen')
+    write_lexicon_to_open_file(out, dat, 'Prep', 'PrepDat')
+    write_lexicon_to_open_file(out, acc, 'Prep', 'PrepAcc')
+    write_lexicon_to_open_file(out, loc, 'Prep', 'PrepLoc')
+    write_lexicon_to_open_file(out, ins, 'Prep', 'PrepIns')
     out.close()
 
 

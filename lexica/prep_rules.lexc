@@ -1,0 +1,31 @@
+LEXICON PrepNom
+
++Preposition+Nom: #;
+
+LEXICON PrepGen
+
++Preposition+Gen: #;
+
+LEXICON PrepDat
+
++Preposition+Dat: #;
+
+LEXICON PrepAcc
+
++Preposition+Acc: #;
+
+LEXICON PrepLoc
+
++Preposition+Loc: #;
+
+LEXICON PrepIns
+
++Preposition+Ins: #;
+
+! There are two special cases for prepositions, where the stem changes: h and s
+
+LEXICON Prep
+
+z+Preposition+Gen:s #;
+z+Preposition+Ins:s #;
+k+Preposition+Dat:h #;

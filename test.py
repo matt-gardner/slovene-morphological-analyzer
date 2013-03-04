@@ -122,6 +122,7 @@ def analysis_to_msd(analysis):
             ('+Loc', 'l'), ('+Ins', 'i'),
             ('+Sing', 's'), ('+Dual', 'd'), ('+Plural', 'p'),
             ('+Masc', 'm'), ('+Fem', 'f'), ('+Neut', 'n'),
+            ('+Preposition', '-S'),
             ('+A', '-A'),
             ('+V', '-V'),
             ('+N', '-Nc'), # Not general, yet; still need to handle propers
@@ -150,6 +151,10 @@ if __name__ == '__main__':
     parser.add_option('', '--nouns',
             help='Test nouns',
             dest='nouns',
+            action='store_true')
+    parser.add_option('', '--prepositions',
+            help='Test prepositions',
+            dest='prepositions',
             action='store_true')
     parser.add_option('', '--verbs',
             help='Test verbs',
@@ -180,6 +185,14 @@ if __name__ == '__main__':
             'tests/common_fem_nouns.tsv',
             'tests/common_masc_nouns.tsv',
             'tests/common_neut_nouns.tsv',
+        ]}
+    prepositions = {'lexica': [
+            'lexica/base.lexc',
+            'lexica/prepositions.lexc',
+            'lexica/prep_rules.lexc',
+        ],
+        'test_files': [
+            'tests/prepositions.tsv',
         ]}
     verbs = {'lexica': [
             'lexica/base.lexc',
@@ -220,6 +233,8 @@ if __name__ == '__main__':
         to_test.append(adjs)
     if opts.nouns:
         to_test.append(nouns)
+    if opts.prepositions:
+        to_test.append(prepositions)
     if opts.verbs:
         to_test.append(verbs)
     if opts.small:

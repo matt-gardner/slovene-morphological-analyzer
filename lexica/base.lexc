@@ -16,12 +16,15 @@ Multichar_Symbols +N +A +V
                   +General +Possessive +Participle  ! types of adjectives
                   +Positive +Comparative +Superlative  ! degrees of adjectives
                   +AdjRemoveI
+                  ! Others
+                  +Preposition
                   +StemChanged
 
 LEXICON Root
 Noun ;
 Verb ;
 Adj ;
+Prep ;
 
 LEXICON Verb
 VerbProg ;
