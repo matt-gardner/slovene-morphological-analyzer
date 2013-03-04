@@ -153,6 +153,56 @@ ignored at the beginning.
 
 \section{Initial Design}
 
+The morphological analyzer is designed as follows.  I am using as my working
+data set a large lexicon generously provided by Toma\v{z} Erjavec.  This
+lexicon has inflected word forms together with their lemma and morphosyntactic
+disambiguation, so it is a perfect test set for my morphological analyzer.  I
+processed the lexicon and split it into 12 individula lexicons, one for each
+main part of speech listed in the previous section, using the lemma provided as
+the lexical entry.  I then created 12 individual test sets, again one for each
+part of speech, grouping all analyses of an individual form.  I wrote automated
+tools to test each part of speech independently, using the lexicon and test set
+for that part of speech, together with the inflection rules written for each
+part of speech in separate files.  The organization of the system, then, is the
+following:
+
+\begin{itemize}
+  \item The base lexicon and automatic processing files:
+    \begin{itemize}
+      \item The base lexicon, with approximately 3 million possible analyses of
+        approximately 1 million word forms.
+      \item A python script that processes the base lexicon and produces 12
+        individual lexicons, one for each part of speech.  This script does
+        some simple analysis of the lemmas to determine proper continuation
+        lexicons for each word, when that is necessary (e.g., adjectives that
+        end in -ev, -o\v{c}/-e\v{c}, and -i each have their own contiuation
+        classes, because they have different analyses).
+      \item Anther python script that processes the base lexicon and produces
+        12 test files, one for each part of speech, and a single test file for
+        all parts of speech at the same time (this separation is helpful, for
+        instance, when a single word could have more than one part of speech; I
+        can see how my analyzer works on adjectives without having confounding
+        results from forms that could also be nouns).
+    \end{itemize}
+  \item The hand-written lexicon files:
+    \begin{itemize}
+      \item A base file that gives all of the possible parts of speech, and
+        multicharacter symbols.
+      \item For each part of speech, a rules file that adds endings and the
+        inflectional meaning of those endings.
+    \end{itemize}
+  \item The FOMA file that specifies more complicated replacement rules, for
+    stem changes and other phenomena.
+\end{itemize}
+
+This initial system design is able to correctly analyze between 75 and 95\% of
+the word forms of the open class nouns, adjectives and verbs, and all of the
+closed class prepositions.  Continued development can easily proceed in a
+modular fashion, either by improving the lexicon for an individual part of
+speech (both in the script that determines continuation classes for each lemma,
+and in the rule lexicon for that part of speech), or by improving the stem
+changing rules in the FOMA file.
+
 \section{System Analysis on Corpus A}
 
 \section{Lessons Learned and Revised Design}
