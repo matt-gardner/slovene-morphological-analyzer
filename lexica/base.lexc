@@ -21,6 +21,9 @@ Multichar_Symbols +N +A +V
                   +AdjRemoveI
                   ! Others
                   +Preposition
+                  +Numeral
+                  +Digit +Roman +Letter
+                  +Cardinal +Ordinal +Pronominal +Special
                   +Adverb
                   +AdvParticiple
                   +StemChanged

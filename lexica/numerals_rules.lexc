@@ -1,0 +1,33 @@
+LEXICON NumDigCard
+
++Numeral+Digit+Cardinal: #;
+
+LEXICON NumDigOrd
+
++Numeral+Digit+Ordinal: #;
+
+LEXICON NumRomCard
+
++Numeral+Roman+Cardinal: #;
+
+LEXICON NumRomOrd
+
++Numeral+Roman+Ordinal: #;
+
+LEXICON NumCardInf
+
+! These are probably all wrong right now
++Numeral+Letter+Cardinal: AdjNoDefiniteness;
+
+LEXICON NumOrdInf
+
++Numeral+Letter+Ordinal:+AdjRemoveI AdjNoDefiniteness;
+
+LEXICON NumPronInf
+
++Numeral+Letter+Pronominal: AdjNormalDefiniteness;
+
+LEXICON NumSpecInf
+
++Numeral+Letter+Special:+A AdjNormalDefiniteness;
+

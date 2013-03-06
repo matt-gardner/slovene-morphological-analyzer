@@ -75,6 +75,7 @@ def main(lexica, foma_file, test_files, results_dir, verbose):
                     print 'Form incorrect:', form
                     print '  Predicted:', ' '.join(x for x in seen_set)
                     print '  Gold:', ' '.join(x for x in gold_set)
+                    print '  Recall:', recall
                 incorrect_file.write('%s\n' % form)
                 num_incorrect += 1
                 lemma = list(gold_set)[0].split('-')[0]
@@ -90,6 +91,7 @@ def main(lexica, foma_file, test_files, results_dir, verbose):
                     print 'Form incorrect:', form
                     print '  Predicted:', ' '.join(x for x in seen_set)
                     print '  Gold:', ' '.join(x for x in gold_set)
+                    print '  Precision:', precision
             if precision == 1.0 and recall == 1.0:
                 num_both += 1
             gold_msds = set([x.split('-', 1)[1] for x in gold_set])
@@ -171,6 +173,10 @@ def analysis_to_msd(analysis):
             ('+Coordinating', 'c'), ('+Subordinating', 's'),
             ('+IndefinitePronoun', 'i'), ('+NegativePronoun', 'z'),
             ('+AdvParticiple', 'r'),
+            ('+Cardinal', 'c'), ('+Ordinal', 'o'), ('+Pronominal', 'p'),
+            ('+Special', 's'),
+            ('+Common', 'c'), ('+Proper', 'p'),
+            ('+Digit', 'd'), ('+Roman', 'r'), ('+Letter', 'l'),
             ('+General', 'g'), ('+Possessive', 's'), ('+Participle', 'p'),
             ('+Positive', 'p'), ('+Comparative', 'c'), ('+Superlative', 's'),
             ('+Personal', 'p'), ('+Demonstrative', 'd'), ('+Relative', 'r'),
@@ -195,9 +201,8 @@ def analysis_to_msd(analysis):
             ('+Pronoun', '-P'),
             ('+Abbreviation', '-Y'),
             ('+Adverb', '-R'),
-            ('+A', '-A'),
-            ('+V', '-V'),
-            ('+N', '-Nc'), # Not general, yet; still need to handle propers
+            ('+Numeral', '-M'),
+            ('+A', '-A'), ('+V', '-V'), ('+N', '-N'),
             ]
     # Some MSDs for pronouns are very difficult to replicate in finite state
     # machines without some more complicated post-processing.  For example,
@@ -227,6 +232,7 @@ if __name__ == '__main__':
             'conjunctions',
             'interjections',
             'nouns',
+            'numerals',
             'particles',
             'prepositions',
             'pronouns',
@@ -270,24 +276,28 @@ if __name__ == '__main__':
             'lexica/common_fem_nouns.lexc',
             'lexica/common_masc_nouns.lexc',
             'lexica/common_neut_nouns.lexc',
+            'lexica/proper_fem_nouns.lexc',
+            'lexica/proper_masc_nouns.lexc',
+            'lexica/proper_neut_nouns.lexc',
             'lexica/nouns_rules.lexc',
         ],
         'test_files': [
             'tests/common_fem_nouns.tsv',
             'tests/common_masc_nouns.tsv',
             'tests/common_neut_nouns.tsv',
+            'tests/proper_fem_nouns.tsv',
+            'tests/proper_masc_nouns.tsv',
+            'tests/proper_neut_nouns.tsv',
         ]}
-    # We also need to special case the pronouns, to add adjective rules to them
+    # We also need to special case the pronouns and the numerals, to add
+    # adjective rules to them
     testcases['pronouns']['lexica'].append('lexica/adjectives_rules.lexc')
+    testcases['numerals']['lexica'].append('lexica/adjectives_rules.lexc')
     # Though it's a big obnoxious, this one just should be modified by hand if
     # you want to run a different small test.
-    small = {'lexica': [
-            'lexica/base.lexc',
-            'lexica/pronouns_rules.lexc',
-            'lexica/adjectives_rules.lexc',
-        ],
+    small = {'lexica': testcases['nouns']['lexica'],
         'test_files': [
-            'tests/pronouns_small.tsv',
+            'tests/nouns_small.tsv',
         ]}
     everything = {
         'test_files': [

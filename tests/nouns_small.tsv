@@ -1,9 +1,9 @@
-knig	kniga-Ncfdg,kniga-Ncfpg
+knig	kniga-Ncfdg,-*-,kniga-Ncfpg
 kniga	kniga-Ncfsn
-knigah	kniga-Ncfdl,kniga-Ncfpl
+knigah	kniga-Ncfdl,-*-,kniga-Ncfpl
 knigam	kniga-Ncfpd
-knigama	kniga-Ncfdd,kniga-Ncfdi
+knigama	kniga-Ncfdd,-*-,kniga-Ncfdi
 knigami	kniga-Ncfpi
-knige	kniga-Ncfsg,kniga-Ncfpn,kniga-Ncfpa
-knigi	kniga-Ncfdn,kniga-Ncfda,kniga-Ncfsd,kniga-Ncfsl
-knigo	kniga-Ncfsi,kniga-Ncfsa
+knige	kniga-Ncfsg,-*-,kniga-Ncfpn,-*-,kniga-Ncfpa
+knigi	kniga-Ncfdn,-*-,kniga-Ncfda,-*-,kniga-Ncfsd,-*-,kniga-Ncfsl
+knigo	kniga-Ncfsi,-*-,kniga-Ncfsa

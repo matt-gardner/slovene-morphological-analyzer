@@ -26,7 +26,7 @@ def main(sloleks_file, lex_dir):
         form, lemma, msd, freq, irreg = line.split('\t')
         if '*' in irreg: continue
         if msd.startswith('Npm'):
-            npms.add(lemma)
+            npms.add((lemma, msd))
         elif msd.startswith('Npf'):
             npfs.add(lemma)
         elif msd.startswith('Npn'):
@@ -58,10 +58,16 @@ def main(sloleks_file, lex_dir):
         elif msd[0] == 'P':
             pronouns.add((lemma, msd))
         elif msd[0] == 'M':
-            numerals.add(lemma)
+            numerals.add((lemma , msd))
         else:
             raise RuntimeError("Found an MSD category I didn't recognize: " +
                     msd[0])
+    write_masculine_nouns(ncms, lex_dir)
+    write_feminine_nouns(ncfs, lex_dir)
+    write_neuter_nouns(ncns, lex_dir)
+    write_p_masculine_nouns(npms, lex_dir)
+    write_p_feminine_nouns(npfs, lex_dir)
+    write_p_neuter_nouns(npns, lex_dir)
     write_masculine_nouns(ncms, lex_dir)
     write_feminine_nouns(ncfs, lex_dir)
     write_neuter_nouns(ncns, lex_dir)
@@ -71,16 +77,13 @@ def main(sloleks_file, lex_dir):
     write_conjunctions(conjunctions, lex_dir)
     write_adverbs(adverbs, lex_dir)
     write_pronouns(pronouns, lex_dir)
-    write_lexicon(lex_dir+'numerals.lexc', numerals, 'Numeral', 'NumeralInf')
+    write_numerals(numerals, lex_dir)
     write_lexicon(lex_dir+'particles.lexc', particles, 'Particle', 'PartInf')
     write_lexicon(lex_dir+'interjections.lexc', interjections, 'Interjection',
             'InterjInf')
     write_lexicon(lex_dir+'abbreviations.lexc', abbreviations, 'Abbrev',
             'AbbrevInf')
     write_lexicon(lex_dir+'residuals.lexc', residuals, 'Residual', 'ResidInf')
-    write_lexicon(lex_dir+'proper_masc_nouns.lexc', npms, 'ProperNoun', 'NMasc')
-    write_lexicon(lex_dir+'proper_fem_nouns.lexc', npfs, 'ProperNoun', 'NFem')
-    write_lexicon(lex_dir+'proper_neut_nouns.lexc', npns, 'ProperNoun', 'NNeut')
 
 
 def write_masculine_nouns(lemmas, lex_dir):
@@ -132,6 +135,61 @@ def write_neuter_nouns(lemmas, lex_dir):
     out = open(lex_dir + 'common_neut_nouns.lexc', 'w')
     write_lexicon_to_open_file(out, o_lemmas, 'Noun', 'NNeutO')
     write_lexicon_to_open_file(out, e_lemmas, 'Noun', 'NNeutE')
+    out.close()
+
+
+# Proper nouns are just a quick copy and paste job for now, but will need some
+# serious attention.
+
+def write_p_masculine_nouns(lemmas, lex_dir):
+    # We separate animate from inanimate by adding all lemmas with explicitly
+    # marked animate declensions to a set, then subtracting that set from the
+    # set of all lemmas to get the inanimate ones.
+    animate = set()
+    all_lemmas = set()
+    for l, msd in lemmas:
+        if msd.endswith('say'):
+            animate.add(l)
+        all_lemmas.add(l)
+    out = open(lex_dir + 'proper_masc_nouns.lexc', 'w')
+    write_lexicon_to_open_file(out, animate, 'Noun', 'PNMascAn')
+    write_lexicon_to_open_file(out, all_lemmas - animate, 'Noun', 'PNMascIn')
+    out.close()
+
+
+def write_p_feminine_nouns(lemmas, lex_dir):
+    a_lemmas = set()
+    ost_lemmas = set()
+    ev_lemmas = set()
+    other_lemmas = set()
+    for l in lemmas:
+        if l.endswith('a'):
+            a_lemmas.add(l)
+        elif l.endswith('ev'):
+            ev_lemmas.add(l)
+        elif l.endswith('ost'):
+            ost_lemmas.add(l)
+        else:
+            other_lemmas.add(l)
+    consonant = ost_lemmas.union(other_lemmas)
+    out = open(lex_dir + 'proper_fem_nouns.lexc', 'w')
+    write_lexicon_to_open_file(out, a_lemmas, 'Noun', 'PNFemA')
+    write_lexicon_to_open_file(out, ev_lemmas, 'Noun', 'PNFemEv')
+    write_lexicon_to_open_file(out, consonant, 'Noun', 'PNFemOst')
+    out.close()
+
+
+def write_p_neuter_nouns(lemmas, lex_dir):
+    e_lemmas = set()
+    o_lemmas = set()
+    for l in lemmas:
+        if l.endswith('e'):
+            e_lemmas.add(l)
+        else:
+            o_lemmas.add(l)
+    out = open(lex_dir + 'proper_neut_nouns.lexc', 'w')
+    write_lexicon_to_open_file(out, o_lemmas, 'Noun', 'PNNeutO')
+    write_lexicon_to_open_file(out, e_lemmas, 'Noun', 'PNNeutE')
     out.close()
 
 
@@ -283,6 +341,46 @@ def write_pronouns(lemmas, lex_dir):
     write_lexicon_to_open_file(out, negative, 'Pronoun', 'PronNeg')
     out.close()
 
+
+def write_numerals(lemmas, lex_dir):
+    digits_cardinal = set()
+    digits_ordinal = set()
+    roman_cardinal = set()
+    roman_ordinal = set()
+    cardinal = set()
+    ordinal = set()
+    pronominal = set()
+    special = set()
+    for l, msd in lemmas:
+        if msd[1] == 'd':
+            if msd[2] == 'c':
+                digits_cardinal.add(l)
+            elif msd[2] == 'o':
+                digits_ordinal.add(l)
+        elif msd[1] == 'r':
+            if msd[2] == 'c':
+                roman_cardinal.add(l)
+            elif msd[2] == 'o':
+                roman_ordinal.add(l)
+        elif msd[1] == 'l':
+            if msd[2] == 'c':
+                cardinal.add(l)
+            elif msd[2] == 'o':
+                ordinal.add(l)
+            elif msd[2] == 'p':
+                pronominal.add(l)
+            elif msd[2] == 's':
+                special.add(l)
+    out = open(lex_dir + 'numerals.lexc', 'w')
+    write_lexicon_to_open_file(out, digits_cardinal, 'Numeral', 'NumDigCard')
+    write_lexicon_to_open_file(out, digits_ordinal, 'Numeral', 'NumDigOrd')
+    write_lexicon_to_open_file(out, roman_cardinal, 'Numeral', 'NumRomCard')
+    write_lexicon_to_open_file(out, roman_ordinal, 'Numeral', 'NumRomOrd')
+    write_lexicon_to_open_file(out, cardinal, 'Numeral', 'NumCardInf')
+    write_lexicon_to_open_file(out, ordinal, 'Numeral', 'NumOrdInf')
+    write_lexicon_to_open_file(out, pronominal, 'Numeral', 'NumPronInf')
+    write_lexicon_to_open_file(out, special, 'Numeral', 'NumSpecInf')
+    out.close()
 
 def write_lexicon(filename, lemmas, name, continuation):
     out = open(filename, 'w')

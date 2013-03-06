@@ -23,6 +23,8 @@ LEXICON PronDemon
 
 LEXICON PronRel
 
++Pronoun+Relative+NoPerson:+StemPronoun+A AdjNoDefiniteness;
+
 LEXICON Pronoun
 
 ! Reflexive pronouns here
@@ -42,7 +44,19 @@ LEXICON PronBoundRefl
 +Pronoun+Reflexive+NoPerson+NoGender+NoNumber+Acc+BoundClitic: #;
 
 LEXICON PronGen
+
++Pronoun+General+NoPerson:+StemPronoun+A AdjNoDefiniteness;
+
 LEXICON PronInterr
+
++Pronoun+Interrogative+NoPerson:+StemPronoun+A AdjNoDefiniteness;
+
 LEXICON PronIndef
+
++Pronoun+IndefinitePronoun+NoPerson:+StemPronoun+A AdjNoDefiniteness;
+
 LEXICON PronNeg
+
++Pronoun+NegativePronoun+NoPerson:+StemPronoun+A AdjNoDefiniteness;
+
 
