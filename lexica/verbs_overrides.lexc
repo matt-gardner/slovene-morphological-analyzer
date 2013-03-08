@@ -1,0 +1,42 @@
+LEXICON Root
+! There are only two verbs that are specified for negativity, so it made sense
+! to me to just special case them here, rather than try to come up with
+! complicated rules for them.
+! Imeti
+imam:imeti+V+Main+Progressive+Present+First+Sing+NoGender+NotNegative #;
+imava:imeti+V+Main+Progressive+Present+First+Dual+NoGender+NotNegative #;
+imamo:imeti+V+Main+Progressive+Present+First+Plural+NoGender+NotNegative #;
+imaš:imeti+V+Main+Progressive+Present+Second+Sing+NoGender+NotNegative #;
+imata:imeti+V+Main+Progressive+Present+Second+Dual+NoGender+NotNegative #;
+imate:imeti+V+Main+Progressive+Present+Second+Plural+NoGender+NotNegative #;
+ima:imeti+V+Main+Progressive+Present+Third+Sing+NoGender+NotNegative #;
+imata:imeti+V+Main+Progressive+Present+Third+Dual+NoGender+NotNegative #;
+imajo:imeti+V+Main+Progressive+Present+Third+Plural+NoGender+NotNegative #;
+nimam:imeti+V+Main+Progressive+Present+First+Sing+NoGender+Negative #;
+nimava:imeti+V+Main+Progressive+Present+First+Dual+NoGender+Negative #;
+nimamo:imeti+V+Main+Progressive+Present+First+Plural+NoGender+Negative #;
+nimaš:imeti+V+Main+Progressive+Present+Second+Sing+NoGender+Negative #;
+nimata:imeti+V+Main+Progressive+Present+Second+Dual+NoGender+Negative #;
+nimate:imeti+V+Main+Progressive+Present+Second+Plural+NoGender+Negative #;
+nima:imeti+V+Main+Progressive+Present+Third+Sing+NoGender+Negative #;
+nimata:imeti+V+Main+Progressive+Present+Third+Dual+NoGender+Negative #;
+nimajo:imeti+V+Main+Progressive+Present+Third+Plural+NoGender+Negative #;
+! Hoteti
+hočem:hoteti+V+Main+Progressive+Present+First+Sing+NoGender+NotNegative #;
+hočeva:hoteti+V+Main+Progressive+Present+First+Dual+NoGender+NotNegative #;
+hočemo:hoteti+V+Main+Progressive+Present+First+Plural+NoGender+NotNegative #;
+hočeš:hoteti+V+Main+Progressive+Present+Second+Sing+NoGender+NotNegative #;
+hočeta:hoteti+V+Main+Progressive+Present+Second+Dual+NoGender+NotNegative #;
+hočete:hoteti+V+Main+Progressive+Present+Second+Plural+NoGender+NotNegative #;
+hoče:hoteti+V+Main+Progressive+Present+Third+Sing+NoGender+NotNegative #;
+hočeta:hoteti+V+Main+Progressive+Present+Third+Dual+NoGender+NotNegative #;
+hočejo:hoteti+V+Main+Progressive+Present+Third+Plural+NoGender+NotNegative #;
+nočem:hoteti+V+Main+Progressive+Present+First+Sing+NoGender+Negative #;
+nočeva:hoteti+V+Main+Progressive+Present+First+Dual+NoGender+Negative #;
+nočemo:hoteti+V+Main+Progressive+Present+First+Plural+NoGender+Negative #;
+nočeš:hoteti+V+Main+Progressive+Present+Second+Sing+NoGender+Negative #;
+nočeta:hoteti+V+Main+Progressive+Present+Second+Dual+NoGender+Negative #;
+nočete:hoteti+V+Main+Progressive+Present+Second+Plural+NoGender+Negative #;
+noče:hoteti+V+Main+Progressive+Present+Third+Sing+NoGender+Negative #;
+nočeta:hoteti+V+Main+Progressive+Present+Third+Dual+NoGender+Negative #;
+nočejo:hoteti+V+Main+Progressive+Present+Third+Plural+NoGender+Negative #;

@@ -10,8 +10,11 @@ from dirutil import create_dirs_and_open
 from data.create_tests import SEPARATOR
 
 
-def main(lexica, foma_file, test_files, results_dir, verbose):
+def main(lexica, foma_file, test_files, override_files, results_dir, verbose):
     proc = Popen('cat %s > lexicon.lexc' % ' '.join(lexica), shell=True)
+    proc.wait()
+    proc = Popen('cat %s > overrides.lexc' % ' '.join(override_files),
+            shell=True)
     proc.wait()
     proc = Popen(('foma', '-l', foma_file))
     proc.wait()
@@ -263,10 +266,13 @@ if __name__ == '__main__':
     testcases = {}
     for pos in parts_of_speech:
         testcases[pos] = {'lexica': [
-                'lexica/base.lexc',
-                'lexica/%s.lexc' % pos,
-                'lexica/%s_rules.lexc' % pos,
-                ],
+                    'lexica/base.lexc',
+                    'lexica/%s.lexc' % pos,
+                    'lexica/%s_rules.lexc' % pos,
+                    ],
+                'overrides': [
+                    'lexica/%s_overrides.lexc' % pos,
+                    ],
                 'test_files': [
                     'tests/%s.tsv' % pos,
                 ]}
@@ -280,7 +286,9 @@ if __name__ == '__main__':
             'lexica/proper_masc_nouns.lexc',
             'lexica/proper_neut_nouns.lexc',
             'lexica/nouns_rules.lexc',
-        ],
+            ],
+        'overrides': [
+            ],
         'test_files': [
             'tests/common_fem_nouns.tsv',
             'tests/common_masc_nouns.tsv',
@@ -296,6 +304,7 @@ if __name__ == '__main__':
     # Though it's a big obnoxious, this one just should be modified by hand if
     # you want to run a different small test.
     small = {'lexica': testcases['nouns']['lexica'],
+        'overrides': [],
         'test_files': [
             'tests/nouns_small.tsv',
         ]}
@@ -307,14 +316,20 @@ if __name__ == '__main__':
     # first, because it defines the multicharacter symbols. If lexica/base.lexc
     # is not first, FOMA segfaults.
     lexica = set()
+    overrides = set()
     for pos in parts_of_speech:
         for l in testcases[pos]['lexica']:
             if l != 'lexica/base.lexc':
                 lexica.add(l)
+        for o in testcases[pos]['overrides']:
+            overrides.add(o)
     lexica = list(lexica)
     lexica.sort()
+    overrides = list(overrides)
+    overrides.sort()
     everything['lexica'] = ['lexica/base.lexc']
     everything['lexica'].extend(lexica)
+    everything['overrides'] = overrides
 
     foma_file = 'foma/slovene.foma'
     results_dir = 'results/'
@@ -330,7 +345,7 @@ if __name__ == '__main__':
         print 'No tests specified.  Exiting.'
         exit(0)
     for test in to_test:
-        main(test['lexica'], foma_file, test['test_files'],
+        main(test['lexica'], foma_file, test['test_files'], test['overrides'],
                 results_dir, opts.verbose)
 
 # vim: et sw=4 sts=4
