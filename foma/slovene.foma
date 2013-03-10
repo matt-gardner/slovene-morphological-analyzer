@@ -45,6 +45,11 @@ define Grammar Lexicon .o.
                NeutNounStemming .o.
                VerbStemming .o.
                Cleanup;
-regex Grammar;
+
+read lexc overrides.lexc
+define Overrides
+
+
+regex Overrides .P. Grammar;
 save stack slovene.bin
 exit;

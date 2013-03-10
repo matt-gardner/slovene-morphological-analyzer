@@ -166,6 +166,8 @@ def main(lexica, foma_file, test_files, override_files, results_dir, verbose):
                         ))
     proc = Popen('rm -f lexicon.lexc', shell=True)
     proc.wait()
+    proc = Popen('rm -f overrides.lexc', shell=True)
+    proc.wait()
 
 
 def analysis_to_msd(analysis):

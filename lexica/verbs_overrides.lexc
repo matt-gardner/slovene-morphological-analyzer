@@ -1,42 +1,106 @@
 LEXICON Root
+
+! Biti, the auxiliary verb.  It's quite irregular, so we just put it here.
+biti+V+Auxiliary+NoAspect+Infinitive:biti #;
+biti+V+Auxiliary+NoAspect+Supine:bit #;
+biti+V+Auxiliary+NoAspect+Conditional:bi #;
+biti+V+Auxiliary+NoAspect+Present+First+Sing+NoGender+NotNegative:sem #;
+biti+V+Auxiliary+NoAspect+Present+First+Dual+NoGender+NotNegative:sva #;
+biti+V+Auxiliary+NoAspect+Present+First+Plural+NoGender+NotNegative:smo #;
+biti+V+Auxiliary+NoAspect+Present+Second+Sing+NoGender+NotNegative:si #;
+biti+V+Auxiliary+NoAspect+Present+Second+Dual+NoGender+NotNegative:sta #;
+biti+V+Auxiliary+NoAspect+Present+Second+Plural+NoGender+NotNegative:ste #;
+biti+V+Auxiliary+NoAspect+Present+Third+Sing+NoGender+NotNegative:je #;
+biti+V+Auxiliary+NoAspect+Present+Third+Dual+NoGender+NotNegative:sta #;
+biti+V+Auxiliary+NoAspect+Present+Third+Plural+NoGender+NotNegative:so #;
+biti+V+Auxiliary+NoAspect+Present+First+Sing+NoGender+Negative:nisem #;
+biti+V+Auxiliary+NoAspect+Present+First+Dual+NoGender+Negative:nisva #;
+biti+V+Auxiliary+NoAspect+Present+First+Plural+NoGender+Negative:nismo #;
+biti+V+Auxiliary+NoAspect+Present+Second+Sing+NoGender+Negative:nisi #;
+biti+V+Auxiliary+NoAspect+Present+Second+Dual+NoGender+Negative:nista #;
+biti+V+Auxiliary+NoAspect+Present+Second+Plural+NoGender+Negative:niste #;
+biti+V+Auxiliary+NoAspect+Present+Third+Sing+NoGender+Negative:ni #;
+biti+V+Auxiliary+NoAspect+Present+Third+Dual+NoGender+Negative:nista #;
+biti+V+Auxiliary+NoAspect+Present+Third+Plural+NoGender+Negative:niso #;
+
+biti+V+Auxiliary+NoAspect+Future+First+Sing+NoGender+NotNegative:bom #;
+biti+V+Auxiliary+NoAspect+Future+First+Dual+NoGender+NotNegative:bova #;
+biti+V+Auxiliary+NoAspect+Future+First+Plural+NoGender+NotNegative:bomo #;
+biti+V+Auxiliary+NoAspect+Future+Second+Sing+NoGender+NotNegative:boš #;
+biti+V+Auxiliary+NoAspect+Future+Second+Dual+NoGender+NotNegative:bosta #;
+biti+V+Auxiliary+NoAspect+Future+Second+Plural+NoGender+NotNegative:boste #;
+biti+V+Auxiliary+NoAspect+Future+Third+Sing+NoGender+NotNegative:bo #;
+biti+V+Auxiliary+NoAspect+Future+Third+Dual+NoGender+NotNegative:bosta #;
+biti+V+Auxiliary+NoAspect+Future+Third+Plural+NoGender+NotNegative:bodo #;
+biti+V+Auxiliary+NoAspect+Future+Third+Plural+NoGender+NotNegative:bojo #;
+
+biti+V+Auxiliary+NoAspect+Participle+NoPerson+Sing+Masc:bil #;
+biti+V+Auxiliary+NoAspect+Participle+NoPerson+Dual+Masc:bila #;
+biti+V+Auxiliary+NoAspect+Participle+NoPerson+Plural+Masc:bili #;
+biti+V+Auxiliary+NoAspect+Participle+NoPerson+Sing+Fem:bila #;
+biti+V+Auxiliary+NoAspect+Participle+NoPerson+Dual+Fem:bili #;
+biti+V+Auxiliary+NoAspect+Participle+NoPerson+Plural+Fem:bile #;
+biti+V+Auxiliary+NoAspect+Participle+NoPerson+Sing+Neut:bilo #;
+biti+V+Auxiliary+NoAspect+Participle+NoPerson+Dual+Neut:bili #;
+biti+V+Auxiliary+NoAspect+Participle+NoPerson+Plural+Neut:bila #;
+
+biti+V+Auxiliary+NoAspect+Imperative+Second+Sing:bodi #;
+biti+V+Auxiliary+NoAspect+Imperative+First+Dual:bodiva #;
+biti+V+Auxiliary+NoAspect+Imperative+Second+Dual:bodita #;
+biti+V+Auxiliary+NoAspect+Imperative+First+Plural:bodimo #;
+biti+V+Auxiliary+NoAspect+Imperative+Second+Plural:bodite #;
+
 ! There are only two verbs that are specified for negativity, so it made sense
 ! to me to just special case them here, rather than try to come up with
 ! complicated rules for them.
 ! Imeti
-imam:imeti+V+Main+Progressive+Present+First+Sing+NoGender+NotNegative #;
-imava:imeti+V+Main+Progressive+Present+First+Dual+NoGender+NotNegative #;
-imamo:imeti+V+Main+Progressive+Present+First+Plural+NoGender+NotNegative #;
-imaš:imeti+V+Main+Progressive+Present+Second+Sing+NoGender+NotNegative #;
-imata:imeti+V+Main+Progressive+Present+Second+Dual+NoGender+NotNegative #;
-imate:imeti+V+Main+Progressive+Present+Second+Plural+NoGender+NotNegative #;
-ima:imeti+V+Main+Progressive+Present+Third+Sing+NoGender+NotNegative #;
-imata:imeti+V+Main+Progressive+Present+Third+Dual+NoGender+NotNegative #;
-imajo:imeti+V+Main+Progressive+Present+Third+Plural+NoGender+NotNegative #;
-nimam:imeti+V+Main+Progressive+Present+First+Sing+NoGender+Negative #;
-nimava:imeti+V+Main+Progressive+Present+First+Dual+NoGender+Negative #;
-nimamo:imeti+V+Main+Progressive+Present+First+Plural+NoGender+Negative #;
-nimaš:imeti+V+Main+Progressive+Present+Second+Sing+NoGender+Negative #;
-nimata:imeti+V+Main+Progressive+Present+Second+Dual+NoGender+Negative #;
-nimate:imeti+V+Main+Progressive+Present+Second+Plural+NoGender+Negative #;
-nima:imeti+V+Main+Progressive+Present+Third+Sing+NoGender+Negative #;
-nimata:imeti+V+Main+Progressive+Present+Third+Dual+NoGender+Negative #;
-nimajo:imeti+V+Main+Progressive+Present+Third+Plural+NoGender+Negative #;
+imeti+V+Main+Progressive+Present+First+Sing+NoGender+NotNegative:imam #;
+imeti+V+Main+Progressive+Present+First+Dual+NoGender+NotNegative:imava #;
+imeti+V+Main+Progressive+Present+First+Plural+NoGender+NotNegative:imamo #;
+imeti+V+Main+Progressive+Present+Second+Sing+NoGender+NotNegative:imaš #;
+imeti+V+Main+Progressive+Present+Second+Dual+NoGender+NotNegative:imata #;
+imeti+V+Main+Progressive+Present+Second+Plural+NoGender+NotNegative:imate #;
+imeti+V+Main+Progressive+Present+Third+Sing+NoGender+NotNegative:ima #;
+imeti+V+Main+Progressive+Present+Third+Dual+NoGender+NotNegative:imata #;
+imeti+V+Main+Progressive+Present+Third+Plural+NoGender+NotNegative:imajo #;
+imeti+V+Main+Progressive+Present+First+Sing+NoGender+Negative:nimam #;
+imeti+V+Main+Progressive+Present+First+Dual+NoGender+Negative:nimava #;
+imeti+V+Main+Progressive+Present+First+Plural+NoGender+Negative:nimamo #;
+imeti+V+Main+Progressive+Present+Second+Sing+NoGender+Negative:nimaš #;
+imeti+V+Main+Progressive+Present+Second+Dual+NoGender+Negative:nimata #;
+imeti+V+Main+Progressive+Present+Second+Plural+NoGender+Negative:nimate #;
+imeti+V+Main+Progressive+Present+Third+Sing+NoGender+Negative:nima #;
+imeti+V+Main+Progressive+Present+Third+Dual+NoGender+Negative:nimata #;
+imeti+V+Main+Progressive+Present+Third+Plural+NoGender+Negative:nimajo #;
 ! Hoteti
-hočem:hoteti+V+Main+Progressive+Present+First+Sing+NoGender+NotNegative #;
-hočeva:hoteti+V+Main+Progressive+Present+First+Dual+NoGender+NotNegative #;
-hočemo:hoteti+V+Main+Progressive+Present+First+Plural+NoGender+NotNegative #;
-hočeš:hoteti+V+Main+Progressive+Present+Second+Sing+NoGender+NotNegative #;
-hočeta:hoteti+V+Main+Progressive+Present+Second+Dual+NoGender+NotNegative #;
-hočete:hoteti+V+Main+Progressive+Present+Second+Plural+NoGender+NotNegative #;
-hoče:hoteti+V+Main+Progressive+Present+Third+Sing+NoGender+NotNegative #;
-hočeta:hoteti+V+Main+Progressive+Present+Third+Dual+NoGender+NotNegative #;
-hočejo:hoteti+V+Main+Progressive+Present+Third+Plural+NoGender+NotNegative #;
-nočem:hoteti+V+Main+Progressive+Present+First+Sing+NoGender+Negative #;
-nočeva:hoteti+V+Main+Progressive+Present+First+Dual+NoGender+Negative #;
-nočemo:hoteti+V+Main+Progressive+Present+First+Plural+NoGender+Negative #;
-nočeš:hoteti+V+Main+Progressive+Present+Second+Sing+NoGender+Negative #;
-nočeta:hoteti+V+Main+Progressive+Present+Second+Dual+NoGender+Negative #;
-nočete:hoteti+V+Main+Progressive+Present+Second+Plural+NoGender+Negative #;
-noče:hoteti+V+Main+Progressive+Present+Third+Sing+NoGender+Negative #;
-nočeta:hoteti+V+Main+Progressive+Present+Third+Dual+NoGender+Negative #;
-nočejo:hoteti+V+Main+Progressive+Present+Third+Plural+NoGender+Negative #;
+hoteti+V+Main+Progressive+Present+First+Sing+NoGender+NotNegative:hočem #;
+hoteti+V+Main+Progressive+Present+First+Dual+NoGender+NotNegative:hočeva #;
+hoteti+V+Main+Progressive+Present+First+Plural+NoGender+NotNegative:hočemo #;
+hoteti+V+Main+Progressive+Present+Second+Sing+NoGender+NotNegative:hočeš #;
+hoteti+V+Main+Progressive+Present+Second+Dual+NoGender+NotNegative:hočeta #;
+hoteti+V+Main+Progressive+Present+Second+Plural+NoGender+NotNegative:hočete #;
+hoteti+V+Main+Progressive+Present+Third+Sing+NoGender+NotNegative:hoče #;
+hoteti+V+Main+Progressive+Present+Third+Dual+NoGender+NotNegative:hočeta #;
+hoteti+V+Main+Progressive+Present+Third+Plural+NoGender+NotNegative:hočejo #;
+hoteti+V+Main+Progressive+Present+First+Sing+NoGender+Negative:nočem #;
+hoteti+V+Main+Progressive+Present+First+Dual+NoGender+Negative:nočeva #;
+hoteti+V+Main+Progressive+Present+First+Plural+NoGender+Negative:nočemo #;
+hoteti+V+Main+Progressive+Present+Second+Sing+NoGender+Negative:nočeš #;
+hoteti+V+Main+Progressive+Present+Second+Dual+NoGender+Negative:nočeta #;
+hoteti+V+Main+Progressive+Present+Second+Plural+NoGender+Negative:nočete #;
+hoteti+V+Main+Progressive+Present+Third+Sing+NoGender+Negative:noče #;
+hoteti+V+Main+Progressive+Present+Third+Dual+NoGender+Negative:nočeta #;
+hoteti+V+Main+Progressive+Present+Third+Plural+NoGender+Negative:nočejo #;
+
+! The only main verb to have a(n archaic) future tense
+! I haven't figured out how to hook this into my other rules, so for now I just
+! need to put all of the possible forms here. TODO
+iti+V+Main+Biaspectual+Future+First+Sing:pojdem #;
+iti+V+Main+Biaspectual+Future+Second+Sing:pojdeš #;
+iti+V+Main+Biaspectual+Future+Third+Sing:pojde #;
+iti+V+Main+Biaspectual+Future+First+Dual:pojdeva #;
+iti+V+Main+Biaspectual+Future+Second+Dual:pojdeta #;
+iti+V+Main+Biaspectual+Future+Third+Dual:pojdeta #;
+iti+V+Main+Biaspectual+Future+First+Plural:pojdemo #;
+iti+V+Main+Biaspectual+Future+Second+Plural:pojdete #;
+iti+V+Main+Biaspectual+Future+Third+Plural:pojdejo #;
