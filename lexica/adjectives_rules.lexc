@@ -13,9 +13,9 @@ LEXICON AdjInfI
 LEXICON AdjInf
 
 ! The +A on the right means to check for fleeting e
-@D.SUP@+A+General+Positive:+A@D.SUP@ AdjNormalDefiniteness;
-@D.SUP@+A+General+Comparative:+Aejš@D.SUP@ AdjNormalDefiniteness;
-@R.SUP@+A+General+Superlative:+Aejš@R.SUP@ AdjNormalDefiniteness;
+@D.SUP@+A+General+Positive:@P.FLEETING.REPLACE@@D.SUP@ AdjNormalDefiniteness;
+@D.SUP@+A+General+Comparative:@P.FLEETING.REPLACE@ejš@D.SUP@ AdjNormalDefiniteness;
+@R.SUP@+A+General+Superlative:@P.FLEETING.REPLACE@ejš@R.SUP@ AdjNormalDefiniteness;
 
 LEXICON AdjNoFleetingInf
 
@@ -35,11 +35,11 @@ LEXICON AdjInfPart
 
 LEXICON AdjNormalDefiniteness
 
-+Masc+Sing+Nom+Indefinite:^ #;
-+Masc+Sing+Nom+Definite:+ReplaceFleeting^i #;
-+Masc+Sing+Acc+Indefinite:^ #;
-+Masc+Sing+Acc+Definite:+ReplaceFleeting^i #;
-:+ReplaceFleeting AdjInfBase;
++Masc+Sing+Nom+Indefinite: #;
++Masc+Sing+Nom+Definite:^i #;
++Masc+Sing+Acc+Indefinite: #;
++Masc+Sing+Acc+Definite:^i #;
+AdjInfBase;
 
 LEXICON AdjOnlyIndefinite
 
@@ -57,11 +57,11 @@ AdjInfBase;
 
 LEXICON AdjInfBase
 
-!+Masc+Sing+Nom+Indefinite:^ #; ! handled in subclasses
+!+Masc+Sing+Nom+Indefinite: #; ! handled in subclasses
 !+Masc+Sing+Nom+Definite:^i #; ! handled in subclasses
 +Masc+Sing+Gen:^ega #;
 +Masc+Sing+Dat:^emu #;
-!+Masc+Sing+Acc+Indefinite:^ #; ! handled in subclasses
+!+Masc+Sing+Acc+Indefinite: #; ! handled in subclasses
 !+Masc+Sing+Acc+Definite:^i #; ! handled in subclasses
 +Masc+Sing+Acc:^ega #;
 +Masc+Sing+Loc:^em #;
@@ -98,12 +98,12 @@ LEXICON AdjInfBase
 +Fem+Plural+Loc:^ih #;
 +Fem+Plural+Ins:^imi #;
 
-! The +Masc here in the singular nominative and accusative is to take advantage
-! of rules already written to convert an o to an e in certain circumstances.
-+Neut+Sing+Nom:+Masc^o #;
+! The @P.TYPE.NEUTADJ@ is for changing o to e after certain consonants.  I
+! could put it everywhere, but it only matters on those two cases.
++Neut+Sing+Nom:@P.TYPE.NEUTADJ@^o #;
 +Neut+Sing+Gen:^ega #;
 +Neut+Sing+Dat:^emu #;
-+Neut+Sing+Acc:+Masc^o #;
++Neut+Sing+Acc:@P.TYPE.NEUTADJ@^o #;
 +Neut+Sing+Loc:^em #;
 +Neut+Sing+Ins:^im #;
 +Neut+Dual+Nom:^i #;

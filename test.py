@@ -291,9 +291,7 @@ if __name__ == '__main__':
             'lexica/nouns_overrides.lexc',
             ],
         'test_files': [
-            'tests/common_fem_nouns.tsv',
-            'tests/common_masc_nouns.tsv',
-            'tests/common_neut_nouns.tsv',
+            'tests/common_nouns.tsv',
             'tests/proper_nouns.tsv',
         ]}
     # We also need to special case the pronouns and the numerals, to add

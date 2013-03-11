@@ -1,11 +1,11 @@
 LEXICON NMascAn
-+N+Common: NMascAnInf;
++N+Common:@P.TYPE.MASCNOUN@ NMascAnInf;
 LEXICON PNMascAn
-+N+Proper: NMascAnInf;
++N+Proper:@P.TYPE.MASCNOUN@ NMascAnInf;
 LEXICON NMascIn
-+N+Common: NMascInInf;
++N+Common:@P.TYPE.MASCNOUN@ NMascInInf;
 LEXICON PNMascIn
-+N+Proper: NMascInInf;
++N+Proper:@P.TYPE.MASCNOUN@ NMascInInf;
 LEXICON NFemA
 +N+Common: NFemAInf;
 LEXICON PNFemA
@@ -31,34 +31,34 @@ LEXICON PNNeutE
 
 LEXICON NMascAnInf
 
-+Masc+Sing+Acc+Animate:+Masc^a #;
++Masc+Sing+Acc+Animate:^a #;
 NMascInf ;
 
 LEXICON NMascInInf
 
-+Masc+Sing+Acc+Inanimate:^ #;
++Masc+Sing+Acc+Inanimate: #;
 NMascInf ;
 
 LEXICON NMascInf
 
-+Masc+Sing+Nom:^ #;
-+Masc+Sing+Gen:+Masc^a #;
-+Masc+Sing+Dat:+Masc^u #;
-!+Masc+Sing+Acc:^ #; ! This is handled by NMascAn and NMascIn
-+Masc+Sing+Loc:+Masc^u #;
-+Masc+Sing+Ins:+Masc^om #;
-+Masc+Dual+Nom:+Masc^a #;
-+Masc+Dual+Gen:+Masc^ov #;
-+Masc+Dual+Dat:+Masc^oma #;
-+Masc+Dual+Acc:+Masc^a #;
-+Masc+Dual+Loc:+Masc^ih #;
-+Masc+Dual+Ins:+Masc^oma #;
-+Masc+Plural+Nom:+Masc^i #;
-+Masc+Plural+Gen:+Masc^ov #;
-+Masc+Plural+Dat:+Masc^om #;
-+Masc+Plural+Acc:+Masc^e #;
-+Masc+Plural+Loc:+Masc^ih #;
-+Masc+Plural+Ins:+Masc^i #;
++Masc+Sing+Nom: #;
++Masc+Sing+Gen:^a #;
++Masc+Sing+Dat:^u #;
+!+Masc+Sing+Acc: #; ! This is handled by NMascAn and NMascIn
++Masc+Sing+Loc:^u #;
++Masc+Sing+Ins:^om #;
++Masc+Dual+Nom:^a #;
++Masc+Dual+Gen:^ov #;
++Masc+Dual+Dat:^oma #;
++Masc+Dual+Acc:^a #;
++Masc+Dual+Loc:^ih #;
++Masc+Dual+Ins:^oma #;
++Masc+Plural+Nom:^i #;
++Masc+Plural+Gen:^ov #;
++Masc+Plural+Dat:^om #;
++Masc+Plural+Acc:^e #;
++Masc+Plural+Loc:^ih #;
++Masc+Plural+Ins:^i #;
 
 LEXICON NFemAInf
 
@@ -167,21 +167,21 @@ LEXICON NNeutEInf
 
 LEXICON FemIndeclinable
 
-+Fem+Sing+Nom:^ #;
-+Fem+Sing+Gen:^ #;
-+Fem+Sing+Dat:^ #;
-+Fem+Sing+Acc:^ #;
-+Fem+Sing+Loc:^ #;
-+Fem+Sing+Ins:^ #;
-+Fem+Dual+Nom:^ #;
-+Fem+Dual+Gen:^ #;
-+Fem+Dual+Dat:^ #;
-+Fem+Dual+Acc:^ #;
-+Fem+Dual+Loc:^ #;
-+Fem+Dual+Ins:^ #;
-+Fem+Plural+Nom:^ #;
-+Fem+Plural+Gen:^ #;
-+Fem+Plural+Dat:^ #;
-+Fem+Plural+Acc:^ #;
-+Fem+Plural+Loc:^ #;
-+Fem+Plural+Ins:^ #;
++Fem+Sing+Nom: #;
++Fem+Sing+Gen: #;
++Fem+Sing+Dat: #;
++Fem+Sing+Acc: #;
++Fem+Sing+Loc: #;
++Fem+Sing+Ins: #;
++Fem+Dual+Nom: #;
++Fem+Dual+Gen: #;
++Fem+Dual+Dat: #;
++Fem+Dual+Acc: #;
++Fem+Dual+Loc: #;
++Fem+Dual+Ins: #;
++Fem+Plural+Nom: #;
++Fem+Plural+Gen: #;
++Fem+Plural+Dat: #;
++Fem+Plural+Acc: #;
++Fem+Plural+Loc: #;
++Fem+Plural+Ins: #;

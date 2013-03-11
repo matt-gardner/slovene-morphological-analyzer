@@ -32,6 +32,9 @@ Multichar_Symbols +N +A +V
                   @P.SUP.POS@
                   @R.SUP@
                   @D.SUP@
+                  @P.TYPE.MASCNOUN@
+                  @P.TYPE.NEUTADJ@
+                  @P.FLEETING.REPLACE@
 
 LEXICON Root
 Noun ;
