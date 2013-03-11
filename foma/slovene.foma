@@ -14,9 +14,7 @@ define FemNounStemming a "+Fem" -> 0 || _ "^" ,,
                        e v "+Fem" -> 0 || _ "^";
 
 define FleetingE e -> 0 || _ ConsonantForFleeting
-                    Flags*
-                    ["@P.TYPE.MASCNOUN@" | "@P.FLEETING.REPLACE@" (e j š)]
-                    Flags* "^";
+                    Flags* "@P.FLEETING.REPLACE@" (e j š) Flags* "^";
 
 define Adjectives i "+AdjRemoveI" -> 0;
 
@@ -42,6 +40,7 @@ define VerbStemming t i "+V" -> 0 .o.
                     e -> i "+StemChanged" || _ "+Present" "^" ,,
                     [o v a | e v a] -> u j e || _ "+Present" "^" ,,
                     [o v a | e v a] -> u j || _ "+Imperative" "^" .o.
+                    j -> 0 || i "+Imperative" "^" _ .o.
                     "+Present" -> 0 ,,
                     "+StemChanged" -> 0 ,,
                     "+Imperative" -> 0;

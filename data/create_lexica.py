@@ -26,7 +26,7 @@ def main(sloleks_file, lex_dir):
         form, lemma, msd, freq, irreg = line.split('\t')
         if '*' in irreg: continue
         if msd.startswith('Npm'):
-            npms.add((lemma, msd))
+            npms.add((lemma, msd, form))
         elif msd.startswith('Npf'):
             npfs.add((lemma, msd, form))
         elif msd.startswith('Npn'):
@@ -86,17 +86,15 @@ def main(sloleks_file, lex_dir):
     write_lexicon(lex_dir+'residuals.lexc', residuals, 'Residual', 'ResidInf')
 
 
-def no_fleeting_e(lemma, msd, form):
-    # Currently intended for use with adjectives; possibly could be extended
-    # later to also deal with nouns, but this initial test is probably wrong
-    # for nouns.
-    if not lemma.endswith('en'):
+def no_fleeting_e(lemma, msd, form, test, ending):
+    e_index = lemma.rfind('e')
+    if e_index == -1:
         return False
-    # Because every possible MSD gets fed into this method, we only need to
-    # catch the non-fleeting e in one of the forms.  So we go with the
-    # masculine plural accusative.
-    if 'mpa' in msd:
-        if form.endswith('ene'):
+    consonant = lemma[e_index+1:]
+    if len(consonant) > 2:
+        return False
+    if test in msd:
+        if form == lemma[:e_index+1] + consonant + ending:
             return True
     return False
 
@@ -170,14 +168,26 @@ def write_p_masculine_nouns(lemmas, lex_dir):
     # marked animate declensions to a set, then subtracting that set from the
     # set of all lemmas to get the inanimate ones.
     animate = set()
+    no_fleeting = set()
     all_lemmas = set()
-    for l, msd in lemmas:
+    for l, msd, form in lemmas:
         if msd.endswith('say'):
             animate.add(l)
+        if no_fleeting_e(l, msd, form, 'msg', 'a'):
+            no_fleeting.add(l)
         all_lemmas.add(l)
     out = open(lex_dir + 'proper_masc_nouns.lexc', 'w')
-    write_lexicon_to_open_file(out, animate, 'Noun', 'PNMascAn')
-    write_lexicon_to_open_file(out, all_lemmas - animate, 'Noun', 'PNMascIn')
+    animate_fleeting = animate - no_fleeting
+    animate_no_fleeting = animate & no_fleeting
+    inanimate = all_lemmas - animate
+    inanimate_fleeting = inanimate - no_fleeting
+    inanimate_no_fleeting = inanimate & no_fleeting
+    write_lexicon_to_open_file(out, animate_fleeting, 'Noun', 'PNMascAn')
+    write_lexicon_to_open_file(out, animate_no_fleeting, 'Noun',
+            'PNMascAnNoFleetingE')
+    write_lexicon_to_open_file(out, inanimate_fleeting, 'Noun', 'PNMascIn')
+    write_lexicon_to_open_file(out, inanimate_no_fleeting, 'Noun',
+            'PNMascInNoFleetingE')
     out.close()
 
 
@@ -237,7 +247,7 @@ def write_adjectives(lemmas, lex_dir):
         elif l.endswith('i'):
             i_lemmas.add(l)
         else:
-            if no_fleeting_e(l, msd, form):
+            if no_fleeting_e(l, msd, form, 'msg', 'ega'):
                 no_fleeting_e_lemmas.add(l)
             else:
                 other_lemmas.add(l)
