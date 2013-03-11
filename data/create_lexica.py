@@ -28,7 +28,7 @@ def main(sloleks_file, lex_dir):
         if msd.startswith('Npm'):
             npms.add((lemma, msd))
         elif msd.startswith('Npf'):
-            npfs.add(lemma)
+            npfs.add((lemma, msd, form))
         elif msd.startswith('Npn'):
             npns.add(lemma)
         elif msd.startswith('Ncm'):
@@ -100,6 +100,14 @@ def no_fleeting_e(lemma, msd, form):
             return True
     return False
 
+
+def detect_indeclinable(lemma, msd, form):
+    # Again here we only need to use a single form for this; we'll use feminine
+    # plural dative.
+    if 'fpd' in msd:
+        if form == lemma:
+            return True
+    return False
 
 
 def write_masculine_nouns(lemmas, lex_dir):
@@ -174,12 +182,16 @@ def write_p_masculine_nouns(lemmas, lex_dir):
 
 
 def write_p_feminine_nouns(lemmas, lex_dir):
+    # Feminine surnames do not decline, so we separate them out.
+    indeclinable = set()
     a_lemmas = set()
     ost_lemmas = set()
     ev_lemmas = set()
     other_lemmas = set()
-    for l in lemmas:
-        if l.endswith('a'):
+    for l, msd, form in lemmas:
+        if detect_indeclinable(l, msd, form):
+            indeclinable.add(l)
+        elif l.endswith('a'):
             a_lemmas.add(l)
         elif l.endswith('ev'):
             ev_lemmas.add(l)
@@ -189,9 +201,11 @@ def write_p_feminine_nouns(lemmas, lex_dir):
             other_lemmas.add(l)
     consonant = ost_lemmas.union(other_lemmas)
     out = open(lex_dir + 'proper_fem_nouns.lexc', 'w')
-    write_lexicon_to_open_file(out, a_lemmas, 'Noun', 'PNFemA')
-    write_lexicon_to_open_file(out, ev_lemmas, 'Noun', 'PNFemEv')
-    write_lexicon_to_open_file(out, consonant, 'Noun', 'PNFemOst')
+    write_lexicon_to_open_file(out, indeclinable, 'Noun', 'PNFemIndeclinable')
+    write_lexicon_to_open_file(out, a_lemmas - indeclinable, 'Noun', 'PNFemA')
+    write_lexicon_to_open_file(out, ev_lemmas - indeclinable, 'Noun', 'PNFemEv')
+    write_lexicon_to_open_file(out, consonant - indeclinable, 'Noun',
+            'PNFemOst')
     out.close()
 
 

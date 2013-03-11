@@ -7,12 +7,8 @@ SEPARATOR = ',-*-,'
 
 def main(sloleks_file, test_dir):
     everything = defaultdict(list)
-    npms = defaultdict(list)
-    npfs = defaultdict(list)
-    npns = defaultdict(list)
-    ncms = defaultdict(list)
-    ncfs = defaultdict(list)
-    ncns = defaultdict(list)
+    proper_nouns = defaultdict(list)
+    common_nouns = defaultdict(list)
     verbs = defaultdict(list)
     adjs = defaultdict(list)
     adverbs = defaultdict(list)
@@ -28,18 +24,10 @@ def main(sloleks_file, test_dir):
         form, lemma, msd, freq, irreg = line.split('\t')
         if '*' in irreg: continue
         everything[form].append((lemma, msd))
-        if msd.startswith('Npm'):
-            npms[form].append((lemma, msd))
-        elif msd.startswith('Npf'):
-            npfs[form].append((lemma, msd))
-        elif msd.startswith('Npn'):
-            npns[form].append((lemma, msd))
-        elif msd.startswith('Ncm'):
-            ncms[form].append((lemma, msd))
-        elif msd.startswith('Ncf'):
-            ncfs[form].append((lemma, msd))
-        elif msd.startswith('Ncn'):
-            ncns[form].append((lemma, msd))
+        if msd.startswith('Np'):
+            proper_nouns[form].append((lemma, msd))
+        elif msd.startswith('Nc'):
+            common_nouns[form].append((lemma, msd))
         elif msd[0] == 'A':
             adjs[form].append((lemma, msd))
         elif msd[0] == 'V':
@@ -62,12 +50,8 @@ def main(sloleks_file, test_dir):
             abbreviations[form].append((lemma, msd))
         elif msd[0] == 'X':
             residuals[form].append((lemma, msd))
-    write_test_file(test_dir + 'common_masc_nouns.tsv', ncms)
-    write_test_file(test_dir + 'common_fem_nouns.tsv', ncfs)
-    write_test_file(test_dir + 'common_neut_nouns.tsv', ncns)
-    write_test_file(test_dir + 'proper_masc_nouns.tsv', npms)
-    write_test_file(test_dir + 'proper_fem_nouns.tsv', npfs)
-    write_test_file(test_dir + 'proper_neut_nouns.tsv', npns)
+    write_test_file(test_dir + 'common_nouns.tsv', common_nouns)
+    write_test_file(test_dir + 'proper_nouns.tsv', proper_nouns)
     write_test_file(test_dir + 'verbs.tsv', verbs)
     write_test_file(test_dir + 'adjectives.tsv', adjs)
     write_test_file(test_dir + 'adverbs.tsv', adverbs)

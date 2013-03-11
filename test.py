@@ -104,9 +104,7 @@ def main(lexica, foma_file, test_files, override_files, results_dir, verbose):
                 fields = analysis.split('-', 1)
                 if len(fields) == 1:
                     print 'Weird analysis:', analysis
-                    continue
-                lemma, msd = fields
-                #lemma, msd = analysis.split('-', 1)
+                lemma, msd = analysis.split('-', 1)
                 seen_msds.add(msd)
             for msd in gold_msds:
                 stats[msd]['seen'] += 1
@@ -290,14 +288,13 @@ if __name__ == '__main__':
             'lexica/nouns_rules.lexc',
             ],
         'overrides': [
+            'lexica/nouns_overrides.lexc',
             ],
         'test_files': [
             'tests/common_fem_nouns.tsv',
             'tests/common_masc_nouns.tsv',
             'tests/common_neut_nouns.tsv',
-            'tests/proper_fem_nouns.tsv',
-            'tests/proper_masc_nouns.tsv',
-            'tests/proper_neut_nouns.tsv',
+            'tests/proper_nouns.tsv',
         ]}
     # We also need to special case the pronouns and the numerals, to add
     # adjective rules to them

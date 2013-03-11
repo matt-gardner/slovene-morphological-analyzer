@@ -18,6 +18,8 @@ LEXICON NFemOst
 +N+Common: NFemOstInf;
 LEXICON PNFemOst
 +N+Proper: NFemOstInf;
+LEXICON PNFemIndeclinable
++N+Proper: FemIndeclinable;
 LEXICON NNeutO
 +N+Common: NNeutOInf;
 LEXICON PNNeutO
@@ -163,3 +165,23 @@ LEXICON NNeutEInf
 +Neut+Plural+Loc:+Neut^ih #;
 +Neut+Plural+Ins:+Neut^i #;
 
+LEXICON FemIndeclinable
+
++Fem+Sing+Nom:^ #;
++Fem+Sing+Gen:^ #;
++Fem+Sing+Dat:^ #;
++Fem+Sing+Acc:^ #;
++Fem+Sing+Loc:^ #;
++Fem+Sing+Ins:^ #;
++Fem+Dual+Nom:^ #;
++Fem+Dual+Gen:^ #;
++Fem+Dual+Dat:^ #;
++Fem+Dual+Acc:^ #;
++Fem+Dual+Loc:^ #;
++Fem+Dual+Ins:^ #;
++Fem+Plural+Nom:^ #;
++Fem+Plural+Gen:^ #;
++Fem+Plural+Dat:^ #;
++Fem+Plural+Acc:^ #;
++Fem+Plural+Loc:^ #;
++Fem+Plural+Ins:^ #;
