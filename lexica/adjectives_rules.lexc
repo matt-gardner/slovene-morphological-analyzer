@@ -29,10 +29,10 @@ LEXICON AdjInfPart
 LEXICON AdjNormalDefiniteness
 
 +Masc+Sing+Nom+Indefinite:^ #;
-+Masc+Sing+Nom+Definite:^i #;
++Masc+Sing+Nom+Definite:+ReplaceFleeting^i #;
 +Masc+Sing+Acc+Indefinite:^ #;
-+Masc+Sing+Acc+Definite:^i #;
-AdjInfBase;
++Masc+Sing+Acc+Definite:+ReplaceFleeting^i #;
+:+ReplaceFleeting AdjInfBase;
 
 LEXICON AdjOnlyIndefinite
 

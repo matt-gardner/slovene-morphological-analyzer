@@ -7,9 +7,11 @@ define ConsonantForFleeting [c | k | l | m | n | r |  n j];
 define FemNounStemming a "+Fem" -> 0 || _ "^" ,,
                        e v "+Fem" -> 0 || _ "^";
 
-define Adjectives e -> 0 || _ ConsonantForFleeting "+A" ,,
+define Adjectives e -> 0 || _ ConsonantForFleeting "+A"
+                                (Flags* | e j š Flags*) "+ReplaceFleeting" ,,
                   i "+AdjRemoveI" -> 0  .o.
-                  "+A" -> 0;
+                  "+A" -> 0  .o.
+                  "+ReplaceFleeting" -> 0;
 
 define Adverbs o -> 0 || _ "+Adverb" .o.
                   "+Adverb" -> 0;
