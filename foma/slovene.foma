@@ -18,8 +18,7 @@ define FleetingE e -> 0 || _ ConsonantForFleeting
 
 define Adjectives i "+AdjRemoveI" -> 0;
 
-define Adverbs o -> 0 || _ "+Adverb" .o.
-                  "+Adverb" -> 0;
+define Adverbs o "+Adverb" -> 0;
 
 define MascNouns [..] -> j || [a r | o r | u r | i r | e r] _
                             Flags* "@P.TYPE.MASCNOUN@" Flags* "^" .o.
