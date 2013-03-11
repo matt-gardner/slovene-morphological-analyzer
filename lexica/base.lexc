@@ -33,6 +33,8 @@ Multichar_Symbols +N +A +V
                   @R.SUP@
                   @D.SUP@
                   @P.TYPE.MASCNOUN@
+                  @P.TYPE.FEMNOUN@
+                  @P.TYPE.NEUTNOUN@
                   @P.TYPE.NEUTADJ@
                   @P.FLEETING.REPLACE@
 

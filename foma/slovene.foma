@@ -6,12 +6,16 @@ define Flags ["@D.SUP@" |
               "@P.SUP.POS@" |
               "@P.FLEETING.REPLACE@" |
               "@P.TYPE.MASCNOUN@" |
+              "@P.TYPE.FEMNOUN@" |
+              "@P.TYPE.NEUTNOUN@" |
               "@P.TYPE.NEUTADJ@"];
 
 define ConsonantForFleeting [c | k | l | m | n | r |  n j];
 
-define FemNounStemming a "+Fem" -> 0 || _ "^" ,,
-                       e v "+Fem" -> 0 || _ "^";
+define FemNounStemming a | e v -> 0 || _
+                            Flags*
+                            "@P.TYPE.FEMNOUN@"
+                            Flags* "^";
 
 define FleetingE e -> 0 || _ ConsonantForFleeting
                     Flags* "@P.FLEETING.REPLACE@" (e j š) Flags* "^";
@@ -28,9 +32,10 @@ define MascNouns [..] -> j || [a r | o r | u r | i r | e r] _
                             Flags* "^" _ .o.
                  "+Masc" -> 0;
 
-define NeutNounStemming o "+Neut" -> 0 || _ "^" ,,
-                        e "+Neut" -> 0 || _ "^" .o.
-                        "+Neut" -> 0;
+define NeutNounStemming o | e -> 0 || _
+                            Flags*
+                            "@P.TYPE.NEUTNOUN@"
+                            Flags* "^";
 
 define PronounStemming [i | a] "+StemPronoun" -> 0;
 
