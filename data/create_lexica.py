@@ -32,7 +32,7 @@ def main(sloleks_file, lex_dir):
         elif msd.startswith('Npn'):
             npns.add(lemma)
         elif msd.startswith('Ncm'):
-            ncms.add((lemma, msd))
+            ncms.add((lemma, msd, form))
         elif msd.startswith('Ncf'):
             ncfs.add(lemma)
         elif msd.startswith('Ncn'):
@@ -113,15 +113,26 @@ def write_masculine_nouns(lemmas, lex_dir):
     # marked animate declensions to a set, then subtracting that set from the
     # set of all lemmas to get the inanimate ones.
     animate = set()
+    no_fleeting = set()
     all_lemmas = set()
-    for l, msd in lemmas:
+    for l, msd, form in lemmas:
         if msd.endswith('say'):
             animate.add(l)
+        if no_fleeting_e(l, msd, form, 'msg', 'a'):
+            no_fleeting.add(l)
         all_lemmas.add(l)
+    animate_fleeting = animate - no_fleeting
+    animate_no_fleeting = animate & no_fleeting
+    inanimate = all_lemmas - animate
+    inanimate_fleeting = inanimate - no_fleeting
+    inanimate_no_fleeting = inanimate & no_fleeting
     out = open(lex_dir + 'common_masc_nouns.lexc', 'w')
-    write_lexicon_to_open_file(out, animate, 'Noun', 'NMascAn')
-    write_lexicon_to_open_file(out, all_lemmas - animate, 'Noun', 'NMascIn')
-    out.close()
+    write_lexicon_to_open_file(out, animate_fleeting, 'Noun', 'NMascAn')
+    write_lexicon_to_open_file(out, animate_no_fleeting, 'Noun',
+            'NMascAnNoFleetingE')
+    write_lexicon_to_open_file(out, inanimate_fleeting, 'Noun', 'NMascIn')
+    write_lexicon_to_open_file(out, inanimate_no_fleeting, 'Noun',
+            'NMascInNoFleetingE')
 
 
 def write_feminine_nouns(lemmas, lex_dir):

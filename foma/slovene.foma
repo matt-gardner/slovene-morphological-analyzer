@@ -5,12 +5,13 @@ define Flags ["@D.SUP@" |
               "@R.SUP@" |
               "@P.SUP.POS@" |
               "@P.FLEETING.REPLACE@" |
+              "@P.PROPER.Y@" |
               "@P.TYPE.MASCNOUN@" |
               "@P.TYPE.FEMNOUN@" |
               "@P.TYPE.NEUTNOUN@" |
               "@P.TYPE.NEUTADJ@"];
 
-define ConsonantForFleeting [c | k | l | m | n | r |  n j];
+define ConsonantForFleeting [c | k | l | m | n | r |  n j | l j];
 
 define FemNounStemming a | e v -> 0 || _
                             Flags*

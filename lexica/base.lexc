@@ -32,6 +32,7 @@ Multichar_Symbols +N +A +V
                   @P.SUP.POS@
                   @R.SUP@
                   @D.SUP@
+                  @P.PROPER.Y@
                   @P.TYPE.MASCNOUN@
                   @P.TYPE.FEMNOUN@
                   @P.TYPE.NEUTNOUN@
