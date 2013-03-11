@@ -17,9 +17,16 @@ LEXICON AdjInf
 @D.SUP@+A+General+Comparative:+Aejš@D.SUP@ AdjNormalDefiniteness;
 @R.SUP@+A+General+Superlative:+Aejš@R.SUP@ AdjNormalDefiniteness;
 
-LEXICON AdjInfPoss
+LEXICON AdjNoFleetingInf
 
 ! No +A on the right here, as these don't have fleeting e's
+@D.SUP@+A+General+Positive:@D.SUP@ AdjNormalDefiniteness;
+@D.SUP@+A+General+Comparative:ejš@D.SUP@ AdjNormalDefiniteness;
+@R.SUP@+A+General+Superlative:ejš@R.SUP@ AdjNormalDefiniteness;
+
+LEXICON AdjInfPoss
+
+! Possessives and participles don't have fleeting e's, either
 @D.SUP@+A+Possessive+Positive:@D.SUP@ AdjOnlyIndefinite;
 
 LEXICON AdjInfPart

@@ -38,7 +38,7 @@ def main(sloleks_file, lex_dir):
         elif msd.startswith('Ncn'):
             ncns.add(lemma)
         elif msd[0] == 'A':
-            adjs.add((lemma, msd))
+            adjs.add((lemma, msd, form))
         elif msd[0] == 'V':
             verbs.add((lemma, msd))
         elif msd[0] == 'S':
@@ -84,6 +84,22 @@ def main(sloleks_file, lex_dir):
     write_lexicon(lex_dir+'abbreviations.lexc', abbreviations, 'Abbrev',
             'AbbrevInf')
     write_lexicon(lex_dir+'residuals.lexc', residuals, 'Residual', 'ResidInf')
+
+
+def no_fleeting_e(lemma, msd, form):
+    # Currently intended for use with adjectives; possibly could be extended
+    # later to also deal with nouns, but this initial test is probably wrong
+    # for nouns.
+    if not lemma.endswith('en'):
+        return False
+    # Because every possible MSD gets fed into this method, we only need to
+    # catch the non-fleeting e in one of the forms.  So we go with the
+    # masculine plural accusative.
+    if 'mpa' in msd:
+        if form.endswith('ene'):
+            return True
+    return False
+
 
 
 def write_masculine_nouns(lemmas, lex_dir):
@@ -198,7 +214,8 @@ def write_adjectives(lemmas, lex_dir):
     poss_lemmas = set()
     part_lemmas = set()
     other_lemmas = set()
-    for l, msd in lemmas:
+    no_fleeting_e_lemmas = set()
+    for l, msd, form in lemmas:
         if msd[1] == 'p':
             part_lemmas.add(l)
         elif msd[1] == 's':
@@ -206,11 +223,17 @@ def write_adjectives(lemmas, lex_dir):
         elif l.endswith('i'):
             i_lemmas.add(l)
         else:
-            other_lemmas.add(l)
+            if no_fleeting_e(l, msd, form):
+                no_fleeting_e_lemmas.add(l)
+            else:
+                other_lemmas.add(l)
+    other_lemmas = other_lemmas - no_fleeting_e_lemmas
     out = open(lex_dir + 'adjectives.lexc', 'w')
     write_lexicon_to_open_file(out, i_lemmas, 'Adj', 'AdjInfI')
     write_lexicon_to_open_file(out, poss_lemmas, 'Adj', 'AdjInfPoss')
     write_lexicon_to_open_file(out, part_lemmas, 'Adj', 'AdjInfPart')
+    write_lexicon_to_open_file(out, no_fleeting_e_lemmas, 'Adj',
+            'AdjNoFleetingInf')
     write_lexicon_to_open_file(out, other_lemmas, 'Adj', 'AdjInf')
     out.close()
 
