@@ -12,23 +12,41 @@ LEXICON VBiInf
 
 LEXICON VInfBase
 
-+Present+First+Sing:+Present^m #;
-+Present+Second+Sing:+Present^š #;
-+Present+Third+Sing:+Present^ #;
-+Present+First+Dual:+Present^va #;
-+Present+Second+Dual:+Present^ta #;
-+Present+Third+Dual:+Present^ta #;
-+Present+First+Plural:+Present^mo #;
-+Present+Second+Plural:+Present^te #;
-+Present+Third+Plural:+Present^jo #;
+VPresentForms;
+VImperativeForms;
+VInfinitiveForms;
+VParticpleForms;
+
+LEXICON VPresentForms
+
++Present:+Present NormalEndings;
+
+LEXICON NormalEndings
+
++First+Sing:^m #;
++Second+Sing:^š #;
++Third+Sing:^ #;
++First+Dual:^va #;
++Second+Dual:^ta #;
++Third+Dual:^ta #;
++First+Plural:^mo #;
++Second+Plural:^te #;
++Third+Plural:^jo #;
+
+LEXICON VImperativeForms
+
 +Imperative+Second+Sing:+Imperative^j #;
 +Imperative+First+Dual:+Imperative^jva #;
 +Imperative+Second+Dual:+Imperative^jta #;
 +Imperative+First+Plural:+Imperative^jmo #;
 +Imperative+Second+Plural:+Imperative^jte #;
 
+LEXICON VInfinitiveForms
+
 +Infinitive:ti #;
 +Supine:t #;
+
+LEXICON VParticpleForms
 
 +Participle+NoPerson+Sing+Masc:l #;
 +Participle+NoPerson+Dual+Masc:la #;
@@ -39,8 +57,3 @@ LEXICON VInfBase
 +Participle+NoPerson+Sing+Neut:lo #;
 +Participle+NoPerson+Dual+Neut:li #;
 +Participle+NoPerson+Plural+Neut:la #;
-
-
-
-LEXICON BitiInf
-+V+Main: #;

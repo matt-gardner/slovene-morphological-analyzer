@@ -25,18 +25,14 @@ define Adjectives i "+AdjRemoveI" -> 0;
 
 define Adverbs o "+Adverb" -> 0;
 
-define MascNouns [..] -> j || [a r | o r | u r | i r | e r] _
-                            Flags* "@P.TYPE.MASCNOUN@" Flags* "^" .o.
-                 o -> e || [c | č | š | ž | j]
-                            Flags*
-                            ["@P.TYPE.MASCNOUN@" | "@P.TYPE.NEUTADJ@"]
-                            Flags* "^" _ .o.
-                 "+Masc" -> 0;
+define MascNouns [..] -> j || [a r | o r | u r | i r | e r | a | o | e | i | u]
+                            _ Flags* "@P.TYPE.MASCNOUN@" Flags* "^";
+
+define OToE o -> e || [c | č | š | ž | j]
+            Flags* ["@P.TYPE.MASCNOUN@" | "@P.TYPE.NEUTADJ@"] Flags* "^" _;
 
 define NeutNounStemming o | e -> 0 || _
-                            Flags*
-                            "@P.TYPE.NEUTNOUN@"
-                            Flags* "^";
+                            Flags* "@P.TYPE.NEUTNOUN@" Flags* "^";
 
 define PronounStemming [i | a] "+StemPronoun" -> 0;
 
@@ -61,13 +57,12 @@ define Grammar Lexicon .o.
                FleetingE .o.
                MascNouns .o.
                NeutNounStemming .o.
-               VerbStemming .o.
-               Cleanup;
+               OToE .o.
+               VerbStemming;
 
 read lexc overrides.lexc
 define Overrides
 
-
-regex Overrides .P. Grammar;
+regex Overrides .P. Grammar .o. Cleanup;
 save stack slovene.bin
 exit;

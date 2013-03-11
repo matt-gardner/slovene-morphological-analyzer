@@ -272,6 +272,7 @@ if __name__ == '__main__':
                     ],
                 'overrides': [
                     'lexica/%s_overrides.lexc' % pos,
+                    'lexica/%s_rules.lexc' % pos,
                     ],
                 'test_files': [
                     'tests/%s.tsv' % pos,
@@ -326,7 +327,8 @@ if __name__ == '__main__':
     overrides.sort()
     everything['lexica'] = ['lexica/base.lexc']
     everything['lexica'].extend(lexica)
-    everything['overrides'] = overrides
+    everything['overrides'] = ['lexica/base.lexc']
+    everything['overrides'].extend(overrides)
 
     foma_file = 'foma/slovene.foma'
     results_dir = 'results/'

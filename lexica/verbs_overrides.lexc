@@ -4,6 +4,7 @@ LEXICON Root
 biti+V+Auxiliary+NoAspect+Infinitive:biti #;
 biti+V+Auxiliary+NoAspect+Supine:bit #;
 biti+V+Auxiliary+NoAspect+Conditional:bi #;
+
 biti+V+Auxiliary+NoAspect+Present+First+Sing+NoGender+NotNegative:sem #;
 biti+V+Auxiliary+NoAspect+Present+First+Dual+NoGender+NotNegative:sva #;
 biti+V+Auxiliary+NoAspect+Present+First+Plural+NoGender+NotNegative:smo #;
@@ -34,25 +35,13 @@ biti+V+Auxiliary+NoAspect+Future+Third+Dual+NoGender+NotNegative:bosta #;
 biti+V+Auxiliary+NoAspect+Future+Third+Plural+NoGender+NotNegative:bodo #;
 biti+V+Auxiliary+NoAspect+Future+Third+Plural+NoGender+NotNegative:bojo #;
 
-biti+V+Auxiliary+NoAspect+Participle+NoPerson+Sing+Masc:bil #;
-biti+V+Auxiliary+NoAspect+Participle+NoPerson+Dual+Masc:bila #;
-biti+V+Auxiliary+NoAspect+Participle+NoPerson+Plural+Masc:bili #;
-biti+V+Auxiliary+NoAspect+Participle+NoPerson+Sing+Fem:bila #;
-biti+V+Auxiliary+NoAspect+Participle+NoPerson+Dual+Fem:bili #;
-biti+V+Auxiliary+NoAspect+Participle+NoPerson+Plural+Fem:bile #;
-biti+V+Auxiliary+NoAspect+Participle+NoPerson+Sing+Neut:bilo #;
-biti+V+Auxiliary+NoAspect+Participle+NoPerson+Dual+Neut:bili #;
-biti+V+Auxiliary+NoAspect+Participle+NoPerson+Plural+Neut:bila #;
-
-biti+V+Auxiliary+NoAspect+Imperative+Second+Sing:bodi #;
-biti+V+Auxiliary+NoAspect+Imperative+First+Dual:bodiva #;
-biti+V+Auxiliary+NoAspect+Imperative+Second+Dual:bodita #;
-biti+V+Auxiliary+NoAspect+Imperative+First+Plural:bodimo #;
-biti+V+Auxiliary+NoAspect+Imperative+Second+Plural:bodite #;
+biti+V+Auxiliary+NoAspect:bi VParticpleForms;
+biti+V+Auxiliary+NoAspect:bodi VImperativeForms;
 
 ! There are only two verbs that are specified for negativity, so it made sense
 ! to me to just special case them here, rather than try to come up with
-! complicated rules for them.
+! complicated rules for them.  The main problem is getting the negative marker
+! to show up at the end, for producing MSD output.
 ! Imeti
 imeti+V+Main+Progressive+Present+First+Sing+NoGender+NotNegative:imam #;
 imeti+V+Main+Progressive+Present+First+Dual+NoGender+NotNegative:imava #;
@@ -93,14 +82,4 @@ hoteti+V+Main+Progressive+Present+Third+Dual+NoGender+Negative:nočeta #;
 hoteti+V+Main+Progressive+Present+Third+Plural+NoGender+Negative:nočejo #;
 
 ! The only main verb to have a(n archaic) future tense
-! I haven't figured out how to hook this into my other rules, so for now I just
-! need to put all of the possible forms here. TODO
-iti+V+Main+Biaspectual+Future+First+Sing:pojdem #;
-iti+V+Main+Biaspectual+Future+Second+Sing:pojdeš #;
-iti+V+Main+Biaspectual+Future+Third+Sing:pojde #;
-iti+V+Main+Biaspectual+Future+First+Dual:pojdeva #;
-iti+V+Main+Biaspectual+Future+Second+Dual:pojdeta #;
-iti+V+Main+Biaspectual+Future+Third+Dual:pojdeta #;
-iti+V+Main+Biaspectual+Future+First+Plural:pojdemo #;
-iti+V+Main+Biaspectual+Future+Second+Plural:pojdete #;
-iti+V+Main+Biaspectual+Future+Third+Plural:pojdejo #;
+iti+V+Main+Biaspectual+Future:pojde NormalEndings;

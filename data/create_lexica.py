@@ -277,7 +277,6 @@ def write_verbs(lemmas, lex_dir):
     progressive = set()
     perfective = set()
     biaspectual = set()
-    biti = set(['biti'])
     for l, msd in lemmas:
         if msd[2] == 'b':
             biaspectual.add(l)
@@ -292,7 +291,6 @@ def write_verbs(lemmas, lex_dir):
     write_lexicon_to_open_file(out, progressive, 'Verb', 'VProgInf')
     write_lexicon_to_open_file(out, perfective, 'Verb', 'VPerfInf')
     write_lexicon_to_open_file(out, biaspectual, 'Verb', 'VBiInf')
-    write_lexicon_to_open_file(out, biti, 'Verb', 'BitiInf')
     out.close()
 
 
