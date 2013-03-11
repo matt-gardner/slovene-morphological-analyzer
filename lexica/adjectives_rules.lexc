@@ -20,7 +20,7 @@ LEXICON AdjInf
 LEXICON AdjInfPoss
 
 ! No +A on the right here, as these don't have fleeting e's
-@D.SUP@+A+Possessive+Positive:@D.SUP@ AdjNormalDefiniteness;
+@D.SUP@+A+Possessive+Positive:@D.SUP@ AdjOnlyIndefinite;
 
 LEXICON AdjInfPart
 
@@ -32,6 +32,12 @@ LEXICON AdjNormalDefiniteness
 +Masc+Sing+Nom+Definite:^i #;
 +Masc+Sing+Acc+Indefinite:^ #;
 +Masc+Sing+Acc+Definite:^i #;
+AdjInfBase;
+
+LEXICON AdjOnlyIndefinite
+
++Masc+Sing+Nom+Indefinite:^ #;
++Masc+Sing+Acc+Indefinite:^ #;
 AdjInfBase;
 
 LEXICON AdjNoDefiniteness
