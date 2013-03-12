@@ -32,7 +32,11 @@ define OToE o -> e || [c | č | š | ž | j]
             Flags* ["@P.TYPE.MASCNOUN@" | "@P.TYPE.NEUTADJ@"] Flags* "^" _;
 
 define NeutNounStemming o | e -> 0 || _
-                            Flags* "@P.TYPE.NEUTNOUN@" Flags* "^";
+                            Flags* "@P.TYPE.NEUTNOUN@" Flags* ["^" | "$"] .o.
+                        [..] -> i || \n _ j
+                            Flags* "@P.TYPE.NEUTNOUN@" Flags* "$" ,,
+                        [..] -> e || \i _ v
+                            Flags* "@P.TYPE.NEUTNOUN@" Flags* "$";
 
 define PronounStemming [i | a] "+StemPronoun" -> 0;
 
@@ -46,7 +50,7 @@ define VerbStemming t i "+V" -> 0 .o.
                     "+StemChanged" -> 0 ,,
                     "+Imperative" -> 0;
 
-define Cleanup "^" -> 0 .o.
+define Cleanup "^" -> 0 .o. "$" -> 0 .o.
                "+ReplaceFleeting" -> 0;
 
 define Grammar Lexicon .o.
