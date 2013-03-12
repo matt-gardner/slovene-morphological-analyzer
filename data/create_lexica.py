@@ -99,6 +99,15 @@ def no_fleeting_e(lemma, msd, form, test, ending):
     return False
 
 
+def no_added_j(lemma, msd, form, test, ending):
+    if not lemma[-1] == 'r':
+        return False
+    if test in msd:
+        if form == lemma + ending:
+            return True
+    return False
+
+
 def detect_indeclinable(lemma, msd, form):
     # Again here we only need to use a single form for this; we'll use feminine
     # plural dative.
@@ -115,12 +124,15 @@ def write_masculine_nouns(lemmas, lex_dir):
     animate = set()
     no_fleeting = set()
     all_lemmas = set()
+    no_added_j_lemmas = set()
     for l, msd, form in lemmas:
         if msd.endswith('say'):
             animate.add(l)
         if no_fleeting_e(l, msd, form, 'msg', 'a'):
             no_fleeting.add(l)
         all_lemmas.add(l)
+        if no_added_j(l, msd, form, 'msg', 'a'):
+            no_added_j_lemmas.add(l)
     animate_fleeting = animate - no_fleeting
     animate_no_fleeting = animate & no_fleeting
     inanimate = all_lemmas - animate

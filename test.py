@@ -44,7 +44,11 @@ def main(lexica, foma_file, test_files, override_files, results_dir, verbose):
             proc.stdin.close()
             for line in proc.stdout:
                 if line.isspace(): continue
-                form, analysis = line.strip().split('\t')
+                try:
+                    form, analysis = line.strip().split('\t')
+                except ValueError:
+                    print 'Bad line from stdout:', line
+                    exit(-1)
                 seen[form].add(analysis_to_msd(analysis))
             proc.stdout.close()
             start += blocksize
@@ -290,6 +294,7 @@ if __name__ == '__main__':
             ],
         'overrides': [
             'lexica/nouns_overrides.lexc',
+            'lexica/nouns_rules.lexc',
             ],
         'test_files': [
             'tests/common_nouns.tsv',
