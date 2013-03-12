@@ -68,9 +68,6 @@ def main(sloleks_file, lex_dir):
     write_p_masculine_nouns(npms, lex_dir)
     write_p_feminine_nouns(npfs, lex_dir)
     write_p_neuter_nouns(npns, lex_dir)
-    write_masculine_nouns(ncms, lex_dir)
-    write_feminine_nouns(ncfs, lex_dir)
-    write_neuter_nouns(ncns, lex_dir)
     write_adjectives(adjs, lex_dir)
     write_verbs(verbs, lex_dir)
     write_prepositions(prepositions, lex_dir)
@@ -91,10 +88,13 @@ def no_fleeting_e(lemma, msd, form, test, ending):
     if e_index == -1:
         return False
     consonant = lemma[e_index+1:]
-    if len(consonant) > 2:
+    if len(consonant) > 2 or len(consonant) < 1:
         return False
     if test in msd:
         if form == lemma[:e_index+1] + consonant + ending:
+            return True
+        elif (consonant[-1] == 'r' and
+                form == lemma[:e_index+1] + consonant + 'j' + ending):
             return True
     return False
 
