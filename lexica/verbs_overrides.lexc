@@ -35,7 +35,7 @@ biti+V+Auxiliary+NoAspect+Future+Third+Dual+NoGender+NotNegative:bosta #;
 biti+V+Auxiliary+NoAspect+Future+Third+Plural+NoGender+NotNegative:bodo #;
 biti+V+Auxiliary+NoAspect+Future+Third+Plural+NoGender+NotNegative:bojo #;
 
-biti+V+Auxiliary+NoAspect:bi VParticpleForms;
+biti+V+Auxiliary+NoAspect:bi VParticipleForms;
 biti+V+Auxiliary+NoAspect:bodi VImperativeForms;
 
 ! There are only two verbs that are specified for negativity, so it made sense

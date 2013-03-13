@@ -16,7 +16,7 @@ LEXICON VRegularBase
 VPresentForms;
 VImperativeForms;
 VInfinitiveForms;
-VParticpleForms;
+VParticipleForms;
 
 LEXICON VPresentForms
 
@@ -47,7 +47,7 @@ LEXICON VInfinitiveForms
 +Infinitive:ti #;
 +Supine:t #;
 
-LEXICON VParticpleForms
+LEXICON VParticipleForms
 
 +Participle+NoPerson+Sing+Masc:l #;
 +Participle+NoPerson+Dual+Masc:la #;
