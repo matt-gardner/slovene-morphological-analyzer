@@ -1,17 +1,17 @@
 LEXICON Verb
-LEXICON VProgInf
+LEXICON VProgRegular
 
-+V+Main+Progressive:+V VInfBase;
++V+Main+Progressive:+V VRegularBase;
 
-LEXICON VPerfInf
+LEXICON VPerfRegular
 
-+V+Main+Perfective:+V VInfBase;
++V+Main+Perfective:+V VRegularBase;
 
-LEXICON VBiInf
+LEXICON VBiRegular
 
-+V+Main+Biaspectual:+V VInfBase;
++V+Main+Biaspectual:+V VRegularBase;
 
-LEXICON VInfBase
+LEXICON VRegularBase
 
 VPresentForms;
 VImperativeForms;

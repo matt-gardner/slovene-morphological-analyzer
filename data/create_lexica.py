@@ -124,6 +124,67 @@ def no_e_to_i(lemma, msd, form):
     return False
 
 
+def detect_stem_change(lemma, msd, form, mode):
+    n_stem = None
+    a_stem = None
+    if mode == 'present':
+        if msd.endswith('r1p'):
+            if lemma.endswith(u'či'.encode('utf-8')):
+                n_stem = lemma[:-3]
+            else:
+                n_stem = lemma[:-2]
+            a_stem = form[:-2]
+    if mode == 'imperative':
+        if msd.endswith('m1p'):
+            if lemma.endswith(u'či'.encode('utf-8')):
+                n_stem = lemma[:-3]
+            else:
+                n_stem = lemma[:-2]
+            a_stem = form[:-2]
+    elif mode == 'infinitive':
+        # Here, by definition, the lemma equals the form.
+        return None
+    elif mode == 'participle':
+        if msd.endswith('p-sm'):
+            if lemma.endswith(u'či'.encode('utf-8')):
+                n_stem = lemma[:-3]
+            else:
+                n_stem = lemma[:-2]
+            a_stem = form[:-1]
+    if n_stem == None or a_stem == None:
+        return None
+    if n_stem != a_stem and not expected_stem_change(n_stem, a_stem):
+        return a_stem
+        # This was for testing to see if there were other regularities to
+        # capture; there certainly are, but I gave up, as most of them are only
+        # very small regularities.
+        #i = 0
+        #while (i < len(n_stem) and i < len(a_stem) and
+                #n_stem[i] == a_stem[i]):
+            #i += 1
+        #old = ''
+        #j = i
+        #while j < len(n_stem):
+            #old += n_stem[j]
+            #j += 1
+        #new = ''
+        #j = i
+        #while j < len(a_stem):
+            #new += a_stem[j]
+            #j += 1
+    return None
+
+
+def expected_stem_change(normal_stem, actual_stem):
+    known_changes = [('eva', 'uje'), ('ova', 'uje'), ('ni', 'ne'), ('e', 'i')]
+    for orig, change in known_changes:
+        if (normal_stem[:-len(orig)] == actual_stem[:-len(change)] and
+                normal_stem[-len(orig):] == orig and
+                actual_stem[-len(change):] == change):
+            return True
+    return False
+
+
 def detect_indeclinable(lemma, msd, form):
     # Again here we only need to use a single form for this; we'll use feminine
     # plural dative.
@@ -282,13 +343,17 @@ def write_adjectives(lemmas, lex_dir):
     write_lexicon_to_open_file(out, other_lemmas, 'Adj', 'AdjInf')
     out.close()
 
+modes = ['present', 'infinitive', 'imperative', 'participle']
 
 def write_verbs(lemmas, lex_dir):
     progressive = set()
     perfective = set()
     biaspectual = set()
     flags = defaultdict(set)
+    stems = defaultdict(dict)
     for l, msd, form in lemmas:
+        for mode in modes:
+            stems[l][mode] = detect_stem_change(l, msd, form, mode)
         if msd[2] == 'b':
             biaspectual.add(l)
         elif msd[2] == 'e':
@@ -304,31 +369,57 @@ def write_verbs(lemmas, lex_dir):
             flags[l].add('@P.EToI.N@')
     out = open(lex_dir + 'verbs.lexc', 'w')
     out.write('LEXICON %s\n\n' % 'Verb')
-    cont = 'VProgInf'
-    progressive = list(progressive)
-    progressive.sort()
-    for l in progressive:
-        if l in flags:
-            out.write('%s:%s %s;\n' % (l, l + ''.join(list(flags[l])), cont))
-        else:
-            out.write('%s %s;\n' % (l, cont))
-    cont = 'VPerfInf'
-    perfective = list(perfective)
-    perfective.sort()
-    for l in perfective:
-        if l in flags:
-            out.write('%s:%s %s;\n' % (l, l + ''.join(list(flags[l])), cont))
-        else:
-            out.write('%s %s;\n' % (l, cont))
-    cont = 'VBiInf'
-    biaspectual = list(biaspectual)
-    biaspectual.sort()
-    for l in biaspectual:
-        if l in flags:
-            out.write('%s:%s %s;\n' % (l, l + ''.join(list(flags[l])), cont))
-        else:
-            out.write('%s %s;\n' % (l, cont))
+    write_verb_lemmas(out, 'VProgRegular', progressive, flags, stems)
+    write_verb_lemmas(out, 'VPerfRegular', perfective, flags, stems)
+    write_verb_lemmas(out, 'VBiRegular', biaspectual, flags, stems)
     out.close()
+
+
+def write_verb_lemmas(out, cont, lemmas, flags, stems):
+    lemmas = list(lemmas)
+    lemmas.sort()
+    for l in lemmas:
+        irregular = False
+        for mode in modes:
+            if stems[l][mode] is not None:
+                irregular = True
+        #if not irregular:
+        if l in flags:
+            with_flags = l + ''.join(list(flags[l]))
+            out.write('%s:%s %s;\n' % (l, with_flags, cont))
+        else:
+            out.write('%s %s;\n' % (l, cont))
+        #else:
+            #l_flags = ''
+            #if l in flags:
+                #l_flags = ''.join(list(flags[l]))
+            #if 'Prog' in cont:
+                #aspect = '+Progressive'
+            #elif 'Perf' in cont:
+                #aspect = '+Perfective'
+            #elif 'Bi' in cont:
+                #aspect = '+Biaspectual'
+            #lemma = l + '+V+Main' + aspect
+            #if stems[l]['present']:
+                #stem = stems[l]['present'] + l_flags
+            #else:
+                #stem = l[:-2]
+            #out.write('%s:%s VPresentForms;\n' % (lemma, stem))
+            #if stems[l]['imperative']:
+                #stem = stems[l]['imperative'] + l_flags
+            #else:
+                #stem = l[:-2]
+            #out.write('%s:%s VImperativeForms;\n' % (lemma, stem))
+            #if stems[l]['infinitive']:
+                #stem = stems[l]['infinitive'] + l_flags
+            #else:
+                #stem = l[:-2]
+            #out.write('%s:%s VInfinitiveForms;\n' % (lemma, stem))
+            #if stems[l]['participle']:
+                #stem = stems[l]['participle'] + l_flags
+            #else:
+                #stem = l[:-2]
+            #out.write('%s:%s VParticipleForms;\n' % (lemma, stem))
 
 
 def write_prepositions(lemmas, lex_dir):
