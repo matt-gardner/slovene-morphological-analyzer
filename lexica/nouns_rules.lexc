@@ -1,20 +1,8 @@
 LEXICON Noun
-LEXICON NMascAn
-+N+Common:@P.FLEETING.REPLACE@@P.TYPE.MASCNOUN@ NMascAnInf;
-LEXICON NMascAnNoFleetingE
-+N+Common:@P.TYPE.MASCNOUN@ NMascAnInf;
-LEXICON PNMascAn
-+N+Proper:@P.FLEETING.REPLACE@@P.TYPE.MASCNOUN@@P.PROPER.Y@ NMascAnInf;
-LEXICON PNMascAnNoFleetingE
-+N+Proper:@P.TYPE.MASCNOUN@@P.PROPER.Y@ NMascAnInf;
-LEXICON NMascIn
-+N+Common:@P.FLEETING.REPLACE@@P.TYPE.MASCNOUN@ NMascInInf;
-LEXICON NMascInNoFleetingE
-+N+Common:@P.TYPE.MASCNOUN@ NMascInInf;
-LEXICON PNMascIn
-+N+Proper:@P.FLEETING.REPLACE@@P.TYPE.MASCNOUN@@P.PROPER.Y@ NMascInInf;
-LEXICON PNMascInNoFleetingE
-+N+Proper:@P.TYPE.MASCNOUN@@P.PROPER.Y@ NMascInInf;
+LEXICON NMascCommon
++N+Common:@P.TYPE.MASCNOUN@ NMascInf;
+LEXICON NMascProper
++N+Proper:@P.TYPE.MASCNOUN@@P.PROPER.Y@ NMascInf;
 LEXICON NFemA
 +N+Common:@P.TYPE.FEMNOUN@ NFemAInf;
 LEXICON PNFemA
@@ -53,7 +41,8 @@ LEXICON NMascInf
 +Masc+Sing+Nom: #;
 +Masc+Sing+Gen:^a #;
 +Masc+Sing+Dat:^u #;
-!+Masc+Sing+Acc: #; ! This is handled by NMascAn and NMascIn
++Masc+Sing+Acc+Inanimate:@D.ANIMATE.Y@ #;
++Masc+Sing+Acc+Animate:@R.ANIMATE.Y@^a #;
 +Masc+Sing+Loc:^u #;
 +Masc+Sing+Ins:^om #;
 +Masc+Dual+Nom:^a #;

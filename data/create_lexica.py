@@ -62,10 +62,10 @@ def main(sloleks_file, lex_dir):
         else:
             raise RuntimeError("Found an MSD category I didn't recognize: " +
                     msd[0])
-    write_masculine_nouns(ncms, lex_dir)
+    write_masculine_nouns(ncms, lex_dir, common=True)
     write_feminine_nouns(ncfs, lex_dir)
     write_neuter_nouns(ncns, lex_dir)
-    write_p_masculine_nouns(npms, lex_dir)
+    write_masculine_nouns(npms, lex_dir, common=False)
     write_p_feminine_nouns(npfs, lex_dir)
     write_p_neuter_nouns(npns, lex_dir)
     write_adjectives(adjs, lex_dir)
@@ -117,34 +117,44 @@ def detect_indeclinable(lemma, msd, form):
     return False
 
 
-def write_masculine_nouns(lemmas, lex_dir):
-    # We separate animate from inanimate by adding all lemmas with explicitly
-    # marked animate declensions to a set, then subtracting that set from the
-    # set of all lemmas to get the inanimate ones.
+def write_masculine_nouns(lemmas, lex_dir, common=True):
+    # I first tried to make sets for all of the different continuation classes
+    # I might need.  But with multiple orthogonal features, that got unwieldly,
+    # so I came up with this way, using flags to denote features instead of
+    # disjoint sets, which I think works a lot better.
     animate = set()
     no_fleeting = set()
-    all_lemmas = set()
     no_added_j_lemmas = set()
+    all_lemmas = set()
     for l, msd, form in lemmas:
         if msd.endswith('say'):
             animate.add(l)
         if no_fleeting_e(l, msd, form, 'msg', 'a'):
             no_fleeting.add(l)
-        all_lemmas.add(l)
         if no_added_j(l, msd, form, 'msg', 'a'):
             no_added_j_lemmas.add(l)
-    animate_fleeting = animate - no_fleeting
-    animate_no_fleeting = animate & no_fleeting
-    inanimate = all_lemmas - animate
-    inanimate_fleeting = inanimate - no_fleeting
-    inanimate_no_fleeting = inanimate & no_fleeting
-    out = open(lex_dir + 'common_masc_nouns.lexc', 'w')
-    write_lexicon_to_open_file(out, animate_fleeting, 'Noun', 'NMascAn')
-    write_lexicon_to_open_file(out, animate_no_fleeting, 'Noun',
-            'NMascAnNoFleetingE')
-    write_lexicon_to_open_file(out, inanimate_fleeting, 'Noun', 'NMascIn')
-    write_lexicon_to_open_file(out, inanimate_no_fleeting, 'Noun',
-            'NMascInNoFleetingE')
+        all_lemmas.add(l)
+    flags = defaultdict(list)
+    for lemma in all_lemmas:
+        if lemma in animate:
+            flags[lemma].append('@P.ANIMATE.Y@')
+        if lemma not in no_fleeting:
+            flags[lemma].append('@P.FLEETING.REPLACE@')
+        if lemma in no_added_j_lemmas:
+            flags[lemma].append('@P.ADD_J.N@')
+    if common:
+        outfile = 'common_masc_nouns.lexc'
+        continuation = 'NMascCommon'
+    else:
+        outfile = 'proper_masc_nouns.lexc'
+        continuation = 'NMascProper'
+    out = open(lex_dir + outfile, 'w')
+    out.write('LEXICON %s\n\n' % 'Noun')
+    all_lemmas = list(all_lemmas)
+    all_lemmas.sort()
+    for l in all_lemmas:
+        out.write('%s:%s %s;\n' % (l, l + ''.join(flags[l]), continuation))
+    out.close()
 
 
 def write_feminine_nouns(lemmas, lex_dir):
@@ -185,34 +195,6 @@ def write_neuter_nouns(lemmas, lex_dir):
 
 # Proper nouns are just a quick copy and paste job for now, but will need some
 # serious attention.
-
-def write_p_masculine_nouns(lemmas, lex_dir):
-    # We separate animate from inanimate by adding all lemmas with explicitly
-    # marked animate declensions to a set, then subtracting that set from the
-    # set of all lemmas to get the inanimate ones.
-    animate = set()
-    no_fleeting = set()
-    all_lemmas = set()
-    for l, msd, form in lemmas:
-        if msd.endswith('say'):
-            animate.add(l)
-        if no_fleeting_e(l, msd, form, 'msg', 'a'):
-            no_fleeting.add(l)
-        all_lemmas.add(l)
-    out = open(lex_dir + 'proper_masc_nouns.lexc', 'w')
-    animate_fleeting = animate - no_fleeting
-    animate_no_fleeting = animate & no_fleeting
-    inanimate = all_lemmas - animate
-    inanimate_fleeting = inanimate - no_fleeting
-    inanimate_no_fleeting = inanimate & no_fleeting
-    write_lexicon_to_open_file(out, animate_fleeting, 'Noun', 'PNMascAn')
-    write_lexicon_to_open_file(out, animate_no_fleeting, 'Noun',
-            'PNMascAnNoFleetingE')
-    write_lexicon_to_open_file(out, inanimate_fleeting, 'Noun', 'PNMascIn')
-    write_lexicon_to_open_file(out, inanimate_no_fleeting, 'Noun',
-            'PNMascInNoFleetingE')
-    out.close()
-
 
 def write_p_feminine_nouns(lemmas, lex_dir):
     # Feminine surnames do not decline, so we separate them out.

@@ -38,6 +38,10 @@ Multichar_Symbols +N +A +V
                   @P.TYPE.NEUTNOUN@
                   @P.TYPE.NEUTADJ@
                   @P.FLEETING.REPLACE@
+                  @P.ANIMATE.Y@
+                  @R.ANIMATE.Y@
+                  @D.ANIMATE.Y@
+                  @P.ADD_J.N@
 
 LEXICON Root
 Noun ;

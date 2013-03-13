@@ -5,11 +5,16 @@ define Flags ["@D.SUP@" |
               "@R.SUP@" |
               "@P.SUP.POS@" |
               "@P.FLEETING.REPLACE@" |
+              "@P.ANIMATE.Y@" |
+              "@R.ANIMATE.Y@" |
+              "@D.ANIMATE.Y@" |
+              "@P.ADD_J.N@" |
               "@P.PROPER.Y@" |
               "@P.TYPE.MASCNOUN@" |
               "@P.TYPE.FEMNOUN@" |
               "@P.TYPE.NEUTNOUN@" |
-              "@P.TYPE.NEUTADJ@"];
+              "@P.TYPE.NEUTADJ@"
+             ];
 
 define ConsonantForFleeting [c | k | l | m | n | r |  n j | l j];
 
