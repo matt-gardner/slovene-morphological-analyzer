@@ -40,7 +40,7 @@ def main(sloleks_file, lex_dir):
         elif msd[0] == 'A':
             adjs.add((lemma, msd, form))
         elif msd[0] == 'V':
-            verbs.add((lemma, msd))
+            verbs.add((lemma, msd, form))
         elif msd[0] == 'S':
             prepositions.add((lemma, msd))
         elif msd[0] == 'C':
@@ -104,6 +104,13 @@ def no_added_j(lemma, msd, form, test, ending):
         return False
     if test in msd:
         if form == lemma + ending:
+            return True
+    return False
+
+
+def no_ni_to_ne(lemma, msd, form):
+    if msd.endswith('r3p'):
+        if lemma.endswith('niti') and form.endswith('nijo'):
             return True
     return False
 
@@ -271,7 +278,8 @@ def write_verbs(lemmas, lex_dir):
     progressive = set()
     perfective = set()
     biaspectual = set()
-    for l, msd in lemmas:
+    flags = defaultdict(set)
+    for l, msd, form in lemmas:
         if msd[2] == 'b':
             biaspectual.add(l)
         elif msd[2] == 'e':
@@ -281,10 +289,34 @@ def write_verbs(lemmas, lex_dir):
         else:
             # The only other option is '-', which only happens with biti
             pass
+        if no_ni_to_ne(l, msd, form):
+            flags[l].add('@P.NiToNe.N@')
     out = open(lex_dir + 'verbs.lexc', 'w')
-    write_lexicon_to_open_file(out, progressive, 'Verb', 'VProgInf')
-    write_lexicon_to_open_file(out, perfective, 'Verb', 'VPerfInf')
-    write_lexicon_to_open_file(out, biaspectual, 'Verb', 'VBiInf')
+    out.write('LEXICON %s\n\n' % 'Verb')
+    cont = 'VProgInf'
+    progressive = list(progressive)
+    progressive.sort()
+    for l in progressive:
+        if l in flags:
+            out.write('%s:%s %s;\n' % (l, l + ''.join(list(flags[l])), cont))
+        else:
+            out.write('%s %s;\n' % (l, cont))
+    cont = 'VPerfInf'
+    perfective = list(perfective)
+    perfective.sort()
+    for l in perfective:
+        if l in flags:
+            out.write('%s:%s %s;\n' % (l, l + ''.join(list(flags[l])), cont))
+        else:
+            out.write('%s %s;\n' % (l, cont))
+    cont = 'VBiInf'
+    biaspectual = list(biaspectual)
+    biaspectual.sort()
+    for l in biaspectual:
+        if l in flags:
+            out.write('%s:%s %s;\n' % (l, l + ''.join(list(flags[l])), cont))
+        else:
+            out.write('%s %s;\n' % (l, cont))
     out.close()
 
 
