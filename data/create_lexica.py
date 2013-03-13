@@ -414,22 +414,22 @@ def write_verb_lemmas(out, cont, lemmas, flags, stems):
                 aspect = '+Biaspectual'
             lemma = l + '+V+Main' + aspect
             if 'present' in stems[l]:
-                stem = stems[l]['present'] + l_flags
+                stem = stems[l]['present'] + l_flags + '+StemChanged'
             else:
                 stem = regular_stem
             out.write('%s:%s VPresentForms;\n' % (lemma, stem))
             if 'imperative' in stems[l]:
-                stem = stems[l]['imperative'] + l_flags
+                stem = stems[l]['imperative'] + l_flags + '+StemChanged'
             else:
                 stem = regular_stem
             out.write('%s:%s VImperativeForms;\n' % (lemma, stem))
             if 'infinitive' in stems[l]:
-                stem = stems[l]['infinitive'] + l_flags
+                stem = stems[l]['infinitive'] + l_flags + '+StemChanged'
             else:
                 stem = regular_stem
             out.write('%s:%s VInfinitiveForms;\n' % (lemma, stem))
             if 'participle' in stems[l]:
-                stem = stems[l]['participle'] + l_flags
+                stem = stems[l]['participle'] + l_flags + '+StemChanged'
             else:
                 stem = regular_stem
             out.write('%s:%s VParticipleForms;\n' % (lemma, stem))
