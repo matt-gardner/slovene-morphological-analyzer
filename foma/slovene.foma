@@ -30,8 +30,9 @@ define Adjectives i "+AdjRemoveI" -> 0;
 
 define Adverbs o "+Adverb" -> 0;
 
-define MascNouns [..] -> j || [a r | o r | u r | i r | e r | a | o | e | i | u]
-                            _ Flags* "@P.TYPE.MASCNOUN@" Flags* "^";
+define AddJ [..] -> j || [a r | o r | u r | i r | e r | a | o | e | i | u]
+                            _ [Flags - "@P.ADD_J.N@"]* "@P.TYPE.MASCNOUN@"
+                            [Flags - "@P.ADD_J.N@"]* "^";
 
 define OToE o -> e || [c | č | š | ž | j]
             Flags* ["@P.TYPE.MASCNOUN@" | "@P.TYPE.NEUTADJ@"] Flags* "^" _;
@@ -64,7 +65,7 @@ define Grammar Lexicon .o.
                Adjectives .o.
                Adverbs .o.
                FleetingE .o.
-               MascNouns .o.
+               AddJ .o.
                NeutNounStemming .o.
                OToE .o.
                VerbStemming;
