@@ -115,6 +115,15 @@ def no_ni_to_ne(lemma, msd, form):
     return False
 
 
+def no_e_to_i(lemma, msd, form):
+    if lemma.endswith('neti'):
+        return False
+    if msd.endswith('r3p'):
+        if lemma.endswith('eti') and form.endswith('ejo'):
+            return True
+    return False
+
+
 def detect_indeclinable(lemma, msd, form):
     # Again here we only need to use a single form for this; we'll use feminine
     # plural dative.
@@ -291,6 +300,8 @@ def write_verbs(lemmas, lex_dir):
             pass
         if no_ni_to_ne(l, msd, form):
             flags[l].add('@P.NiToNe.N@')
+        if no_e_to_i(l, msd, form):
+            flags[l].add('@P.EToI.N@')
     out = open(lex_dir + 'verbs.lexc', 'w')
     out.write('LEXICON %s\n\n' % 'Verb')
     cont = 'VProgInf'
