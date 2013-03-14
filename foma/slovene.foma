@@ -53,11 +53,10 @@ define VerbStemming t i -> 0 || _ Flags* "+V" .o.
                     "+V" -> 0 .o.
                     n i -> n e "+StemChanged" ||
                             _ [Flags - "@P.NiToNe.N@"]* "+Present" "^" ,,
-                    e -> i "+StemChanged" ||
-                            _ [Flags - "@P.EToI.N@"]* "+Present" "^" ,,
-                    e -> i "+StemChanged" ||
-                            _ Flags* "@P.IMPERATIVE_E_TO_I.Y@" Flags*
-                            "+Imperative" "^" ,,
+                    e -> i "+StemChanged" || _ [Flags - "@P.EToI.N@"]*
+                            ["+Present"|"+Imperative"] "^" ,,
+                    e -> i "+StemChanged" || _ Flags* "@P.IMPERATIVE_E_TO_I.Y@"
+                            Flags* "+Imperative" "^" ,,
                     [o v a | e v a] -> u j e || _ Flags* "+Present" "^" ,,
                     [o v a | e v a] -> u j || _ Flags* "+Imperative" "^" .o.
                     j -> 0 || [i | j]
