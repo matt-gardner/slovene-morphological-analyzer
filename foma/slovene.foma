@@ -60,7 +60,8 @@ define VerbStemming t i -> 0 || _ Flags* "+V" .o.
                             "+Imperative" "^" ,,
                     [o v a | e v a] -> u j e || _ Flags* "+Present" "^" ,,
                     [o v a | e v a] -> u j || _ Flags* "+Imperative" "^" .o.
-                    j+ -> 0 || [i | j] Flags* ("+StemChanged") "+Imperative" "^" _ .o.
+                    j -> 0 || [i | j]
+                            [Flags | "+StemChanged"]* "+Imperative" "^" _ .o.
                     "+Present" -> 0 ,,
                     "+StemChanged" -> 0 ,,
                     "+Imperative" -> 0;
