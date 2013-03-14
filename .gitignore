@@ -1,5 +1,7 @@
 lexicon.lexc
 results/
+data/test/
 slovene.bin
+old_stats.tsv
 *.swp
 *.pyc

@@ -22,7 +22,11 @@ def main(sloleks_file, lex_dir):
     adverbs = set()
     pronouns = set()
     numerals = set()
-    for line in gzip.open(sloleks_file):
+    if sloleks_file.endswith('.gz'):
+        file = gzip.open(sloleks_file)
+    else:
+        file = open(sloleks_file)
+    for line in file:
         form, lemma, msd, freq, irreg = line.split('\t')
         if '*' in irreg: continue
         if msd.startswith('Npm'):
@@ -120,6 +124,13 @@ def no_e_to_i(lemma, msd, form):
         return False
     if msd.endswith('r3p'):
         if lemma.endswith('eti') and form.endswith('ejo'):
+            return True
+    return False
+
+
+def imperative_e_to_i(lemma, msd, form):
+    if msd.endswith('m1p'):
+        if lemma.endswith('eti') and form.endswith('imo'):
             return True
     return False
 
@@ -376,12 +387,28 @@ def write_verbs(lemmas, lex_dir):
             flags[l].add('@P.NiToNe.N@')
         if no_e_to_i(l, msd, form):
             flags[l].add('@P.EToI.N@')
+        if imperative_e_to_i(l, msd, form):
+            flags[l].add('@P.IMPERATIVE_E_TO_I.Y@')
     out = open(lex_dir + 'verbs.lexc', 'w')
     out.write('LEXICON %s\n\n' % 'Verb')
     write_verb_lemmas(out, 'VProgRegular', progressive, flags, stems)
     write_verb_lemmas(out, 'VPerfRegular', perfective, flags, stems)
     write_verb_lemmas(out, 'VBiRegular', biaspectual, flags, stems)
     out.close()
+
+
+def harmonize_verb_flags(flags):
+    # This is just to get rid of unnecessary or duplicate flags.  For instance,
+    # there's a flag to say that the imperative changes its final vowel from e
+    # to i.  But there's already a rule that says that we should do that unless
+    # we have set the "no e to i" flag.  So the imperative flag is only
+    # necessary when the "no e to i" flag is also set.  For now, that's the
+    # only thing we check for here, but if needed this might get more
+    # complicated.
+    if '@P.IMPERATIVE_E_TO_I.Y@' in flags:
+        if '@P.EToI.N@' not in flags:
+            flags.remove('@P.IMPERATIVE_E_TO_I.Y@')
+    return flags
 
 
 def write_verb_lemmas(out, cont, lemmas, flags, stems):
@@ -394,14 +421,17 @@ def write_verb_lemmas(out, cont, lemmas, flags, stems):
                 irregular = True
         if not irregular:
             if l in flags:
-                with_flags = l + ''.join(list(flags[l]))
-                out.write('%s:%s %s;\n' % (l, with_flags, cont))
-            else:
-                out.write('%s %s;\n' % (l, cont))
+                flag_list = harmonize_verb_flags(flags[l])
+                if flag_list:
+                    with_flags = l + ''.join(list(flag_list))
+                    out.write('%s:%s %s;\n' % (l, with_flags, cont))
+                    continue
+            out.write('%s %s;\n' % (l, cont))
         else:
             l_flags = ''
             if l in flags:
-                l_flags = ''.join(list(flags[l]))
+                flag_list = harmonize_verb_flags(flags[l])
+                l_flags = ''.join(list(flag_list))
             if l.endswith(u'či'.encode('utf-8')):
                 regular_stem = l[:-1] + l_flags
             else:
@@ -594,6 +624,10 @@ def write_lexicon_to_open_file(out, lemmas, name, continuation):
 
 
 if __name__ == '__main__':
-    main('sloleks-en.tbl.gz', '../lexica/')
+    import sys
+    if len(sys.argv) > 1 and sys.argv[1] == 'test':
+        main('mini_sloleks.tsv', 'test/')
+    else:
+        main('sloleks-en.tbl.gz', '../lexica/')
 
 # vim: et sw=4 sts=4
