@@ -202,6 +202,7 @@ LEXICON PronDemon
 LEXICON PronRel
 
 +Pronoun+Relative+NoPerson:@P.STEM_PRONOUN.Y@ AdjNoDefiniteness;
++Pronoun+Relative+NoPerson+Neut+Sing+Acc:@P.STEM_PRONOUN.Y@^ega #;
 
 LEXICON Pronoun
 
