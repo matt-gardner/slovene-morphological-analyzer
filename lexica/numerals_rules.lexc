@@ -17,8 +17,19 @@ LEXICON NumRomOrd
 
 LEXICON NumCardInf
 
-! These are probably all wrong right now
-+Numeral+Letter+Cardinal: AdjNoDefiniteness;
++Numeral+Letter+Cardinal: CardinalEndings;
+
+LEXICON CardinalEndings
+
+! These are like adjectives, but different enough (e.g., no gender, only
+! plural), to merit separate treatment here
+
++NoGender+Plural+Nom: #;
++NoGender+Plural+Gen:^ih #;
++NoGender+Plural+Dat:^im #;
++NoGender+Plural+Acc: #;
++NoGender+Plural+Loc:^ih #;
++NoGender+Plural+Ins:^imi #;
 
 LEXICON NumOrdInf
 
