@@ -111,10 +111,11 @@ def add_hyphen(lemma, msd, form, test, ending):
 
 
 def no_added_j(lemma, msd, form, test, ending):
-    if not lemma[-1] == 'r':
-        return False
-    if test in msd:
+    if lemma[-1] == 'r' and test in msd:
         if form == lemma + ending:
+            return True
+    elif lemma[-1] == 'a' and test in msd:
+        if form == lemma[:-1] + ending:
             return True
     return False
 
@@ -591,6 +592,7 @@ def write_numerals(lemmas, lex_dir):
     pronominal = set()
     special = set()
     for l, msd in lemmas:
+        l = l.replace('0', '%0')
         if msd[1] == 'd':
             if msd[2] == 'c':
                 digits_cardinal.add(l)

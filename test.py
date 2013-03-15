@@ -275,6 +275,7 @@ if __name__ == '__main__':
                     'lexica/%s_rules.lexc' % pos,
                     ],
                 'overrides': [
+                    'lexica/base.lexc',
                     'lexica/%s_overrides.lexc' % pos,
                     'lexica/%s_rules.lexc' % pos,
                     ],
@@ -325,7 +326,8 @@ if __name__ == '__main__':
             if l != 'lexica/base.lexc':
                 lexica.add(l)
         for o in testcases[pos]['overrides']:
-            overrides.add(o)
+            if l != 'lexica/base.lexc':
+                overrides.add(o)
     lexica = list(lexica)
     lexica.sort()
     overrides = list(overrides)

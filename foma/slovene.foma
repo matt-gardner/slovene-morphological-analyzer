@@ -73,12 +73,12 @@ define Cleanup "^" -> 0 .o. "$" -> 0 .o.
 define Grammar Lexicon .o.
                PronounStemming .o.
                FemNounStemming .o.
-               MascNounStemming .o.
                AddHyphen .o.
                Adjectives .o.
                Adverbs .o.
                FleetingE .o.
                AddJ .o.
+               MascNounStemming .o.
                NeutNounStemming .o.
                OToE .o.
                VerbStemming;
