@@ -5,6 +5,7 @@ define Flags ["@D.SUP@" |
               "@R.SUP@" |
               "@P.SUP.POS@" |
               "@P.FLEETING.REPLACE@" |
+              "@P.ADD_HYPHEN.Y@" |
               "@P.ANIMATE.Y@" |
               "@R.ANIMATE.Y@" |
               "@D.ANIMATE.Y@" |
@@ -21,15 +22,11 @@ define Flags ["@D.SUP@" |
 
 define ConsonantForFleeting [c | k | l | m | n | r |  n j | l j];
 
-define FemNounStemming a | e v -> 0 || _
-                            Flags*
-                            "@P.TYPE.FEMNOUN@"
-                            Flags* "^";
+define FemNounStemming a | e v -> 0 || _ Flags* "@P.TYPE.FEMNOUN@" Flags* "^";
 
-define MascNounStemming a -> 0 || _
-                            Flags*
-                            "@P.TYPE.MASCNOUN@"
-                            Flags* "^";
+define AddHyphen [..] -> "-" j || \Flags _ Flags* "@P.ADD_HYPHEN.Y@" Flags* "^";
+
+define MascNounStemming a -> 0 || _ Flags* "@P.TYPE.MASCNOUN@" Flags* "^";
 
 define FleetingE e -> 0 || _ ConsonantForFleeting
                     Flags* "@P.FLEETING.REPLACE@" (e j š) Flags* "^";
@@ -77,6 +74,7 @@ define Grammar Lexicon .o.
                PronounStemming .o.
                FemNounStemming .o.
                MascNounStemming .o.
+               AddHyphen .o.
                Adjectives .o.
                Adverbs .o.
                FleetingE .o.

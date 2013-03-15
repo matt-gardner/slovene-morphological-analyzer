@@ -38,6 +38,7 @@ Multichar_Symbols +N +A +V
                   @P.TYPE.NEUTNOUN@
                   @P.TYPE.NEUTADJ@
                   @P.FLEETING.REPLACE@
+                  @P.ADD_HYPHEN.Y@
                   @P.ANIMATE.Y@
                   @P.NiToNe.N@
                   @P.IMPERATIVE_E_TO_I.Y@

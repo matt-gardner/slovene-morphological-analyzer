@@ -103,6 +103,13 @@ def no_fleeting_e(lemma, msd, form, test, ending):
     return False
 
 
+def add_hyphen(lemma, msd, form, test, ending):
+    if test in msd:
+        if form == lemma + '-j' + ending:
+            return True
+    return False
+
+
 def no_added_j(lemma, msd, form, test, ending):
     if not lemma[-1] == 'r':
         return False
@@ -220,6 +227,7 @@ def write_masculine_nouns(lemmas, lex_dir, common=True):
     animate = set()
     no_fleeting = set()
     no_added_j_lemmas = set()
+    added_hyphen = set()
     all_lemmas = set()
     for l, msd, form in lemmas:
         if msd.endswith('say'):
@@ -228,6 +236,8 @@ def write_masculine_nouns(lemmas, lex_dir, common=True):
             no_fleeting.add(l)
         if no_added_j(l, msd, form, 'msg', 'a'):
             no_added_j_lemmas.add(l)
+        if add_hyphen(l, msd, form, 'msg', 'a'):
+            added_hyphen.add(l)
         all_lemmas.add(l)
     flags = defaultdict(list)
     for lemma in all_lemmas:
@@ -237,6 +247,8 @@ def write_masculine_nouns(lemmas, lex_dir, common=True):
             flags[lemma].append('@P.FLEETING.REPLACE@')
         if lemma in no_added_j_lemmas:
             flags[lemma].append('@P.ADD_J.N@')
+        if lemma in added_hyphen:
+            flags[lemma].append('@P.ADD_HYPHEN.Y@')
     if common:
         outfile = 'common_masc_nouns.lexc'
         continuation = 'NMascCommon'
