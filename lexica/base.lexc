@@ -18,7 +18,6 @@ Multichar_Symbols +N +A +V
                   +Definite +Indefinite  ! in a few cases, adjs specify this
                   +General +Possessive +Participle  ! types of adjectives
                   +Positive +Comparative +Superlative  ! degrees of adjectives
-                  +AdjRemoveI
                   ! Others
                   +Preposition
                   +Numeral
@@ -43,6 +42,7 @@ Multichar_Symbols +N +A +V
                   @P.NiToNe.N@
                   @P.IMPERATIVE_E_TO_I.Y@
                   @P.EToI.N@
+                  @P.ADJ_REMOVE_I.Y@
                   @R.ANIMATE.Y@
                   @D.ANIMATE.Y@
                   @P.ADD_J.N@

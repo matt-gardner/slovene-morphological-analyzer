@@ -10,6 +10,7 @@ define Flags ["@D.SUP@" |
               "@R.ANIMATE.Y@" |
               "@D.ANIMATE.Y@" |
               "@P.ADD_J.N@" |
+              "@P.ADJ_REMOVE_I.Y@" |
               "@P.PROPER.Y@" |
               "@P.NiToNe.N@" |
               "@P.IMPERATIVE_E_TO_I.Y@" |
@@ -31,7 +32,7 @@ define MascNounStemming a -> 0 || _ Flags* "@P.TYPE.MASCNOUN@" Flags* "^";
 define FleetingE e -> 0 || _ ConsonantForFleeting
                     Flags* "@P.FLEETING.REPLACE@" (e j š) Flags* "^";
 
-define Adjectives i "+AdjRemoveI" -> 0;
+define Adjectives i -> 0 || \Flags* _ Flags* "@P.ADJ_REMOVE_I.Y@" Flags* "^";
 
 define Adverbs o "+Adverb" -> 0;
 

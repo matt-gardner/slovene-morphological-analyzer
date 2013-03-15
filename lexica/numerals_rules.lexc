@@ -22,7 +22,7 @@ LEXICON NumCardInf
 
 LEXICON NumOrdInf
 
-+Numeral+Letter+Ordinal:+AdjRemoveI AdjNoDefiniteness;
++Numeral+Letter+Ordinal:@P.ADJ_REMOVE_I.Y@ AdjNoDefiniteness;
 
 LEXICON NumPronInf
 
