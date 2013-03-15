@@ -42,4 +42,5 @@ LEXICON NumPronInf
 LEXICON NumSpecInf
 
 +Numeral+Letter+Special:@P.FLEETING.REPLACE@ AdjNormalDefiniteness;
++Numeral+Letter+Special+Masc+Sing+Acc: #;
 
