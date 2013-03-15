@@ -26,6 +26,11 @@ define FemNounStemming a | e v -> 0 || _
                             "@P.TYPE.FEMNOUN@"
                             Flags* "^";
 
+define MascNounStemming a -> 0 || _
+                            Flags*
+                            "@P.TYPE.MASCNOUN@"
+                            Flags* "^";
+
 define FleetingE e -> 0 || _ ConsonantForFleeting
                     Flags* "@P.FLEETING.REPLACE@" (e j š) Flags* "^";
 
@@ -71,6 +76,7 @@ define Cleanup "^" -> 0 .o. "$" -> 0 .o.
 define Grammar Lexicon .o.
                PronounStemming .o.
                FemNounStemming .o.
+               MascNounStemming .o.
                Adjectives .o.
                Adverbs .o.
                FleetingE .o.
