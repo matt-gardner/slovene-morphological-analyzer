@@ -19,11 +19,11 @@ njihov+Pronoun+Possessive+Third+OwnerPlural:njihov AdjNoDefiniteness;
 
 LEXICON PronDemon
 
-+Pronoun+Demonstrative+NoPerson:+StemPronoun@P.FLEETING.REPLACE@ AdjNoDefiniteness;
++Pronoun+Demonstrative+NoPerson:@P.STEM_PRONOUN.Y@@P.FLEETING.REPLACE@ AdjNoDefiniteness;
 
 LEXICON PronRel
 
-+Pronoun+Relative+NoPerson:+StemPronoun@P.FLEETING.REPLACE@ AdjNoDefiniteness;
++Pronoun+Relative+NoPerson:@P.STEM_PRONOUN.Y@@P.FLEETING.REPLACE@ AdjNoDefiniteness;
 
 LEXICON Pronoun
 
@@ -45,18 +45,18 @@ LEXICON PronBoundRefl
 
 LEXICON PronGen
 
-+Pronoun+General+NoPerson:+StemPronoun@P.FLEETING.REPLACE@ AdjNoDefiniteness;
++Pronoun+General+NoPerson:@P.STEM_PRONOUN.Y@@P.FLEETING.REPLACE@ AdjNoDefiniteness;
 
 LEXICON PronInterr
 
-+Pronoun+Interrogative+NoPerson:+StemPronoun@P.FLEETING.REPLACE@ AdjNoDefiniteness;
++Pronoun+Interrogative+NoPerson:@P.STEM_PRONOUN.Y@@P.FLEETING.REPLACE@ AdjNoDefiniteness;
 
 LEXICON PronIndef
 
-+Pronoun+IndefinitePronoun+NoPerson:+StemPronoun AdjNoDefiniteness;
++Pronoun+IndefinitePronoun+NoPerson:@P.STEM_PRONOUN.Y@ AdjNoDefiniteness;
 
 LEXICON PronNeg
 
-+Pronoun+NegativePronoun+NoPerson:+StemPronoun@P.FLEETING.REPLACE@ AdjNoDefiniteness;
++Pronoun+NegativePronoun+NoPerson:@P.STEM_PRONOUN.Y@@P.FLEETING.REPLACE@ AdjNoDefiniteness;
 
 

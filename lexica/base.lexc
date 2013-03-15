@@ -26,7 +26,6 @@ Multichar_Symbols +N +A +V
                   +Adverb
                   +AdvParticiple
                   +StemChanged
-                  +StemPronoun
                   +ReplaceFleeting
                   @P.SUP.POS@
                   @R.SUP@
@@ -37,6 +36,7 @@ Multichar_Symbols +N +A +V
                   @P.TYPE.NEUTNOUN@
                   @P.TYPE.NEUTADJ@
                   @P.FLEETING.REPLACE@
+                  @P.STEM_PRONOUN.Y@
                   @P.ADD_HYPHEN.Y@
                   @P.ANIMATE.Y@
                   @P.NiToNe.N@
