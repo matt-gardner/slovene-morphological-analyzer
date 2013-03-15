@@ -52,7 +52,8 @@ define NeutNounStemming o | e -> 0 || _
                             Flags* "@P.TYPE.NEUTNOUN@" Flags* "$";
 
 define PronounStemming [i | a] -> 0 || \Flags _ Flags* "@P.STEM_PRONOUN.Y@"
-                                        Flags* "^";
+                                        Flags* "^" .o.
+                       e -> 0 || š _ n Flags* "^";
 
 define VerbStemming t i -> 0 || _ Flags* "+V" .o.
                     "+V" -> 0 .o.
