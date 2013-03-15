@@ -53,7 +53,7 @@ LEXICON PronInterr
 
 LEXICON PronIndef
 
-+Pronoun+IndefinitePronoun+NoPerson:+StemPronoun@P.FLEETING.REPLACE@ AdjNoDefiniteness;
++Pronoun+IndefinitePronoun+NoPerson:+StemPronoun AdjNoDefiniteness;
 
 LEXICON PronNeg
 
