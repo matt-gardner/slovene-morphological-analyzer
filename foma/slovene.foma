@@ -6,6 +6,7 @@ define Flags ["@D.SUP@" |
               "@P.SUP.POS@" |
               "@P.FLEETING.REPLACE@" |
               "@P.STEM_PRONOUN.Y@" |
+              "@P.STEM_BOUND_PRONOUN.Y@" |
               "@P.ADD_HYPHEN.Y@" |
               "@P.ANIMATE.Y@" |
               "@R.ANIMATE.Y@" |
@@ -53,7 +54,11 @@ define NeutNounStemming o | e -> 0 || _
 
 define PronounStemming [i | a] -> 0 || \Flags _ Flags* "@P.STEM_PRONOUN.Y@"
                                         Flags* "^" .o.
-                       e -> 0 || š _ n Flags* "^";
+                       e -> 0 || š _ n Flags* "^" .o.
+                       m e -> 0 || \Flags _ Flags* "@P.STEM_BOUND_PRONOUN.Y@"
+                                    Flags* "^" .o.
+                       [..] -> e || \[a | o] _ Flags* "@P.STEM_BOUND_PRONOUN.Y@"
+                                    Flags* "^" n j "$";
 
 define VerbStemming t i -> 0 || _ Flags* "+V" .o.
                     "+V" -> 0 .o.

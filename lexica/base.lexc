@@ -37,6 +37,7 @@ Multichar_Symbols +N +A +V
                   @P.TYPE.NEUTADJ@
                   @P.FLEETING.REPLACE@
                   @P.STEM_PRONOUN.Y@
+                  @P.STEM_BOUND_PRONOUN.Y@
                   @P.ADD_HYPHEN.Y@
                   @P.ANIMATE.Y@
                   @P.NiToNe.N@

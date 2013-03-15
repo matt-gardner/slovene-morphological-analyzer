@@ -547,7 +547,7 @@ def write_pronouns(lemmas, lex_dir):
     indefinite = set()
     negative = set()
     for l, msd in lemmas:
-        if msd[1] == 'p':
+        if msd[1] == 'p' and msd[-1] == 'b':
             personal.add(l)
         elif msd[1] == 's':
             possessive.add(l)
@@ -566,6 +566,8 @@ def write_pronouns(lemmas, lex_dir):
         elif msd[1] == 'z':
             negative.add(l)
     out = open(lex_dir + 'pronouns.lexc', 'w')
+    # We only do bound clitics here; the other personal pronouns we just do in
+    # pronouns_rules.lexc
     write_lexicon_to_open_file(out, personal, 'Pronoun', 'PronPersonal')
     # Possessives are too hard to do automatically; we'll just put these in
     # pronouns_rules.lexc
