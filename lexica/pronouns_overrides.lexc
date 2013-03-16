@@ -684,3 +684,32 @@ LEXICON KdoEnding
 +Sing+Loc:kom #;
 +Sing+Ins:kom #;
 
+LEXICON Pronoun
+
+oba+Pronoun+General+NoPerson+Masc+Dual+Nom:oba #;
+oba+Pronoun+General+NoPerson+Masc+Dual+Gen:obeh #;
+oba+Pronoun+General+NoPerson+Masc+Dual+Dat:obema #;
+oba+Pronoun+General+NoPerson+Masc+Dual+Acc:oba #;
+oba+Pronoun+General+NoPerson+Masc+Dual+Loc:obeh #;
+oba+Pronoun+General+NoPerson+Masc+Dual+Ins:obema #;
+
+oba+Pronoun+General+NoPerson+Fem+Dual+Nom:obe #;
+oba+Pronoun+General+NoPerson+Fem+Dual+Gen:obeh #;
+oba+Pronoun+General+NoPerson+Fem+Dual+Dat:obema #;
+oba+Pronoun+General+NoPerson+Fem+Dual+Acc:obe #;
+oba+Pronoun+General+NoPerson+Fem+Dual+Loc:obeh #;
+oba+Pronoun+General+NoPerson+Fem+Dual+Ins:obema #;
+
+oba+Pronoun+General+NoPerson+Neut+Dual+Nom:obe #;
+oba+Pronoun+General+NoPerson+Neut+Dual+Gen:obeh #;
+oba+Pronoun+General+NoPerson+Neut+Dual+Dat:obema #;
+oba+Pronoun+General+NoPerson+Neut+Dual+Acc:obe #;
+oba+Pronoun+General+NoPerson+Neut+Dual+Loc:obeh #;
+oba+Pronoun+General+NoPerson+Neut+Dual+Ins:obema #;
+
+obadva+Pronoun+General+NoPerson+Masc+Dual+Nom:obadva #;
+obadva+Pronoun+General+NoPerson+Masc+Dual+Acc:obadva #;
+obadva+Pronoun+General+NoPerson+Fem+Dual+Nom:obedve #;
+obadva+Pronoun+General+NoPerson+Fem+Dual+Acc:obedve #;
+obadva+Pronoun+General+NoPerson+Neut+Dual+Nom:obedve #;
+obadva+Pronoun+General+NoPerson+Neut+Dual+Acc:obedve #;
