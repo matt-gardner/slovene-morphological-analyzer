@@ -558,7 +558,8 @@ def write_pronouns(lemmas, lex_dir):
         elif msd[1] == 'x' and msd[-1] == 'b':
             reflexive_bound.add(l)
         elif msd[1] == 'g':
-            general.add(l)
+            if l not in ['obojen']:
+                general.add(l)
         elif msd[1] == 'q':
             interrogative.add(l)
         elif msd[1] == 'i' and not l.endswith('kaj') and not l.endswith('kdo'):

@@ -7,7 +7,9 @@ LEXICON Pronoun
 čigaverkoli+Pronoun+Relative:čigaverkoli #;
 
 ! Le-suffix pronouns.  These were just a pain to try to do in a foma file, and
-! there aren't that many of them, so we're doing it here.
+! there aren't that many of them, so we're doing it here.  I could probably
+! have done this at least a little better, by putting continuation classes
+! inside of this, but oh well.  Maybe I'll fix it some day.
 
 onile+Pronoun+Demonstrative+NoPerson+Masc+Sing+Nom:onile #;
 onile+Pronoun+Demonstrative+NoPerson+Masc+Sing+Gen:onegale #;
@@ -652,8 +654,8 @@ kdovekaj+Pronoun+IndefinitePronoun+NoPerson+Neut:kdove KajEnding;
 malokaj+Pronoun+IndefinitePronoun+NoPerson+Neut:malo KajEnding;
 marsikaj+Pronoun+IndefinitePronoun+NoPerson+Neut:marsi KajEnding;
 mnogokaj+Pronoun+IndefinitePronoun+NoPerson+Neut:mnogo KajEnding;
+prenekaj+Pronoun+IndefinitePronoun+NoPerson+Neut:prene KajEnding;
 nekaj+Pronoun+Interrogative+NoPerson+Neut:ne KajEnding;
-prenekaj+Pronoun+Interrogative+NoPerson+Neut:prene KajEnding;
 
 LEXICON KajEnding
 

@@ -192,7 +192,7 @@ njen+Pronoun+Possessive+Third+OwnerSing+OwnerFem:njen AdjNoDefiniteness;
 njegov+Pronoun+Possessive+Third+OwnerSing+OwnerNeut:njegov AdjNoDefiniteness;
 njun+Pronoun+Possessive+Third+OwnerDual:njun AdjNoDefiniteness;
 njihen+Pronoun+Possessive+Third+OwnerPlural:njihen@P.FLEETING.REPLACE@ AdjNoDefiniteness;
-njihnji+Pronoun+Possessive+Third+OwnerPlural:njihnji AdjNoDefiniteness;
+njihnji+Pronoun+Possessive+Third+OwnerPlural:njihnji@P.STEM_PRONOUN.Y@ AdjNoDefiniteness;
 njihov+Pronoun+Possessive+Third+OwnerPlural:njihov AdjNoDefiniteness;
 
 LEXICON PronDemon
@@ -225,6 +225,12 @@ LEXICON PronBoundRefl
 LEXICON PronGen
 
 +Pronoun+General+NoPerson:@P.STEM_PRONOUN.Y@ AdjNoDefiniteness;
+
+LEXICON Pronoun
+
+! We need to special case this one, and for some reason I couldn't get the
+! fleeting vowel replacement to work, so we're just hard coding this.
+obojen+Pronoun+General+NoPerson:obojen@P.FLEETING.REPLACE@ AdjNoDefiniteness;
 
 LEXICON PronInterr
 

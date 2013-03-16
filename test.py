@@ -304,6 +304,8 @@ if __name__ == '__main__':
     # We also need to special case the pronouns and the numerals, to add
     # adjective rules to them
     testcases['pronouns']['lexica'].append('lexica/adjectives_rules.lexc')
+    testcases['pronouns']['overrides'].append('lexica/adjectives_rules.lexc')
+    testcases['pronouns']['overrides'].remove('lexica/pronouns_rules.lexc')
     testcases['numerals']['lexica'].append('lexica/adjectives_rules.lexc')
     # Though it's a big obnoxious, this one just should be modified by hand if
     # you want to run a different small test.
