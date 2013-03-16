@@ -646,9 +646,14 @@ kdorsižebodi+Pronoun+Relative+NoPerson+Masc+Sing+Loc:komersižebodi #;
 kdorsižebodi+Pronoun+Relative+NoPerson+Masc+Sing+Ins:komersižebodi #;
 
 kaj+Pronoun+Interrogative+NoPerson+Neut: KajEnding;
-mnogokaj+Pronoun+IndefinitePronoun+NoPerson+Neut:mnogo KajEnding;
+bogvedikaj+Pronoun+IndefinitePronoun+NoPerson+Neut:bogvedi KajEnding;
 bogvekaj+Pronoun+IndefinitePronoun+NoPerson+Neut:bogve KajEnding;
+kdovekaj+Pronoun+IndefinitePronoun+NoPerson+Neut:kdove KajEnding;
 malokaj+Pronoun+IndefinitePronoun+NoPerson+Neut:malo KajEnding;
+marsikaj+Pronoun+IndefinitePronoun+NoPerson+Neut:marsi KajEnding;
+mnogokaj+Pronoun+IndefinitePronoun+NoPerson+Neut:mnogo KajEnding;
+nekaj+Pronoun+Interrogative+NoPerson+Neut:ne KajEnding;
+prenekaj+Pronoun+Interrogative+NoPerson+Neut:prene KajEnding;
 
 LEXICON KajEnding
 
@@ -660,3 +665,22 @@ LEXICON KajEnding
 +Sing+Ins:čim #;
 
 LEXICON Pronoun
+
+kdo+Pronoun+Interrogative+NoPerson+Masc: KdoEnding;
+kdovekdo+Pronoun+IndefinitePronoun+NoPerson+Masc:kdove KdoEnding;
+malokdo+Pronoun+IndefinitePronoun+NoPerson+Masc:malo KdoEnding;
+marsikdo+Pronoun+IndefinitePronoun+NoPerson+Masc:marsi KdoEnding;
+mnogokdo+Pronoun+IndefinitePronoun+NoPerson+Masc:mnogo KdoEnding;
+nekdo+Pronoun+IndefinitePronoun+NoPerson+Masc:ne KdoEnding;
+prenekdo+Pronoun+IndefinitePronoun+NoPerson+Masc:prene KdoEnding;
+redkokdo+Pronoun+IndefinitePronoun+NoPerson+Masc:redko KdoEnding;
+
+LEXICON KdoEnding
+
++Sing+Nom:kdo #;
++Sing+Gen:koga #;
++Sing+Dat:komu #;
++Sing+Acc:koga #;
++Sing+Loc:kom #;
++Sing+Ins:kom #;
+

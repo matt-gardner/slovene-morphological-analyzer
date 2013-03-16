@@ -561,7 +561,7 @@ def write_pronouns(lemmas, lex_dir):
             general.add(l)
         elif msd[1] == 'q':
             interrogative.add(l)
-        elif msd[1] == 'i' and not l.endswith('kaj'):
+        elif msd[1] == 'i' and not l.endswith('kaj') and not l.endswith('kdo'):
             indefinite.add(l)
         elif msd[1] == 'z':
             negative.add(l)
