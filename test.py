@@ -307,10 +307,10 @@ if __name__ == '__main__':
     testcases['numerals']['lexica'].append('lexica/adjectives_rules.lexc')
     # Though it's a big obnoxious, this one just should be modified by hand if
     # you want to run a different small test.
-    small = {'lexica': testcases['nouns']['lexica'],
-        'overrides': [],
+    small = {'lexica': testcases['pronouns']['lexica'],
+        'overrides': testcases['pronouns']['overrides'],
         'test_files': [
-            'tests/nouns_small.tsv',
+            'tests/small_pronouns.tsv',
         ]}
     everything = {
         'test_files': [
