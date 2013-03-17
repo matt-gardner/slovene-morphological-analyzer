@@ -114,7 +114,7 @@ def no_added_j(lemma, msd, form, test, ending):
     if lemma[-1] == 'r' and test in msd:
         if form == lemma + ending:
             return True
-    elif lemma[-1] == 'a' and test in msd:
+    elif lemma[-1] in ['a', 'o'] and test in msd:
         if form == lemma[:-1] + ending:
             return True
     return False
