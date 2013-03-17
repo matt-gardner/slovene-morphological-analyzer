@@ -275,6 +275,9 @@ def write_feminine_nouns(lemmas, lex_dir):
     for l in lemmas:
         if l.endswith('a'):
             a_lemmas.add(l)
+        elif l.endswith('e'):
+            # These are plural-only forms, I think - could be handled better
+            a_lemmas.add(l)
         elif l.endswith('ev'):
             ev_lemmas.add(l)
         elif l.endswith('ost'):

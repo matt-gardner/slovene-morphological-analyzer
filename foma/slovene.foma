@@ -25,7 +25,7 @@ define Flags ["@D.SUP@" |
 
 define ConsonantForFleeting [c | k | l | m | n | r |  n j | l j];
 
-define FemNounStemming a | e v -> 0 ||
+define FemNounStemming a | e v | e -> 0 ||
                             _ Flags* "@P.TYPE.FEMNOUN@" Flags* ["^" | "$"] .o.
                        [..] -> e || \[a | e | i | o | u] _ [v | r | l | l j]
                             Flags* "@P.TYPE.FEMNOUN@" Flags* "$";
