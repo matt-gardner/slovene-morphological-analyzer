@@ -29,7 +29,8 @@ define FemNounStemming a | e v -> 0 || _ Flags* "@P.TYPE.FEMNOUN@" Flags* "^";
 
 define AddHyphen [..] -> "-" j || \Flags _ Flags* "@P.ADD_HYPHEN.Y@" Flags* "^";
 
-define MascNounStemming [a | o] -> 0 || _ Flags* "@P.TYPE.MASCNOUN@" Flags* "^";
+define MascNounStemming [a | e | i | o | u] -> 0 ||
+                                _ Flags* "@P.TYPE.MASCNOUN@" Flags* "^";
 
 define FleetingE e -> 0 || _ ConsonantForFleeting
                     Flags* "@P.FLEETING.REPLACE@" (e j š) Flags* "^";
