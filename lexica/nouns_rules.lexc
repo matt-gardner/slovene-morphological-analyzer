@@ -67,13 +67,13 @@ LEXICON NFemAInf
 +Fem+Sing+Loc:^i #;
 +Fem+Sing+Ins:^o #;
 +Fem+Dual+Nom:^i #;
-+Fem+Dual+Gen:^ #;
++Fem+Dual+Gen:$ #;
 +Fem+Dual+Dat:^ama #;
 +Fem+Dual+Acc:^i #;
 +Fem+Dual+Loc:^ah #;
 +Fem+Dual+Ins:^ama #;
 +Fem+Plural+Nom:^e #;
-+Fem+Plural+Gen:^ #;
++Fem+Plural+Gen:$ #;
 +Fem+Plural+Dat:^am #;
 +Fem+Plural+Acc:^e #;
 +Fem+Plural+Loc:^ah #;

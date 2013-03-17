@@ -237,6 +237,8 @@ def write_masculine_nouns(lemmas, lex_dir, common=True):
             no_fleeting.add(l)
         if no_added_j(l, msd, form, 'msg', 'a'):
             no_added_j_lemmas.add(l)
+        if no_added_j(l, msd, form, 'mpa', 'e'):
+            no_added_j_lemmas.add(l)
         if add_hyphen(l, msd, form, 'msg', 'a'):
             added_hyphen.add(l)
         all_lemmas.add(l)
