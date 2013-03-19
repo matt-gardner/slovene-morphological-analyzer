@@ -748,6 +748,21 @@ mnogokdo+Pronoun+IndefinitePronoun+NoPerson+Masc:mnogo KdoEnding;
 nekdo+Pronoun+IndefinitePronoun+NoPerson+Masc:ne KdoEnding;
 prenekdo+Pronoun+IndefinitePronoun+NoPerson+Masc:prene KdoEnding;
 redkokdo+Pronoun+IndefinitePronoun+NoPerson+Masc:redko KdoEnding;
+nikdo+Pronoun+NegativePronoun+NoPerson+Masc:ni KdoEnding;
+
+nihče+Pronoun+NegativePronoun+NoPerson+Masc+Sing+Nom:nihče #;
+nihče+Pronoun+NegativePronoun+NoPerson+Masc+Sing+Gen:nikogar #;
+nihče+Pronoun+NegativePronoun+NoPerson+Masc+Sing+Dat:nikomur #;
+nihče+Pronoun+NegativePronoun+NoPerson+Masc+Sing+Acc:nikogar #;
+nihče+Pronoun+NegativePronoun+NoPerson+Masc+Sing+Loc:nikomer #;
+nihče+Pronoun+NegativePronoun+NoPerson+Masc+Sing+Ins:nikomer #;
+
+nič+Pronoun+NegativePronoun+NoPerson+Neut+Sing+Nom:nič #;
+nič+Pronoun+NegativePronoun+NoPerson+Neut+Sing+Gen:ničesar #;
+nič+Pronoun+NegativePronoun+NoPerson+Neut+Sing+Dat:ničemur #;
+nič+Pronoun+NegativePronoun+NoPerson+Neut+Sing+Acc:nič #;
+nič+Pronoun+NegativePronoun+NoPerson+Neut+Sing+Loc:ničemer #;
+nič+Pronoun+NegativePronoun+NoPerson+Neut+Sing+Ins:ničimer #;
 
 LEXICON KdoEnding
 
