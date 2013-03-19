@@ -605,6 +605,14 @@ katerikoli+Pronoun+Relative+NoPerson+Neut+Plural+Acc:katerakoli #;
 katerikoli+Pronoun+Relative+NoPerson+Neut+Plural+Loc:katerihkoli #;
 katerikoli+Pronoun+Relative+NoPerson+Neut+Plural+Ins:katerimikoli #;
 
+kateri+Pronoun+Interrogative+NoPerson+Neut+Sing+Acc:katerega #;
+kateri+Pronoun+Interrogative+NoPerson+Neut+Sing+Acc:katero #;
+mnog+Pronoun+IndefinitePronoun+NoPerson+Masc+Sing+Nom:mnogi #;
+mnog+Pronoun+IndefinitePronoun+NoPerson+Masc+Sing+Nom:mnog #;
+mnog+Pronoun+IndefinitePronoun+NoPerson+Masc+Sing+Acc:mnogi #;
+mnog+Pronoun+IndefinitePronoun+NoPerson+Masc+Sing+Acc:mnog #;
+mnog+Pronoun+IndefinitePronoun+NoPerson+Masc+Sing+Acc:mnogega #;
+
 kar+Pronoun+Relative+NoPerson+Neut+Sing+Nom:kar #;
 kar+Pronoun+Relative+NoPerson+Neut+Sing+Gen:česar #;
 kar+Pronoun+Relative+NoPerson+Neut+Sing+Dat:čemur #;
@@ -727,7 +735,7 @@ malokaj+Pronoun+IndefinitePronoun+NoPerson+Neut:malo KajEnding;
 marsikaj+Pronoun+IndefinitePronoun+NoPerson+Neut:marsi KajEnding;
 mnogokaj+Pronoun+IndefinitePronoun+NoPerson+Neut:mnogo KajEnding;
 prenekaj+Pronoun+IndefinitePronoun+NoPerson+Neut:prene KajEnding;
-nekaj+Pronoun+Interrogative+NoPerson+Neut:ne KajEnding;
+nekaj+Pronoun+IndefinitePronoun+NoPerson+Neut:ne KajEnding;
 
 LEXICON KajEnding
 
