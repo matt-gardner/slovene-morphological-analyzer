@@ -818,6 +818,9 @@ obadva+Pronoun+General+NoPerson+Fem+Dual+Acc:obedve #;
 obadva+Pronoun+General+NoPerson+Neut+Dual+Nom:obedve #;
 obadva+Pronoun+General+NoPerson+Neut+Dual+Acc:obedve #;
 
+tadva+Pronoun+Demonstrative+NoPerson+Masc+Dual+Nom:tadva #;
+tadva+Pronoun+Demonstrative+NoPerson+Masc+Dual+Acc:tadva #;
+
 ves+Pronoun+General+NoPerson+Masc+Sing+Nom:ves #;
 ves+Pronoun+General+NoPerson+Masc+Sing+Gen:vsega #;
 ves+Pronoun+General+NoPerson+Masc+Sing+Dat:vsemu #;

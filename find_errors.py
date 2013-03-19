@@ -2,8 +2,11 @@
 
 from data.create_tests import SEPARATOR
 
-def main(pos, query_msd):
-    results_file = 'results/%s_incorrect.txt' % pos
+def main(pos, query_msd, overanalyzed=False):
+    if overanalyzed:
+        results_file = 'results/%s_overanalyzed.txt' % pos
+    else:
+        results_file = 'results/%s_incorrect.txt' % pos
     test_file = 'tests/%s.tsv' % pos
     out_file = 'results/%s_incorrect.txt' % query_msd
     out = open(out_file, 'w')
@@ -24,13 +27,18 @@ if __name__ == '__main__':
     parser = OptionParser()
     parser.add_option('', '--pos',
             dest='pos',
-            help='Part of speech to store',
+            help='Part of speech to check',
             )
     parser.add_option('', '--msd',
             dest='msd',
             help='MSD to look for',
             )
+    parser.add_option('-o', '--overanalyzed',
+            dest='overanalyzed',
+            action='store_true',
+            help='Find overanalysis (precision) errors, instead of recall',
+            )
     opts, args = parser.parse_args()
-    main(opts.pos, opts.msd)
+    main(opts.pos, opts.msd, opts.overanalyzed)
 
 # vim: et sw=4 sts=4

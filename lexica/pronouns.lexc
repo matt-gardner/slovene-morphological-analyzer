@@ -14,21 +14,13 @@ zame PronPersonal;
 LEXICON Pronoun
 
 oni PronDemon;
-onile PronDemon;
-ta PronDemon;
-tadva PronDemon;
 taisti PronDemon;
 tak PronDemon;
 takisti PronDemon;
-takle PronDemon;
 takov PronDemon;
 takošen PronDemon;
 takšen PronDemon;
-takšenle PronDemon;
-tale PronDemon;
-talele PronDemon;
 tisti PronDemon;
-tistile PronDemon;
 tolik PronDemon;
 toliker PronDemon;
 tolikšen PronDemon;
@@ -37,24 +29,9 @@ toti PronDemon;
 LEXICON Pronoun
 
 kakršen PronRel;
-kakršenkoli PronRel;
-kakršensižebodi PronRel;
 kar PronRel;
-karkoli PronRel;
-karsibodi PronRel;
-karsižebodi PronRel;
-katerikoli PronRel;
-katerisibodi PronRel;
 kdor PronRel;
-kdorkoli PronRel;
-kdorsibodi PronRel;
-kdorsižebodi PronRel;
 kolikršen PronRel;
-čigar PronRel;
-čigarkoli PronRel;
-čigarsižebodi PronRel;
-čigaver PronRel;
-čigaverkoli PronRel;
 čigavršen PronRel;
 čigavršnji PronRel;
 LEXICON Pronoun
@@ -71,10 +48,7 @@ zase PronBoundRefl;
 čezse PronBoundRefl;
 LEXICON Pronoun
 
-oba PronGen;
-obadva PronGen;
 oboj PronGen;
-ves PronGen;
 vsak PronGen;
 vsakateri PronGen;
 vsakdo PronGen;
