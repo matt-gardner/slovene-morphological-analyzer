@@ -14,7 +14,7 @@ def main(pos, query_msd):
         form, analyses = line.strip().split('\t')
         for analysis in analyses.split(SEPARATOR):
             lemma, msd = analysis.split('-', 1)
-            if msd == query_msd and form in incorrect:
+            if query_msd in msd and form in incorrect:
                 out.write('%s\n' % form)
     out.close()
 

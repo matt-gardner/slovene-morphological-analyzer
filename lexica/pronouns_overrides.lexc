@@ -764,6 +764,13 @@ nič+Pronoun+NegativePronoun+NoPerson+Neut+Sing+Acc:nič #;
 nič+Pronoun+NegativePronoun+NoPerson+Neut+Sing+Loc:ničemer #;
 nič+Pronoun+NegativePronoun+NoPerson+Neut+Sing+Ins:ničimer #;
 
+vsakdo+Pronoun+General+NoPerson+Masc+Sing+Nom:vsakdo #;
+vsakdo+Pronoun+General+NoPerson+Masc+Sing+Gen:vsakogar #;
+vsakdo+Pronoun+General+NoPerson+Masc+Sing+Dat:vsakomur #;
+vsakdo+Pronoun+General+NoPerson+Masc+Sing+Acc:vsakogar #;
+vsakdo+Pronoun+General+NoPerson+Masc+Sing+Loc:vsakomer #;
+vsakdo+Pronoun+General+NoPerson+Masc+Sing+Ins:vsakomer #;
+
 LEXICON KdoEnding
 
 +Sing+Nom:kdo #;
@@ -802,3 +809,62 @@ obadva+Pronoun+General+NoPerson+Fem+Dual+Nom:obedve #;
 obadva+Pronoun+General+NoPerson+Fem+Dual+Acc:obedve #;
 obadva+Pronoun+General+NoPerson+Neut+Dual+Nom:obedve #;
 obadva+Pronoun+General+NoPerson+Neut+Dual+Acc:obedve #;
+
+ves+Pronoun+General+NoPerson+Masc+Sing+Nom:ves #;
+ves+Pronoun+General+NoPerson+Masc+Sing+Gen:vsega #;
+ves+Pronoun+General+NoPerson+Masc+Sing+Dat:vsemu #;
+ves+Pronoun+General+NoPerson+Masc+Sing+Acc:ves #;
+ves+Pronoun+General+NoPerson+Masc+Sing+Acc:vsega #;
+ves+Pronoun+General+NoPerson+Masc+Sing+Acc:vsi #;
+ves+Pronoun+General+NoPerson+Masc+Sing+Loc:vsem #;
+ves+Pronoun+General+NoPerson+Masc+Sing+Ins:vsem #;
+ves+Pronoun+General+NoPerson+Masc+Dual+Nom:vsa #;
+ves+Pronoun+General+NoPerson+Masc+Dual+Gen:vseh #;
+ves+Pronoun+General+NoPerson+Masc+Dual+Dat:vsema #;
+ves+Pronoun+General+NoPerson+Masc+Dual+Acc:vsa #;
+ves+Pronoun+General+NoPerson+Masc+Dual+Loc:vseh #;
+ves+Pronoun+General+NoPerson+Masc+Dual+Ins:vsema #;
+ves+Pronoun+General+NoPerson+Masc+Plural+Nom:vsi #;
+ves+Pronoun+General+NoPerson+Masc+Plural+Gen:vseh #;
+ves+Pronoun+General+NoPerson+Masc+Plural+Dat:vsem #;
+ves+Pronoun+General+NoPerson+Masc+Plural+Acc:vse #;
+ves+Pronoun+General+NoPerson+Masc+Plural+Loc:vseh #;
+ves+Pronoun+General+NoPerson+Masc+Plural+Ins:vsemi #;
+
+ves+Pronoun+General+NoPerson+Fem+Sing+Nom:vsa #;
+ves+Pronoun+General+NoPerson+Fem+Sing+Gen:vse #;
+ves+Pronoun+General+NoPerson+Fem+Sing+Dat:vsej #;
+ves+Pronoun+General+NoPerson+Fem+Sing+Acc:vso #;
+ves+Pronoun+General+NoPerson+Fem+Sing+Loc:vsej #;
+ves+Pronoun+General+NoPerson+Fem+Sing+Ins:vso #;
+ves+Pronoun+General+NoPerson+Fem+Dual+Nom:vsi #;
+ves+Pronoun+General+NoPerson+Fem+Dual+Gen:vseh #;
+ves+Pronoun+General+NoPerson+Fem+Dual+Dat:vsema #;
+ves+Pronoun+General+NoPerson+Fem+Dual+Acc:vsi #;
+ves+Pronoun+General+NoPerson+Fem+Dual+Loc:vseh #;
+ves+Pronoun+General+NoPerson+Fem+Dual+Ins:vsema #;
+ves+Pronoun+General+NoPerson+Fem+Plural+Nom:vse #;
+ves+Pronoun+General+NoPerson+Fem+Plural+Gen:vseh #;
+ves+Pronoun+General+NoPerson+Fem+Plural+Dat:vsem #;
+ves+Pronoun+General+NoPerson+Fem+Plural+Acc:vse #;
+ves+Pronoun+General+NoPerson+Fem+Plural+Loc:vseh #;
+ves+Pronoun+General+NoPerson+Fem+Plural+Ins:vsemi #;
+
+ves+Pronoun+General+NoPerson+Neut+Sing+Nom:vse #;
+ves+Pronoun+General+NoPerson+Neut+Sing+Gen:vsega #;
+ves+Pronoun+General+NoPerson+Neut+Sing+Dat:vsemu #;
+ves+Pronoun+General+NoPerson+Neut+Sing+Acc:vse #;
+ves+Pronoun+General+NoPerson+Neut+Sing+Loc:vsem #;
+ves+Pronoun+General+NoPerson+Neut+Sing+Ins:vsem #;
+ves+Pronoun+General+NoPerson+Neut+Dual+Nom:vsi #;
+ves+Pronoun+General+NoPerson+Neut+Dual+Gen:vseh #;
+ves+Pronoun+General+NoPerson+Neut+Dual+Dat:vsema #;
+ves+Pronoun+General+NoPerson+Neut+Dual+Acc:vsi #;
+ves+Pronoun+General+NoPerson+Neut+Dual+Loc:vseh #;
+ves+Pronoun+General+NoPerson+Neut+Dual+Ins:vsema #;
+ves+Pronoun+General+NoPerson+Neut+Plural+Nom:vsa #;
+ves+Pronoun+General+NoPerson+Neut+Plural+Gen:vseh #;
+ves+Pronoun+General+NoPerson+Neut+Plural+Dat:vsem #;
+ves+Pronoun+General+NoPerson+Neut+Plural+Acc:vsa #;
+ves+Pronoun+General+NoPerson+Neut+Plural+Loc:vseh #;
+ves+Pronoun+General+NoPerson+Neut+Plural+Ins:vsemi #;

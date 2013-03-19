@@ -228,8 +228,7 @@ LEXICON PronGen
 
 LEXICON Pronoun
 
-! We need to special case this one, and for some reason I couldn't get the
-! fleeting vowel replacement to work, so we're just hard coding this.
+! We need to special case this one, to get the fleeting vowel replaced
 obojen+Pronoun+General+NoPerson:obojen@P.FLEETING.REPLACE@ AdjNoDefiniteness;
 
 LEXICON PronInterr
