@@ -62,7 +62,7 @@ def main(sloleks_file, lex_dir):
         elif msd[0] == 'P':
             pronouns.add((lemma, msd))
         elif msd[0] == 'M':
-            numerals.add((lemma , msd))
+            numerals.add((lemma, msd, form))
         else:
             raise RuntimeError("Found an MSD category I didn't recognize: " +
                     msd[0])
@@ -612,7 +612,9 @@ def write_numerals(lemmas, lex_dir):
     ordinal = set()
     pronominal = set()
     special = set()
-    for l, msd in lemmas:
+    no_fleeting_e_lemmas = set()
+    flags = defaultdict(set)
+    for l, msd, form in lemmas:
         l = l.replace('0', '%0')
         if msd[1] == 'd':
             if msd[2] == 'c':
@@ -632,7 +634,12 @@ def write_numerals(lemmas, lex_dir):
             elif msd[2] == 'p':
                 pronominal.add(l)
             elif msd[2] == 's':
+                if no_fleeting_e(l, msd, form, 'msg', 'ega'):
+                    no_fleeting_e_lemmas.add(l)
                 special.add(l)
+    for l in special:
+        if l not in no_fleeting_e_lemmas:
+            flags[l].add('@P.FLEETING.REPLACE@')
     out = open(lex_dir + 'numerals.lexc', 'w')
     write_lexicon_to_open_file(out, digits_cardinal, 'Numeral', 'NumDigCard')
     write_lexicon_to_open_file(out, digits_ordinal, 'Numeral', 'NumDigOrd')
@@ -642,6 +649,14 @@ def write_numerals(lemmas, lex_dir):
     write_lexicon_to_open_file(out, ordinal, 'Numeral', 'NumOrdInf')
     write_lexicon_to_open_file(out, pronominal, 'Numeral', 'NumPronInf')
     write_lexicon_to_open_file(out, special, 'Numeral', 'NumSpecInf')
+    special = list(special)
+    special.sort()
+    for l in special:
+        if l in flags:
+            out.write('%s:%s %s;\n' % (l, l + ''.join(flags[l]), 'NumSpecInf'))
+        else:
+            out.write('%s %s;\n' % (l, 'NumSpecInf'))
+    out.close()
     out.close()
 
 def write_lexicon(filename, lemmas, name, continuation):
