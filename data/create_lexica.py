@@ -558,7 +558,10 @@ def write_pronouns(lemmas, lex_dir):
             continue
         if l.endswith('dva'):
             continue
-        if l in ['ta', 'oba', 'ves', u'čigaver'.encode('utf-8'),
+        if l in ['ta', 'oba', 'ves', 'enaki', 'neki', 'kaj', 'nobeden', 'kar',
+                'nekateri',
+                u'čigaver'.encode('utf-8'),
+                u'nič'.encode('utf-8'),
                 u'čigar'.encode('utf-8')]:
             continue
         # Now to actually create the lexicon file

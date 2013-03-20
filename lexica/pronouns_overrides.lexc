@@ -5,6 +5,11 @@ LEXICON Pronoun
 čigarsižebodi+Pronoun+Relative:čigarsižebodi #;
 čigaver+Pronoun+Relative:čigaver #;
 čigaverkoli+Pronoun+Relative:čigaverkoli #;
+čigavršen+Pronoun+Relative+NoPerson+Neut+Sing+Acc:čigavršno #;
+čigavršnji+Pronoun+Relative+NoPerson+Neut+Sing+Acc:čigavršnje #;
+kolikršen+Pronoun+Relative+NoPerson+Neut+Sing+Acc:kolikršno #;
+enaki+Pronoun+IndefinitePronoun+NoPerson+Masc+Sing+Nom:enaki #;
+neki+Pronoun+IndefinitePronoun+NoPerson+Masc+Sing+Nom:neki #;
 
 ! Le-suffix pronouns.  These were just a pain to try to do in a foma file, and
 ! there aren't that many of them, so we're doing it here.  I could probably
@@ -190,7 +195,6 @@ ta+Pronoun+Demonstrative+NoPerson+Masc+Sing+Gen:tega #;
 ta+Pronoun+Demonstrative+NoPerson+Masc+Sing+Dat:temu #;
 ta+Pronoun+Demonstrative+NoPerson+Masc+Sing+Acc:ta #;
 ta+Pronoun+Demonstrative+NoPerson+Masc+Sing+Acc:tega #;
-ta+Pronoun+Demonstrative+NoPerson+Masc+Sing+Acc:ti #;
 ta+Pronoun+Demonstrative+NoPerson+Masc+Sing+Loc:tem #;
 ta+Pronoun+Demonstrative+NoPerson+Masc+Sing+Ins:tem #;
 ta+Pronoun+Demonstrative+NoPerson+Masc+Dual+Nom:ta #;
@@ -253,7 +257,6 @@ tale+Pronoun+Demonstrative+NoPerson+Masc+Sing+Gen:tegale #;
 tale+Pronoun+Demonstrative+NoPerson+Masc+Sing+Dat:temule #;
 tale+Pronoun+Demonstrative+NoPerson+Masc+Sing+Acc:tale #;
 tale+Pronoun+Demonstrative+NoPerson+Masc+Sing+Acc:tegale #;
-tale+Pronoun+Demonstrative+NoPerson+Masc+Sing+Acc:tile #;
 tale+Pronoun+Demonstrative+NoPerson+Masc+Sing+Loc:temle #;
 tale+Pronoun+Demonstrative+NoPerson+Masc+Sing+Ins:temle #;
 tale+Pronoun+Demonstrative+NoPerson+Masc+Dual+Nom:tale #;
@@ -757,6 +760,7 @@ nekdo+Pronoun+IndefinitePronoun+NoPerson+Masc:ne KdoEnding;
 prenekdo+Pronoun+IndefinitePronoun+NoPerson+Masc:prene KdoEnding;
 redkokdo+Pronoun+IndefinitePronoun+NoPerson+Masc:redko KdoEnding;
 nikdo+Pronoun+NegativePronoun+NoPerson+Masc:ni KdoEnding;
+nobeden+Pronoun+NegativePronoun+NoPerson+Masc+Sing+Nom:nobeden #;
 
 nihče+Pronoun+NegativePronoun+NoPerson+Masc+Sing+Nom:nihče #;
 nihče+Pronoun+NegativePronoun+NoPerson+Masc+Sing+Gen:nikogar #;
@@ -826,7 +830,6 @@ ves+Pronoun+General+NoPerson+Masc+Sing+Gen:vsega #;
 ves+Pronoun+General+NoPerson+Masc+Sing+Dat:vsemu #;
 ves+Pronoun+General+NoPerson+Masc+Sing+Acc:ves #;
 ves+Pronoun+General+NoPerson+Masc+Sing+Acc:vsega #;
-ves+Pronoun+General+NoPerson+Masc+Sing+Acc:vsi #;
 ves+Pronoun+General+NoPerson+Masc+Sing+Loc:vsem #;
 ves+Pronoun+General+NoPerson+Masc+Sing+Ins:vsem #;
 ves+Pronoun+General+NoPerson+Masc+Dual+Nom:vsa #;
@@ -879,3 +882,24 @@ ves+Pronoun+General+NoPerson+Neut+Plural+Dat:vsem #;
 ves+Pronoun+General+NoPerson+Neut+Plural+Acc:vsa #;
 ves+Pronoun+General+NoPerson+Neut+Plural+Loc:vseh #;
 ves+Pronoun+General+NoPerson+Neut+Plural+Ins:vsemi #;
+
+nekateri+Pronoun+IndefinitePronoun+NoPerson+Masc+Plural+Nom:nekateri #;
+nekateri+Pronoun+IndefinitePronoun+NoPerson+Masc+Plural+Gen:nekaterih #;
+nekateri+Pronoun+IndefinitePronoun+NoPerson+Masc+Plural+Dat:nekaterim #;
+nekateri+Pronoun+IndefinitePronoun+NoPerson+Masc+Plural+Acc:nekatere #;
+nekateri+Pronoun+IndefinitePronoun+NoPerson+Masc+Plural+Loc:nekaterih #;
+nekateri+Pronoun+IndefinitePronoun+NoPerson+Masc+Plural+Ins:nekaterimi #;
+
+nekateri+Pronoun+IndefinitePronoun+NoPerson+Fem+Plural+Nom:nekatere #;
+nekateri+Pronoun+IndefinitePronoun+NoPerson+Fem+Plural+Gen:nekaterih #;
+nekateri+Pronoun+IndefinitePronoun+NoPerson+Fem+Plural+Dat:nekaterim #;
+nekateri+Pronoun+IndefinitePronoun+NoPerson+Fem+Plural+Acc:nekatere #;
+nekateri+Pronoun+IndefinitePronoun+NoPerson+Fem+Plural+Loc:nekaterih #;
+nekateri+Pronoun+IndefinitePronoun+NoPerson+Fem+Plural+Ins:nekaterimi #;
+
+nekateri+Pronoun+IndefinitePronoun+NoPerson+Neut+Plural+Nom:nekatera #;
+nekateri+Pronoun+IndefinitePronoun+NoPerson+Neut+Plural+Gen:nekaterih #;
+nekateri+Pronoun+IndefinitePronoun+NoPerson+Neut+Plural+Dat:nekaterim #;
+nekateri+Pronoun+IndefinitePronoun+NoPerson+Neut+Plural+Acc:nekatera #;
+nekateri+Pronoun+IndefinitePronoun+NoPerson+Neut+Plural+Loc:nekaterih #;
+nekateri+Pronoun+IndefinitePronoun+NoPerson+Neut+Plural+Ins:nekaterimi #;

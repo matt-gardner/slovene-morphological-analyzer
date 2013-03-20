@@ -29,7 +29,6 @@ toti PronDemon;
 LEXICON Pronoun
 
 kakršen PronRel;
-kar PronRel;
 kdor PronRel;
 kolikršen PronRel;
 čigavršen PronRel;
@@ -58,7 +57,6 @@ vsakršen PronGen;
 vsakteri PronGen;
 LEXICON Pronoun
 
-kaj PronInterr;
 kak PronInterr;
 kakov PronInterr;
 kakošen PronInterr;
@@ -79,7 +77,6 @@ bogvekateri PronIndef;
 bogvekolik PronIndef;
 bogvekolikšen PronIndef;
 enak PronIndef;
-enaki PronIndef;
 enakšen PronIndef;
 isti PronIndef;
 kdovekak PronIndef;
@@ -99,8 +96,6 @@ nek PronIndef;
 nekak PronIndef;
 nekakov PronIndef;
 nekakšen PronIndef;
-nekateri PronIndef;
-neki PronIndef;
 nekolik PronIndef;
 nekolikšen PronIndef;
 nekolikšnji PronIndef;
@@ -119,6 +114,4 @@ nikakšen PronNeg;
 nikdo PronNeg;
 nikogaršen PronNeg;
 nikogaršnji PronNeg;
-nič PronNeg;
-nobeden PronNeg;
 noben PronNeg;
