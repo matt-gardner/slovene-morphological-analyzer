@@ -552,6 +552,16 @@ def write_pronouns(lemmas, lex_dir):
     indefinite = set()
     negative = set()
     for l, msd in lemmas:
+        # Some pronouns that we special case, and don't want to show up in the
+        # lexicon file.
+        if l.endswith('le') or l.endswith('koli') or l.endswith('bodi'):
+            continue
+        if l.endswith('dva'):
+            continue
+        if l in ['ta', 'oba', 'ves', u'čigaver'.encode('utf-8'),
+                u'čigar'.encode('utf-8')]:
+            continue
+        # Now to actually create the lexicon file
         if msd[1] == 'p' and msd[-1] == 'b':
             personal.add(l)
         elif msd[1] == 's':
