@@ -19,6 +19,15 @@ LEXICON NumCardInf
 
 +Numeral+Letter+Cardinal: CardinalEndings;
 
+LEXICON Numeral
+
+! Sadly, these two need to be done here instead of in numerals_overrides.lexc,
+! if I want to make use of the mechanisms for replacing fleeting vowels.
+! Either it's one line each here (with a line in create_lexica.py to remove
+! them from numerals.lexc), or six lines each in numerals_overrides.lexc.
+osem+Numeral+Letter+Cardinal:osem@P.FLEETING.REPLACE@ CardinalEndings;
+sedem+Numeral+Letter+Cardinal:sedem@P.FLEETING.REPLACE@ CardinalEndings;
+
 LEXICON CardinalEndings
 
 ! These are like adjectives, but different enough (e.g., no gender, only
@@ -43,17 +52,30 @@ LEXICON IndeclinableCardinalEndings
 +NoGender+Plural+Acc: #;
 +NoGender+Plural+Loc: #;
 +NoGender+Plural+Ins: #;
++NoGender+Plural+Gen:^tih #;
++NoGender+Plural+Dat:^tim #;
++NoGender+Plural+Loc:^tih #;
++NoGender+Plural+Ins:^timi #;
 
 LEXICON NumOrdInf
 
 +Numeral+Letter+Ordinal:@P.ADJ_REMOVE_I.Y@ AdjNoDefiniteness;
 
-LEXICON NumPronInf
+LEXICON Numeral
 
-+Numeral+Letter+Pronominal: AdjNormalDefiniteness;
+eden+Numeral+Letter+Pronominal+Masc+Sing+Nom:eden #;
+en+Numeral+Letter+Pronominal:en AdjNoDefiniteness;
+drug+Numeral+Letter+Pronominal:drug AdjNormalDefiniteness;
 
 LEXICON NumSpecInf
 
-+Numeral+Letter+Special: AdjNormalDefiniteness;
++Numeral+Letter+Special: AdjInfBase;
+! This seems rather odd to me; I wonder if there's a problem with the MSDs...
++Numeral+Letter+Special+Masc+Sing+Acc: #;
++Numeral+Letter+Special+Masc+Sing+Nom+Indefinite: #;
+
+LEXICON NumSpecEnInf
+
++Numeral+Letter+Special:@P.FLEETING.REPLACE@ AdjNormalDefiniteness;
 +Numeral+Letter+Special+Masc+Sing+Acc: #;
 

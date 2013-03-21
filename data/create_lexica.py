@@ -613,8 +613,7 @@ def write_numerals(lemmas, lex_dir):
     ordinal = set()
     pronominal = set()
     special = set()
-    no_fleeting_e_lemmas = set()
-    flags = defaultdict(set)
+    special_en = set()
     for l, msd, form in lemmas:
         l = l.replace('0', '%0')
         if msd[1] == 'd':
@@ -629,6 +628,12 @@ def write_numerals(lemmas, lex_dir):
                 roman_ordinal.add(l)
         elif msd[1] == 'l':
             if msd[2] == 'c':
+                if l in ['osem', 'sedem']:
+                    continue
+                if msd[3] != '-':
+                    # There are just 4 of these, and they are complicated, so
+                    # we special case them.
+                    continue
                 if 'pl' in msd and form == l:
                     indeclinable_cardinal.add(l)
                 cardinal.add(l)
@@ -637,12 +642,11 @@ def write_numerals(lemmas, lex_dir):
             elif msd[2] == 'p':
                 pronominal.add(l)
             elif msd[2] == 's':
-                if no_fleeting_e(l, msd, form, 'msg', 'ega'):
-                    no_fleeting_e_lemmas.add(l)
-                special.add(l)
-    for l in special:
-        if l not in no_fleeting_e_lemmas:
-            flags[l].add('@P.FLEETING.REPLACE@')
+                if l.endswith('en'):
+                    special_en.add(l)
+                else:
+                    special.add(l)
+    cardinal = cardinal - indeclinable_cardinal
     out = open(lex_dir + 'numerals.lexc', 'w')
     write_lexicon_to_open_file(out, digits_cardinal, 'Numeral', 'NumDigCard')
     write_lexicon_to_open_file(out, digits_ordinal, 'Numeral', 'NumDigOrd')
@@ -652,16 +656,11 @@ def write_numerals(lemmas, lex_dir):
     write_lexicon_to_open_file(out, indeclinable_cardinal, 'Numeral',
             'NumCardIndecInf')
     write_lexicon_to_open_file(out, ordinal, 'Numeral', 'NumOrdInf')
-    write_lexicon_to_open_file(out, pronominal, 'Numeral', 'NumPronInf')
+    # There are just three of these, and they are inconsistent, so we special
+    # case them.
+    #write_lexicon_to_open_file(out, pronominal, 'Numeral', 'NumPronInf')
     write_lexicon_to_open_file(out, special, 'Numeral', 'NumSpecInf')
-    special = list(special)
-    special.sort()
-    for l in special:
-        if l in flags:
-            out.write('%s:%s %s;\n' % (l, l + ''.join(flags[l]), 'NumSpecInf'))
-        else:
-            out.write('%s %s;\n' % (l, 'NumSpecInf'))
-    out.close()
+    write_lexicon_to_open_file(out, special_en, 'Numeral', 'NumSpecEnInf')
     out.close()
 
 def write_lexicon(filename, lemmas, name, continuation):

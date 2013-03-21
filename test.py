@@ -307,6 +307,7 @@ if __name__ == '__main__':
     testcases['pronouns']['overrides'].append('lexica/adjectives_rules.lexc')
     testcases['pronouns']['overrides'].remove('lexica/pronouns_rules.lexc')
     testcases['numerals']['lexica'].append('lexica/adjectives_rules.lexc')
+    testcases['numerals']['overrides'].remove('lexica/numerals_rules.lexc')
     # Though it's a big obnoxious, this one just should be modified by hand if
     # you want to run a different small test.
     small = {'lexica': testcases['pronouns']['lexica'],
@@ -352,6 +353,9 @@ if __name__ == '__main__':
     if not to_test:
         print 'No tests specified.  Exiting.'
         exit(0)
+    # TODO: allow generative tests, to check for over-generation, instead of
+    # lookup tests.  You can do this by building an inverted test file and
+    # using flookup -i.
     for test in to_test:
         main(test['lexica'], foma_file, test['test_files'], test['overrides'],
                 results_dir, opts.verbose)

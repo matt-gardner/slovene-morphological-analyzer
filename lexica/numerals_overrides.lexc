@@ -1,0 +1,90 @@
+LEXICON Numeral
+
+dva+Numeral+Letter+Cardinal+Masc+Dual+Nom:dva #;
+dva+Numeral+Letter+Cardinal+Masc+Dual+Gen:dveh #;
+dva+Numeral+Letter+Cardinal+Masc+Dual+Dat:dvema #;
+dva+Numeral+Letter+Cardinal+Masc+Dual+Acc:dva #;
+dva+Numeral+Letter+Cardinal+Masc+Dual+Loc:dveh #;
+dva+Numeral+Letter+Cardinal+Masc+Dual+Ins:dvema #;
+
+dva+Numeral+Letter+Cardinal+Fem+Dual+Nom:dve #;
+dva+Numeral+Letter+Cardinal+Fem+Dual+Gen:dveh #;
+dva+Numeral+Letter+Cardinal+Fem+Dual+Dat:dvema #;
+dva+Numeral+Letter+Cardinal+Fem+Dual+Acc:dve #;
+dva+Numeral+Letter+Cardinal+Fem+Dual+Loc:dveh #;
+dva+Numeral+Letter+Cardinal+Fem+Dual+Ins:dvema #;
+
+dva+Numeral+Letter+Cardinal+Neut+Dual+Nom:dve #;
+dva+Numeral+Letter+Cardinal+Neut+Dual+Gen:dveh #;
+dva+Numeral+Letter+Cardinal+Neut+Dual+Dat:dvema #;
+dva+Numeral+Letter+Cardinal+Neut+Dual+Acc:dve #;
+dva+Numeral+Letter+Cardinal+Neut+Dual+Loc:dveh #;
+dva+Numeral+Letter+Cardinal+Neut+Dual+Ins:dvema #;
+
+trije+Numeral+Letter+Cardinal+Masc+Plural+Nom:trije #;
+trije+Numeral+Letter+Cardinal+Masc+Plural+Gen:treh #;
+trije+Numeral+Letter+Cardinal+Masc+Plural+Dat:trem #;
+trije+Numeral+Letter+Cardinal+Masc+Plural+Acc:tri #;
+trije+Numeral+Letter+Cardinal+Masc+Plural+Loc:treh #;
+trije+Numeral+Letter+Cardinal+Masc+Plural+Ins:tremi #;
+
+trije+Numeral+Letter+Cardinal+Fem+Plural+Nom:tri #;
+trije+Numeral+Letter+Cardinal+Fem+Plural+Gen:treh #;
+trije+Numeral+Letter+Cardinal+Fem+Plural+Dat:trem #;
+trije+Numeral+Letter+Cardinal+Fem+Plural+Acc:tri #;
+trije+Numeral+Letter+Cardinal+Fem+Plural+Loc:treh #;
+trije+Numeral+Letter+Cardinal+Fem+Plural+Ins:tremi #;
+
+trije+Numeral+Letter+Cardinal+Neut+Plural+Nom:tri #;
+trije+Numeral+Letter+Cardinal+Neut+Plural+Gen:treh #;
+trije+Numeral+Letter+Cardinal+Neut+Plural+Dat:trem #;
+trije+Numeral+Letter+Cardinal+Neut+Plural+Acc:tri #;
+trije+Numeral+Letter+Cardinal+Neut+Plural+Loc:treh #;
+trije+Numeral+Letter+Cardinal+Neut+Plural+Ins:tremi #;
+
+štirje+Numeral+Letter+Cardinal+Masc+Plural+Nom:štirje #;
+štirje+Numeral+Letter+Cardinal+Masc+Plural+Gen:štirih #;
+štirje+Numeral+Letter+Cardinal+Masc+Plural+Dat:štirim #;
+štirje+Numeral+Letter+Cardinal+Masc+Plural+Acc:štiri #;
+štirje+Numeral+Letter+Cardinal+Masc+Plural+Loc:štirih #;
+štirje+Numeral+Letter+Cardinal+Masc+Plural+Ins:štirimi #;
+
+štirje+Numeral+Letter+Cardinal+Fem+Plural+Nom:štiri #;
+štirje+Numeral+Letter+Cardinal+Fem+Plural+Gen:štirih #;
+štirje+Numeral+Letter+Cardinal+Fem+Plural+Dat:štirim #;
+štirje+Numeral+Letter+Cardinal+Fem+Plural+Acc:štiri #;
+štirje+Numeral+Letter+Cardinal+Fem+Plural+Loc:štirih #;
+štirje+Numeral+Letter+Cardinal+Fem+Plural+Ins:štirimi #;
+
+štirje+Numeral+Letter+Cardinal+Neut+Plural+Nom:štiri #;
+štirje+Numeral+Letter+Cardinal+Neut+Plural+Gen:štirih #;
+štirje+Numeral+Letter+Cardinal+Neut+Plural+Dat:štirim #;
+štirje+Numeral+Letter+Cardinal+Neut+Plural+Acc:štiri #;
+štirje+Numeral+Letter+Cardinal+Neut+Plural+Loc:štirih #;
+štirje+Numeral+Letter+Cardinal+Neut+Plural+Ins:štirimi #;
+
+več+Numeral+Letter+Cardinal+Masc+Plural+Nom:več #;
+več+Numeral+Letter+Cardinal+Masc+Plural+Gen:večih #;
+več+Numeral+Letter+Cardinal+Masc+Plural+Dat:večim #;
+več+Numeral+Letter+Cardinal+Masc+Plural+Acc:več #;
+več+Numeral+Letter+Cardinal+Masc+Plural+Loc:večih #;
+več+Numeral+Letter+Cardinal+Masc+Plural+Ins:večimi #;
+
+več+Numeral+Letter+Cardinal+Fem+Plural+Nom:več #;
+več+Numeral+Letter+Cardinal+Fem+Plural+Gen:večih #;
+več+Numeral+Letter+Cardinal+Fem+Plural+Dat:večim #;
+več+Numeral+Letter+Cardinal+Fem+Plural+Acc:več #;
+več+Numeral+Letter+Cardinal+Fem+Plural+Loc:večih #;
+več+Numeral+Letter+Cardinal+Fem+Plural+Ins:večimi #;
+
+več+Numeral+Letter+Cardinal+Neut+Plural+Nom:več #;
+več+Numeral+Letter+Cardinal+Neut+Plural+Gen:večih #;
+več+Numeral+Letter+Cardinal+Neut+Plural+Dat:večim #;
+več+Numeral+Letter+Cardinal+Neut+Plural+Acc:več #;
+več+Numeral+Letter+Cardinal+Neut+Plural+Loc:večih #;
+več+Numeral+Letter+Cardinal+Neut+Plural+Ins:večimi #;
+
+milijardti+Numeral+Letter+Ordinal+Neut+Sing+Nom:milijardte #;
+milijardti+Numeral+Letter+Ordinal+Neut+Sing+Acc:milijardte #;
+milijonti+Numeral+Letter+Ordinal+Neut+Sing+Nom:milijonte #;
+milijonti+Numeral+Letter+Ordinal+Neut+Sing+Acc:milijonte #;
