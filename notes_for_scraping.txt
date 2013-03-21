@@ -1,0 +1,7 @@
+div to look for on rtvslo.si: <div class="lead_menu_item_details">
+
+once you go to the news article: <div id="newsbody">, then go to <div
+class="info">, and get all following text.
+
+or, perhaps better, just grab the text from all of the <p> tags.  It looks like
+those are only used for the article body.
