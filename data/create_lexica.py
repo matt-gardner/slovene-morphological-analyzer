@@ -530,7 +530,14 @@ def write_conjunctions(lemmas, lex_dir):
 def write_adverbs(lemmas, lex_dir):
     general = set()
     participle = set()
+    # These don't have the normal set of forms, mostly because they have only
+    # one degree, instead of all three.
+    to_ignore = set(['bolj', 'manj', 'najbolj', 'najmanj', 'najprej',
+            'najraje', 'največ', 'največkrat', 'prej', 'raje', 'več',
+            'večkrat'])
     for l, msd in lemmas:
+        if l in to_ignore:
+            continue
         if msd[1] == 'g':
             general.add(l)
         elif msd[1] == 'r':

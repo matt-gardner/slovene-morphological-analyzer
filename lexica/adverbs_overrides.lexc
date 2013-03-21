@@ -1,0 +1,19 @@
+! We use the Root lexicon here instead of Adverb because Adverb allows the
+! prepending of 'naj' to make a superlative, which leads to over-generation
+! with these forms.
+LEXICON Root
+
+bolj+Adverb+General+Comparative:bolj #;
+manj+Adverb+General+Comparative:manj #;
+najbolj+Adverb+General+Superlative:najbolj #;
+najmanj+Adverb+General+Superlative:najmanj #;
+najprej+Adverb+General+Superlative:najprej #;
+najraje+Adverb+General+Superlative:najraje #;
+najraje+Adverb+General+Superlative:najrajši #;
+največ+Adverb+General+Superlative:največ #;
+največkrat+Adverb+General+Superlative:največkrat #;
+prej+Adverb+General+Comparative:prej #;
+raje+Adverb+General+Comparative:raje #;
+raje+Adverb+General+Comparative:rajši #;
+več+Adverb+General+Comparative:več #;
+večkrat+Adverb+General+Comparative:večkrat #;

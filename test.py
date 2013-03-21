@@ -231,21 +231,22 @@ def analysis_to_msd(analysis):
     return msd
 
 
+parts_of_speech = [
+        'abbreviations',
+        'adjectives',
+        'adverbs',
+        'conjunctions',
+        'interjections',
+        'nouns',
+        'numerals',
+        'particles',
+        'prepositions',
+        'pronouns',
+        'residuals',
+        'verbs',
+        ]
+
 if __name__ == '__main__':
-    parts_of_speech = [
-            'abbreviations',
-            'adjectives',
-            'adverbs',
-            'conjunctions',
-            'interjections',
-            'nouns',
-            'numerals',
-            'particles',
-            'prepositions',
-            'pronouns',
-            'residuals',
-            'verbs',
-            ]
     from optparse import OptionParser
     parser = OptionParser()
     parser.add_option('', '--small',
@@ -276,6 +277,7 @@ if __name__ == '__main__':
                     ],
                 'overrides': [
                     'lexica/base.lexc',
+                    'lexica/%s_auto_overrides.lexc' % pos,
                     'lexica/%s_overrides.lexc' % pos,
                     'lexica/%s_rules.lexc' % pos,
                     ],
