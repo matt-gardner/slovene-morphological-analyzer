@@ -387,7 +387,15 @@ def write_verbs(lemmas, lex_dir):
     biaspectual = set()
     flags = defaultdict(set)
     stems = defaultdict(dict)
+    has_imperative = set()
+    all_lemmas = set()
+    to_ignore = set(['hoteti', 'smeti', 'lezti', 'grizti'])
     for l, msd, form in lemmas:
+        if l in to_ignore:
+            continue
+        all_lemmas.add(l)
+        if msd[3] == 'm':
+            has_imperative.add(l)
         for mode in modes:
             new_stem = detect_stem_change(l, msd, form, mode)
             if new_stem:
@@ -407,6 +415,9 @@ def write_verbs(lemmas, lex_dir):
             flags[l].add('@P.EToI.N@')
         if imperative_e_to_i(l, msd, form):
             flags[l].add('@P.IMPERATIVE_E_TO_I.Y@')
+    for l in all_lemmas:
+        if l not in has_imperative:
+            flags[l].add('@D.IMPERATIVE@')
     out = open(lex_dir + 'verbs.lexc', 'w')
     out.write('LEXICON %s\n\n' % 'Verb')
     write_verb_lemmas(out, 'VProgRegular', progressive, flags, stems)

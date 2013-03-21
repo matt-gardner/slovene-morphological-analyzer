@@ -78,3 +78,45 @@ hoteti+V+Main+Progressive+Present+Second+Plural+NoGender+Negative:nočete #;
 hoteti+V+Main+Progressive+Present+Third+Sing+NoGender+Negative:noče #;
 hoteti+V+Main+Progressive+Present+Third+Dual+NoGender+Negative:nočeta #;
 hoteti+V+Main+Progressive+Present+Third+Plural+NoGender+Negative:nočejo #;
+hoteti+V+Main+Progressive+Imperative+First+Dual:hotiva #;
+hoteti+V+Main+Progressive+Imperative+First+Plural:hotimo #;
+hoteti+V+Main+Progressive+Imperative+Second+Dual:hotita #;
+hoteti+V+Main+Progressive+Imperative+Second+Plural:hotite #;
+hoteti+V+Main+Progressive+Imperative+Second+Sing:hoti #;
+hoteti+V+Main+Progressive+Infinitive:hoteti #;
+hoteti+V+Main+Progressive+Participle+NoPerson+Dual+Fem:hoteli #;
+hoteti+V+Main+Progressive+Participle+NoPerson+Dual+Masc:hotela #;
+hoteti+V+Main+Progressive+Participle+NoPerson+Dual+Neut:hoteli #;
+hoteti+V+Main+Progressive+Participle+NoPerson+Plural+Fem:hotele #;
+hoteti+V+Main+Progressive+Participle+NoPerson+Plural+Masc:hoteli #;
+hoteti+V+Main+Progressive+Participle+NoPerson+Plural+Neut:hotela #;
+hoteti+V+Main+Progressive+Participle+NoPerson+Sing+Fem:hotela #;
+hoteti+V+Main+Progressive+Participle+NoPerson+Sing+Masc:hotel #;
+hoteti+V+Main+Progressive+Participle+NoPerson+Sing+Neut:hotelo #;
+
+! Smeti
+smeti+V+Main+Progressive+Infinitive:smeti #;
+smeti+V+Main+Progressive+Participle+NoPerson+Dual+Fem:smeli #;
+smeti+V+Main+Progressive+Participle+NoPerson+Dual+Masc:smela #;
+smeti+V+Main+Progressive+Participle+NoPerson+Dual+Neut:smeli #;
+smeti+V+Main+Progressive+Participle+NoPerson+Plural+Fem:smele #;
+smeti+V+Main+Progressive+Participle+NoPerson+Plural+Masc:smeli #;
+smeti+V+Main+Progressive+Participle+NoPerson+Plural+Neut:smela #;
+smeti+V+Main+Progressive+Participle+NoPerson+Sing+Fem:smela #;
+smeti+V+Main+Progressive+Participle+NoPerson+Sing+Masc:smel #;
+smeti+V+Main+Progressive+Participle+NoPerson+Sing+Neut:smelo #;
+smeti+V+Main+Progressive+Present+First+Dual:smeva #;
+smeti+V+Main+Progressive+Present+First+Plural:smemo #;
+smeti+V+Main+Progressive+Present+First+Sing:smem #;
+smeti+V+Main+Progressive+Present+Second+Dual:smeta #;
+smeti+V+Main+Progressive+Present+Second+Plural:smete #;
+smeti+V+Main+Progressive+Present+Second+Sing:smeš #;
+smeti+V+Main+Progressive+Present+Third+Dual:smeta #;
+smeti+V+Main+Progressive+Present+Third+Plural:smejo #;
+smeti+V+Main+Progressive+Present+Third+Sing:sme #;
+
+! Some other odd cases
+lezti+V+Main+Biaspectual+Infinitive:lezti #;
+lezti+V+Main+Biaspectual+Supine:lezt #;
+grizti+V+Main+Biaspectual+Infinitive:grizti #;
+grizti+V+Main+Biaspectual+Supine:grizt #;

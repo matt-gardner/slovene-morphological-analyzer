@@ -262,6 +262,10 @@ if __name__ == '__main__':
             'specifying all other options individually)',
             dest='everything',
             action='store_true')
+    parser.add_option('', '--no-auto-overrides',
+            help='Disallow auto-generated override files',
+            dest='no_auto_overrides',
+            action='store_true')
     for pos in parts_of_speech:
         parser.add_option('', '--%s' % pos,
                 help='Test %s' % pos,
@@ -365,6 +369,13 @@ if __name__ == '__main__':
     # lookup tests.  You can do this by building an inverted test file and
     # using flookup -i.
     for test in to_test:
+        if opts.no_auto_overrides:
+            to_remove = []
+            for l in test['overrides']:
+                if 'auto_overrides' in l:
+                    to_remove.append(l)
+            for l in to_remove:
+                test['overrides'].remove(l)
         main(test['lexica'], foma_file, test['test_files'], test['overrides'],
                 results_dir, opts.verbose)
 

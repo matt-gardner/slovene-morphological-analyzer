@@ -47,6 +47,8 @@ Multichar_Symbols +N +A +V
                   @R.ANIMATE.Y@
                   @D.ANIMATE.Y@
                   @P.ADD_J.N@
+                  @P.IMPERATIVE.Y@
+                  @D.IMPERATIVE@
 
 LEXICON Root
 Noun ;

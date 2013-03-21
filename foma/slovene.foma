@@ -21,6 +21,8 @@ define Flags ["@D.SUP@" |
               "@P.TYPE.FEMNOUN@" |
               "@P.TYPE.NEUTNOUN@" |
               "@P.TYPE.NEUTADJ@"
+              "@P.IMPERATIVE.Y@"
+              "@D.IMPERATIVE@"
              ];
 
 define ConsonantForFleeting [c | k | l | m | n | r |  n j | l j];
@@ -69,16 +71,16 @@ define VerbStemming t i -> 0 || _ Flags* "+V" .o.
                     n i -> n e "+StemChanged" ||
                             _ [Flags - "@P.NiToNe.N@"]* "+Present" "^" ,,
                     e -> i "+StemChanged" || _ [Flags - "@P.EToI.N@"]*
-                            ["+Present"|"+Imperative"] "^" ,,
+                            ["+Present"|"@P.IMPERATIVE.Y@"] "^" ,,
                     e -> i "+StemChanged" || _ Flags* "@P.IMPERATIVE_E_TO_I.Y@"
-                            Flags* "+Imperative" "^" ,,
+                            Flags* "@P.IMPERATIVE.Y@" "^" ,,
                     [o v a | e v a] -> u j e || _ Flags* "+Present" "^" ,,
-                    [o v a | e v a] -> u j || _ Flags* "+Imperative" "^" .o.
-                    j -> 0 || [i | j]
-                            [Flags | "+StemChanged"]* "+Imperative" "^" _ .o.
+                    [o v a | e v a] -> u j ||
+                            _ Flags* "@P.IMPERATIVE.Y@" "^" .o.
+                    j -> 0 || [i | j] [Flags | "+StemChanged"]*
+                            "@P.IMPERATIVE.Y@" "^" _ .o.
                     "+Present" -> 0 ,,
-                    "+StemChanged" -> 0 ,,
-                    "+Imperative" -> 0;
+                    "+StemChanged" -> 0;
 
 define Cleanup "^" -> 0 .o. "$" -> 0 .o.
                "+ReplaceFleeting" -> 0;

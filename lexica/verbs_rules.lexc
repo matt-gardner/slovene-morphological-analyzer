@@ -43,11 +43,11 @@ LEXICON NormalEndings
 
 LEXICON VImperativeForms
 
-+Imperative+Second+Sing:+Imperative^j #;
-+Imperative+First+Dual:+Imperative^jva #;
-+Imperative+Second+Dual:+Imperative^jta #;
-+Imperative+First+Plural:+Imperative^jmo #;
-+Imperative+Second+Plural:+Imperative^jte #;
++Imperative+Second+Sing:@P.IMPERATIVE.Y@^j #;
++Imperative+First+Dual:@P.IMPERATIVE.Y@^jva #;
++Imperative+Second+Dual:@P.IMPERATIVE.Y@^jta #;
++Imperative+First+Plural:@P.IMPERATIVE.Y@^jmo #;
++Imperative+Second+Plural:@P.IMPERATIVE.Y@^jte #;
 
 LEXICON VInfinitiveForms
 
