@@ -64,4 +64,16 @@ Interjection ;
 Abbrev ;
 Residual ;
 
+! This is to avoid 'used by not defined' errors
+LEXICON Noun
+LEXICON Verb
+LEXICON Adj
+LEXICON Adverb
+LEXICON Pronoun
+LEXICON Numeral
+LEXICON Prep
+LEXICON Conj
+LEXICON Particle
+LEXICON Interjection
+LEXICON Abbrev
 LEXICON Residual
