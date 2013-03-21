@@ -64,7 +64,7 @@ LEXICON NumOrdInf
 LEXICON Numeral
 
 eden+Numeral+Letter+Pronominal+Masc+Sing+Nom:eden #;
-en+Numeral+Letter+Pronominal:en AdjNoDefiniteness;
+en+Numeral+Letter+Pronominal:en AdjNoDual;
 drug+Numeral+Letter+Pronominal:drug AdjNormalDefiniteness;
 
 LEXICON NumSpecInf
@@ -77,5 +77,47 @@ LEXICON NumSpecInf
 LEXICON NumSpecEnInf
 
 +Numeral+Letter+Special:@P.FLEETING.REPLACE@ AdjNormalDefiniteness;
-+Numeral+Letter+Special+Masc+Sing+Acc: #;
 
+LEXICON AdjNoDual
+
++Masc+Sing+Nom: #;
++Masc+Sing+Acc: #;
++Masc+Sing+Gen:^ega #;
++Masc+Sing+Dat:^emu #;
++Masc+Sing+Acc:^ega #;
++Masc+Sing+Loc:^em #;
++Masc+Sing+Ins:^im #;
++Masc+Plural+Nom:^i #;
++Masc+Plural+Gen:^ih #;
++Masc+Plural+Dat:^im #;
++Masc+Plural+Acc:^e #;
++Masc+Plural+Loc:^ih #;
++Masc+Plural+Ins:^imi #;
+
++Fem+Sing+Nom:^a #;
++Fem+Sing+Gen:^e #;
++Fem+Sing+Dat:^i #;
++Fem+Sing+Acc:^o #;
++Fem+Sing+Loc:^i #;
++Fem+Sing+Ins:^o #;
++Fem+Plural+Nom:^e #;
++Fem+Plural+Gen:^ih #;
++Fem+Plural+Dat:^im #;
++Fem+Plural+Acc:^e #;
++Fem+Plural+Loc:^ih #;
++Fem+Plural+Ins:^imi #;
+
+! The @P.TYPE.NEUTADJ@ is for changing o to e after certain consonants.  I
+! could put it everywhere, but it only matters on those two cases.
++Neut+Sing+Nom:@P.TYPE.NEUTADJ@^o #;
++Neut+Sing+Gen:^ega #;
++Neut+Sing+Dat:^emu #;
++Neut+Sing+Acc:@P.TYPE.NEUTADJ@^o #;
++Neut+Sing+Loc:^em #;
++Neut+Sing+Ins:^im #;
++Neut+Plural+Nom:^a #;
++Neut+Plural+Gen:^ih #;
++Neut+Plural+Dat:^im #;
++Neut+Plural+Acc:^a #;
++Neut+Plural+Loc:^ih #;
++Neut+Plural+Ins:^imi #;
