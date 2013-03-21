@@ -304,6 +304,8 @@ if __name__ == '__main__':
             ],
         'overrides': [
             'lexica/nouns_overrides.lexc',
+            'lexica/common_nouns_auto_overrides.lexc',
+            'lexica/proper_nouns_auto_overrides.lexc',
             'lexica/nouns_rules.lexc',
             ],
         'test_files': [

@@ -104,6 +104,19 @@ def msd_to_analysis(msd):
             return analysis
         analysis += get_negative(msd[6])
         return analysis
+    elif msd[0] == 'N':
+        analysis += '+N'
+        if msd[1] == 'c':
+            analysis += '+Common'
+        elif msd[1] == 'p':
+            analysis += '+Proper'
+        analysis += get_gender(msd[2])
+        analysis += get_number(msd[3])
+        analysis += get_case(msd[4])
+        if len(msd) == 5:
+            return analysis
+        analysis += get_animate(msd[5])
+        return analysis
 
 
 def get_gender(char):
@@ -164,6 +177,13 @@ def get_negative(char):
         return '+Negative'
     elif char == 'n':
         return '+NotNegative'
+
+
+def get_animate(char):
+    if char == 'y':
+        return '+Animate'
+    elif char == 'n':
+        return '+Inanimate'
 
 
 if __name__ == '__main__':
