@@ -318,10 +318,10 @@ if __name__ == '__main__':
             'lexica/prepositions_rules.lexc')
     # Though it's a big obnoxious, this one just should be modified by hand if
     # you want to run a different small test.
-    small = {'lexica': testcases['pronouns']['lexica'],
-        'overrides': testcases['pronouns']['overrides'],
+    small = {'lexica': testcases['verbs']['lexica'],
+        'overrides': testcases['verbs']['overrides'],
         'test_files': [
-            'tests/small_pronouns.tsv',
+            'tests/small.tsv',
         ]}
     everything = {
         'test_files': [
