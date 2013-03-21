@@ -45,29 +45,24 @@ def msd_to_analysis(msd):
         if msd[1] == 'r':
             analysis += '+Participle'
             return analysis
-        if msd[1] == 'g':
+        elif msd[1] == 'g':
             analysis += '+General'
-        if msd[2] == 'p':
-            analysis += '+Positive'
-        elif msd[2] == 'c':
-            analysis += '+Comparative'
-        elif msd[2] == 's':
-            analysis += '+Superlative'
+        analysis += get_degree(msd[2])
         return analysis
-    if msd[0] == 'V':
+    elif msd[0] == 'V':
         analysis += '+V'
-        if msd[1] == 'a':
-            print 'I thought these were all ok...'
-            exit(-1)
         if msd[1] == 'm':
             analysis += '+Main'
+        elif msd[1] == 'a':
+            print 'I thought these were all ok...'
+            exit(-1)
         if msd[2] == 'p':
             analysis += '+Progressive'
         elif msd[2] == 'e':
             analysis += '+Perfective'
         elif msd[2] == 'b':
             analysis += '+Biaspectual'
-        else:
+        elif msd[2] == '-':
             analysis += '+NoAspect'
         if msd[3] == 'r':
             analysis += '+Present'
@@ -84,33 +79,91 @@ def msd_to_analysis(msd):
         else:
             print 'Error'
             exit(-1)
-        if msd[4] == '1':
-            analysis += '+First'
-        elif msd[4] == '2':
-            analysis += '+Second'
-        elif msd[4] == '3':
-            analysis += '+Third'
-        elif msd[4] == '-':
-            analysis += '+NoPerson'
-        if msd[5] == 's':
-            analysis += '+Sing'
-        elif msd[5] == 'd':
-            analysis += '+Dual'
-        elif msd[5] == 'p':
-            analysis += '+Plural'
+        analysis += get_person(msd[4])
+        analysis += get_numder(msd[5])
         if len(msd) == 6:
             return analysis
-        if msd[6] == 'm':
-            analysis += '+Masc'
-        elif msd[6] == 'f':
-            analysis += '+Fem'
-        elif msd[6] == 'n':
-            analysis += '+Neut'
+        analysis += get_gender(msd[6])
         if len(msd) > 7:
             print 'MSD too long'
             exit(-1)
         return analysis
+    elif msd[0] == 'A':
+        analysis += '+A'
+        if msd[1] == 'g':
+            analysis += '+General'
+        elif msd[1] == 's':
+            analysis += '+Possessive'
+        elif msd[1] == 'p':
+            analysis += '+Participle'
+        analysis += get_degree(msd[2])
+        analysis += get_gender(msd[3])
+        analysis += get_number(msd[4])
+        analysis += get_case(msd[5])
+        if len(msd) == 6:
+            return analysis
+        analysis += get_negative(msd[6])
+        return analysis
 
+
+def get_gender(char):
+    if char == 'm':
+        return '+Masc'
+    elif char == 'f':
+        return '+Fem'
+    elif char == 'n':
+        return '+Neut'
+
+
+def get_number(char):
+    if char == 's':
+        return '+Sing'
+    elif char == 'd':
+        return '+Dual'
+    elif char == 'p':
+        return '+Plural'
+
+
+def get_degree(char):
+    if char == 'p':
+        return '+Positive'
+    elif char == 'c':
+        return '+Comparative'
+    elif char == 's':
+        return '+Superlative'
+
+
+def get_person(char):
+    if char == '1':
+        return '+First'
+    elif char == '2':
+        return '+Second'
+    elif char == '3':
+        return '+Third'
+    elif char == '-':
+        return '+NoPerson'
+
+
+def get_case(char):
+    if char == 'n':
+        return '+Nom'
+    elif char == 'g':
+        return '+Gen'
+    elif char == 'd':
+        return '+Dat'
+    elif char == 'a':
+        return '+Acc'
+    elif char == 'l':
+        return '+Loc'
+    elif char == 'i':
+        return '+Ins'
+
+
+def get_negative(char):
+    if char == 'y':
+        return '+Negative'
+    elif char == 'n':
+        return '+NotNegative'
 
 
 if __name__ == '__main__':
