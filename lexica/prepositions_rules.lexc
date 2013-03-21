@@ -29,4 +29,7 @@ LEXICON Prep
 
 z+Preposition+Gen:s #;
 z+Preposition+Ins:s #;
+z+Preposition+Gen:z #;
+z+Preposition+Ins:z #;
 k+Preposition+Dat:h #;
+k+Preposition+Dat:k #;
