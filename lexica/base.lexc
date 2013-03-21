@@ -64,7 +64,7 @@ Interjection ;
 Abbrev ;
 Residual ;
 
-! This is to avoid 'used by not defined' errors
+! This is to avoid 'used but not defined' errors
 LEXICON Noun
 LEXICON Verb
 LEXICON Adj
