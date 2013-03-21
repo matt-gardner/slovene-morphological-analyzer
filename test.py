@@ -279,6 +279,9 @@ if __name__ == '__main__':
                     'lexica/base.lexc',
                     'lexica/%s_auto_overrides.lexc' % pos,
                     'lexica/%s_overrides.lexc' % pos,
+                    # TODO: do I still need this?  I think I've realized that
+                    # this doesn't work, so I've gotten rid of it in most
+                    # places
                     'lexica/%s_rules.lexc' % pos,
                     ],
                 'test_files': [
@@ -310,6 +313,7 @@ if __name__ == '__main__':
     testcases['pronouns']['overrides'].remove('lexica/pronouns_rules.lexc')
     testcases['numerals']['lexica'].append('lexica/adjectives_rules.lexc')
     testcases['numerals']['overrides'].remove('lexica/numerals_rules.lexc')
+    testcases['verbs']['overrides'].remove('lexica/verbs_rules.lexc')
     testcases['prepositions']['overrides'].remove(
             'lexica/prepositions_rules.lexc')
     # Though it's a big obnoxious, this one just should be modified by hand if

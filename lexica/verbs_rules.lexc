@@ -1,4 +1,11 @@
 LEXICON Verb
+
+biti+V+Auxiliary+NoAspect:bi VParticipleForms;
+biti+V+Auxiliary+NoAspect:bodi VImperativeForms;
+
+! The only main verb to have a(n archaic) future tense
+iti+V+Main+Biaspectual+Future:pojde NormalEndings;
+
 LEXICON VProgRegular
 
 +V+Main+Progressive:+V VRegularBase;
