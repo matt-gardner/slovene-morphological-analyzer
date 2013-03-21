@@ -609,6 +609,7 @@ def write_numerals(lemmas, lex_dir):
     roman_cardinal = set()
     roman_ordinal = set()
     cardinal = set()
+    indeclinable_cardinal = set()
     ordinal = set()
     pronominal = set()
     special = set()
@@ -628,6 +629,8 @@ def write_numerals(lemmas, lex_dir):
                 roman_ordinal.add(l)
         elif msd[1] == 'l':
             if msd[2] == 'c':
+                if 'pl' in msd and form == l:
+                    indeclinable_cardinal.add(l)
                 cardinal.add(l)
             elif msd[2] == 'o':
                 ordinal.add(l)
@@ -646,6 +649,8 @@ def write_numerals(lemmas, lex_dir):
     write_lexicon_to_open_file(out, roman_cardinal, 'Numeral', 'NumRomCard')
     write_lexicon_to_open_file(out, roman_ordinal, 'Numeral', 'NumRomOrd')
     write_lexicon_to_open_file(out, cardinal, 'Numeral', 'NumCardInf')
+    write_lexicon_to_open_file(out, indeclinable_cardinal, 'Numeral',
+            'NumCardIndecInf')
     write_lexicon_to_open_file(out, ordinal, 'Numeral', 'NumOrdInf')
     write_lexicon_to_open_file(out, pronominal, 'Numeral', 'NumPronInf')
     write_lexicon_to_open_file(out, special, 'Numeral', 'NumSpecInf')

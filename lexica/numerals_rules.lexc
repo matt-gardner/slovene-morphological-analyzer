@@ -31,6 +31,19 @@ LEXICON CardinalEndings
 +NoGender+Plural+Loc:^ih #;
 +NoGender+Plural+Ins:^imi #;
 
+LEXICON NumCardIndecInf
+
++Numeral+Letter+Cardinal: IndeclinableCardinalEndings;
+
+LEXICON IndeclinableCardinalEndings
+
++NoGender+Plural+Nom: #;
++NoGender+Plural+Gen: #;
++NoGender+Plural+Dat: #;
++NoGender+Plural+Acc: #;
++NoGender+Plural+Loc: #;
++NoGender+Plural+Ins: #;
+
 LEXICON NumOrdInf
 
 +Numeral+Letter+Ordinal:@P.ADJ_REMOVE_I.Y@ AdjNoDefiniteness;

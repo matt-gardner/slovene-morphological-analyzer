@@ -1961,6 +1961,17 @@ več NumCardInf;
 štirje NumCardInf;
 LEXICON Numeral
 
+devetsto NumCardIndecInf;
+dvesto NumCardIndecInf;
+osemsto NumCardIndecInf;
+petsto NumCardIndecInf;
+sedemsto NumCardIndecInf;
+sto NumCardIndecInf;
+tristo NumCardIndecInf;
+šeststo NumCardIndecInf;
+štiristo NumCardIndecInf;
+LEXICON Numeral
+
 deseti NumOrdInf;
 devetdeseti NumOrdInf;
 deveti NumOrdInf;
