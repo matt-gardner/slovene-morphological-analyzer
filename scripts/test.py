@@ -7,17 +7,14 @@ from subprocess import Popen, PIPE
 
 from dirutil import create_dirs_and_open
 
+import sys
+sys.path.append('.')
 from data.create_tests import SEPARATOR
+import make_bin
 
 
 def main(lexica, foma_file, test_files, override_files, results_dir, verbose):
-    proc = Popen('cat %s > lexicon.lexc' % ' '.join(lexica), shell=True)
-    proc.wait()
-    proc = Popen('cat %s > overrides.lexc' % ' '.join(override_files),
-            shell=True)
-    proc.wait()
-    proc = Popen(('foma', '-l', foma_file))
-    proc.wait()
+    make_bin.main(lexica, foma_file, override_files)
     stats = defaultdict(lambda: defaultdict(int))
     for test in test_files:
         print 'Testing forms in', test
@@ -166,10 +163,6 @@ def main(lexica, foma_file, test_files, override_files, results_dir, verbose):
                         num_predicted,
                         percent_overpred, stats[msd]['overpredicted'],
                         ))
-    proc = Popen('rm -f lexicon.lexc', shell=True)
-    proc.wait()
-    proc = Popen('rm -f overrides.lexc', shell=True)
-    proc.wait()
 
 
 def analysis_to_msd(analysis):
@@ -231,22 +224,21 @@ def analysis_to_msd(analysis):
     return msd
 
 
-parts_of_speech = [
-        'abbreviations',
-        'adjectives',
-        'adverbs',
-        'conjunctions',
-        'interjections',
-        'nouns',
-        'numerals',
-        'particles',
-        'prepositions',
-        'pronouns',
-        'residuals',
-        'verbs',
-        ]
-
-if __name__ == '__main__':
+def get_test_description_from_args():
+    parts_of_speech = [
+            'abbreviations',
+            'adjectives',
+            'adverbs',
+            'conjunctions',
+            'interjections',
+            'nouns',
+            'numerals',
+            'particles',
+            'prepositions',
+            'pronouns',
+            'residuals',
+            'verbs',
+            ]
     from optparse import OptionParser
     parser = OptionParser()
     parser.add_option('', '--small',
@@ -354,8 +346,6 @@ if __name__ == '__main__':
     everything['overrides'] = ['lexica/base.lexc']
     everything['overrides'].extend(overrides)
 
-    foma_file = 'foma/slovene.foma'
-    results_dir = 'results/'
     to_test = []
     if opts.small:
         to_test.append(small)
@@ -364,12 +354,19 @@ if __name__ == '__main__':
     for pos in parts_of_speech:
         if getattr(opts, pos):
             to_test.append(testcases[pos])
+    return to_test, opts
+
+
+if __name__ == '__main__':
+    to_test, opts = get_test_description_from_args()
     if not to_test:
         print 'No tests specified.  Exiting.'
         exit(0)
     # TODO: allow generative tests, to check for over-generation, instead of
     # lookup tests.  You can do this by building an inverted test file and
     # using flookup -i.
+    foma_file = 'foma/slovene.foma'
+    results_dir = 'results/'
     for test in to_test:
         if opts.no_auto_overrides:
             to_remove = []

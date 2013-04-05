@@ -154,17 +154,18 @@ ignored at the beginning.
 \section{Initial Design}
 
 The morphological analyzer is designed as follows.  I am using as my working
-data set a large lexicon generously provided by Toma\v{z} Erjavec.  This
-lexicon has inflected word forms together with their lemma and morphosyntactic
-disambiguation, so it is a perfect test set for my morphological analyzer.  I
-processed the lexicon and split it into 12 individula lexicons, one for each
-main part of speech listed in the previous section, using the lemma provided as
-the lexical entry.  I then created 12 individual test sets, again one for each
-part of speech, grouping all analyses of an individual form.  I wrote automated
-tools to test each part of speech independently, using the lexicon and test set
-for that part of speech, together with the inflection rules written for each
-part of speech in separate files.  The organization of the system, then, is the
-following:
+data set a large lexicon called Sloleks generously provided by Toma\v{z}
+Erjavec (different from the MULTEXT-East lexicon mentioned above).  This
+lexicon has about 930,000 inflected word forms together with their lemma and
+morphosyntactic disambiguation, so it is a perfect test set for my
+morphological analyzer.  I processed the lexicon and split it into 12
+individula lexicons, one for each main part of speech listed in the previous
+section, using the lemma provided as the lexical entry.  I then created 12
+individual test sets, again one for each part of speech, grouping all analyses
+of an individual form.  I wrote automated tools to test each part of speech
+independently, using the lexicon and test set for that part of speech, together
+with the inflection rules written for each part of speech in separate files.
+The organization of the system, then, is the following:
 
 \begin{itemize}
   \item The base lexicon and automatic processing files:
@@ -203,9 +204,44 @@ speech (both in the script that determines continuation classes for each lemma,
 and in the rule lexicon for that part of speech), or by improving the stem
 changing rules in the FOMA file.
 
-\section{System Analysis on Corpus A}
+\section{System Analysis on Sloleks}
+
+As of March 21, my morphological analyzer gets 100 percent recall for all word
+forms in Sloleks (except those marked as spelling errors, which I did not test,
+and a handful of words like ZPI192 that are misanalyzed).  That means that for
+all of the word forms in Sloleks, my morphological analyzer predicts a set of
+analyses that is a superset of the set of analyses provided by Sloleks.  The
+analyzer also has 98.8 percent precision, meaning that for 98.8 percent of the
+forms in Sloleks, every analysis predicted for that form is listed in Sloleks
+as a correct analysis.  The remaining precision errors are almost entirely for
+gender-restricted proper nouns and adjectives that are difficult to predict
+(e.g., my system will produce feminine forms for a few roots that should only
+have masculine forms, and which for some reason were not found as such by my
+lexicon generation scripts).  I obtained 100 percent recall by automatically
+adding special cases in the lexicon for every form that was incorrectly
+analyzed, after I was at approximately 96.5 percent correct.  Note that I could
+have just produced the special case table from the beginning, and gotten 100
+percent recall and precision by just having my morphological analyzer be a big
+lookup table into the Sloleks lexicon.  Building the morphological analyzer as
+I did gives a smaller, more intuitive and more generalizable morphological
+analyzer, where adding new forms is relatively easy, if they fit the standard
+morphology of the language.  Also, it will allow for relatively easy
+development of an unknown word guesser, which is the subject of the next
+section.
 
 \section{Lessons Learned and Revised Design}
+
+Given that my morphological analyzer has essentially a perfect analysis of all
+of the forms in my lexicon, my next goal is to quantify how many and what kind
+of unseen forms one can expect when using the analyzer with real data, and then
+building guessing functionality into the analyzer.  To start on this, I added
+some scripts to scrape a popular Slovene news site, rtvslo.si, and detect
+unseen words.  When scraping the top 5 stories at any given time, I find that
+between 2 and 5 percent of the word tokens in the news articles are word types
+that do not occur in Sloleks.  These consist almost entirely of numbers
+(sequences of digits, not spelled-out numbers) and proper names, with a few
+loan words, odd hyphenations, and abbreviations.  Thus, when building my
+guesser, I will first focus on numbers and proper names.
 
 \section{System Analysis on Corpus B}
 

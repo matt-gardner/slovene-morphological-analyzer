@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import sys
+sys.path.append('.')
 from data.create_tests import SEPARATOR
 
 def main(pos, query_msd, overanalyzed=False):
