@@ -1,5 +1,29 @@
+define Vowel [a | e | i | o | u | y];
+define UVowel [A | E | I | O | U | Y];
+! some of these don't occur in Slovene words, but that's ok
+define Cons [b | c | č | d | f | g | h | j | k | l | m | n | p | q | r | s | š
+        | t | v | w | x | z | ž];
+define UCons [B | C | Č | D | F | G | H | J | K | L | M | N | P | Q | R | S | š
+        | T | V | W | X | Z | Ž];
+define Digit [%0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9];
+define Lower [Vowel | Cons];
+define Upper [UVowel | UCons];
+
+define GuessNumber Digit+ ["+Guess":0];
+define GuessProperAbbr Upper+ ["+Guess":"@P.ADD_HYPHEN.Y@"];
+! this severely overgenerates, but I'm not sure how to make it any better
+define GuessProper Upper Lower+ ["+Guess":0];
+! this is a better model for how to continue making guessers, but it requires a
+! more restricted set of words than just 'proper nouns'
+define GuessOst Lower+ o s t ["+Guess":0];
+
 read lexc lexicon.lexc
+substitute defined GuessNumber for "+GuessNumber"
+substitute defined GuessProperAbbr for "+GuessProperAbbr"
+substitute defined GuessProper for "+GuessProper"
+substitute defined GuessOst for "+GuessOst"
 define Lexicon
+
 
 define Flags ["@D.SUP@" |
               "@R.SUP@" |
@@ -34,7 +58,7 @@ define FemNounStemming a | e v | e -> 0 ||
 
 define AddHyphen [..] -> "-" j || \Flags _ Flags* "@P.ADD_HYPHEN.Y@" Flags* "^";
 
-define MascNounStemming [a | e | i | o | u | y] -> 0 ||
+define MascNounStemming Vowel -> 0 ||
                                 _ Flags* "@P.TYPE.MASCNOUN@" Flags* "^";
 
 define FleetingE e -> 0 || _ ConsonantForFleeting
@@ -44,7 +68,7 @@ define Adjectives i -> 0 || \Flags* _ Flags* "@P.ADJ_REMOVE_I.Y@" Flags* "^";
 
 define Adverbs o "+Adverb" -> 0;
 
-define AddJ [..] -> j || [a r | o r | u r | i r | e r | a | o | e | i | u | y]
+define AddJ [..] -> j || [Vowel r | Vowel]
                             _ [Flags - "@P.ADD_J.N@"]* "@P.TYPE.MASCNOUN@"
                             [Flags - "@P.ADD_J.N@"]* "^";
 

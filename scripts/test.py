@@ -64,11 +64,14 @@ def main(lexica, foma_file, test_files, override_files, results_dir, verbose):
             form_unparseable = False
             gold_set = cases[form]
             seen_set = seen[form]
+            guesses = set()
             for analysis in seen_set:
                 if '?' in analysis:
                     unparseable.add(form)
                     form_unparseable = True
-            intersection = gold_set.intersection(seen_set)
+                if '+Guess' in analysis:
+                    guesses.add(analysis)
+            intersection = gold_set.intersection(seen_set) - guesses
             recall = len(intersection) / len(gold_set)
             if len(seen_set) == 0:
                 precision = 0.0

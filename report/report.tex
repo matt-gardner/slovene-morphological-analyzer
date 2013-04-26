@@ -233,15 +233,15 @@ section.
 
 Given that my morphological analyzer has essentially a perfect analysis of all
 of the forms in my lexicon, my next goal is to quantify how many and what kind
-of unseen forms one can expect when using the analyzer with real data, and then
-building guessing functionality into the analyzer.  To start on this, I added
-some scripts to scrape a popular Slovene news site, rtvslo.si, and detect
-unseen words.  When scraping the top 5 stories at any given time, I find that
-between 2 and 5 percent of the word tokens in the news articles are word types
-that do not occur in Sloleks.  These consist almost entirely of numbers
-(sequences of digits, not spelled-out numbers) and proper names, with a few
-loan words, odd hyphenations, and abbreviations.  Thus, when building my
-guesser, I will first focus on numbers and proper names.
+of unseen forms one can expect when using the analyzer with real data. I can
+then properly prioritize the building of guessing functionality into the
+analyzer.  To start on this, I added some scripts to scrape a popular Slovene
+news site, rtvslo.si, and detect unseen words.  When scraping the top 5 stories
+at any given time, I find that between 2 and 5 percent of the word tokens in
+the news articles are word types that do not occur in Sloleks.  These consist
+almost entirely of numbers (sequences of digits, not spelled-out numbers) and
+proper names, with a few loan words, odd hyphenations, and abbreviations.
+Thus, when building my guesser, I will first focus on numbers and proper names.
 
 \section{System Analysis on Corpus B}
 
@@ -249,6 +249,14 @@ guesser, I will first focus on numbers and proper names.
 
 \section{Future Work}
 
+The 'ost' guesser gives a good example for how to continue building a better
+unknown guesser.  The test system could also be improved to accurately test how
+well the unknown guesser is doing - see, for example, how frequently the
+guessed analyses match up with the analyses based on Sloleks.  And it might be
+good to only give guesses when the Sloleks output gives nothing; this could be
+done with a priority union, for example.  That's not such a big deal, anyway,
+because downstream uses of the analyzer could decide how to use the analyses
+clearly labeled as guesses.
 
 
 

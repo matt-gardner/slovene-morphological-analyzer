@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from collections import defaultdict
+sys.path.append('.')
 from data.create_tests import SEPARATOR
 from test import parts_of_speech
 

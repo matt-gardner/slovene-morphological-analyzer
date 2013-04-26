@@ -1,8 +1,9 @@
 #!/usr/bin/env python
+# -*- encoding: utf-8 -*-
 
 from BeautifulSoup import BeautifulSoup
-
 from collections import defaultdict
+from subprocess import Popen, PIPE
 
 def main():
     counts = get_word_counts()
@@ -15,20 +16,50 @@ def main():
         forms.add(line.split('\t')[0])
     for word in counts:
         encoded_word = word.encode('utf-8')
-        if encoded_word in forms or encoded_word.lower() in forms:
+        if encoded_word in forms or lower_case(word) in forms:
             seen_counts['seen'] += counts[word]
         else:
             seen_counts['unseen'] += counts[word]
             unseen_words.add(word)
-    print seen_counts
+    print 'Unseen words:'
+    proc = Popen(('flookup', '../slovene.bin'), stdin=PIPE, stdout=PIPE)
+    for word in unseen_words:
+        proc.stdin.write('%s\n' % word.encode('utf-8'))
+    proc.stdin.close()
+    parses = defaultdict(set)
+    for line in proc.stdout:
+        if line.isspace(): continue
+        try:
+            form, analysis = line.strip().split('\t')
+        except ValueError:
+            print 'Bad line from stdout:', line
+            exit(-1)
+        parses[form].add(analysis)
+    proc.stdout.close()
+    unparseable = 0
+    print 'Unparseable:'
+    for word in unseen_words:
+        if '+?' in parses[word]:
+            unparseable += 1
+            print word, counts[word]
+        #else:
+            #print word, counts[word], ',', len(parses[word]), 'parses'
     unseen = seen_counts['unseen']
     seen = seen_counts['seen']
     percent = float(unseen) / (unseen + seen)
+    percent_unparseable = float(unparseable) / (unseen + seen)
     print 'Seen: %d; Unseen: %d; Percent unseen: %.3f' % (seen, unseen,
             percent)
-    print 'Unseen words:'
-    for word in unseen_words:
-        print word, counts[word]
+    print 'Unparseable: %d; Percent unparseable: %.3f' % (unparseable,
+            percent_unparseable)
+
+
+def lower_case(word):
+    word = word.lower()
+    word = word.replace(u'Č', u'č')
+    word = word.replace(u'Š', u'š')
+    word = word.replace(u'Ž', u'ž')
+    return word.encode('utf-8')
 
 
 def get_word_counts():
@@ -51,7 +82,8 @@ def get_word_counts():
         texts.append(text)
     counts = defaultdict(int)
     for text in texts:
-        to_remove = ['"', ',', '.', ':', '(', ')', '?', ';']
+        to_remove = ['"', ',', '.', ':', '(', ')', '?', ';', u'”', u'“', '!',
+                "'"]
         for char in to_remove:
             text = text.replace(char, '')
         text = text.split()
@@ -63,8 +95,8 @@ def get_word_counts():
             counts[word] += 1
     words = counts.keys()
     words.sort(key=lambda x: counts[x])
-    for word in words:
-        print '%10s: %5d' % (word, counts[word])
+    #for word in words:
+        #print '%10s: %5d' % (word, counts[word])
     return counts
 
 

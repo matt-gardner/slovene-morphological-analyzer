@@ -27,6 +27,11 @@ Multichar_Symbols +N +A +V
                   +AdvParticiple
                   +StemChanged
                   +ReplaceFleeting
+                  +Guess
+                  +GuessNumber
+                  +GuessProperAbbr
+                  +GuessProper
+                  +GuessOst
                   @P.SUP.POS@
                   @R.SUP@
                   @D.SUP@
@@ -52,6 +57,14 @@ Multichar_Symbols +N +A +V
 
 LEXICON Root
 Noun ;
++GuessProperAbbr NMascProper;
++GuessProper NMascProper;
++GuessProper PNFemEv;
++GuessProper PNFemA;
++GuessProper PNFemOst;
++GuessProper PNNeutO;
++GuessProper PNNeutE;
++GuessOst NFemOst;
 Verb ;
 Adj ;
 @P.SUP.POS@:@P.SUP.POS@naj Adj;
@@ -59,6 +72,7 @@ Adverb ;
 @P.SUP.POS@:@P.SUP.POS@naj Adverb;
 Pronoun ;
 Numeral ;
++GuessNumber NumDigCard;
 Prep ;
 Conj ;
 Particle ;
