@@ -243,23 +243,50 @@ almost entirely of numbers (sequences of digits, not spelled-out numbers) and
 proper names, with a few loan words, odd hyphenations, and abbreviations.
 Thus, when building my guesser, I will first focus on numbers and proper names.
 
-\section{System Analysis on Corpus B}
-
 \section{Final Revisions}
+
+As described in the previous section, I wrote a guesser for digits and for
+proper names.  The digits guesser is perfect, as it is very easy to label a
+sequence of digits as a numeral.  The proper name guesser produces the correct
+analysis for all of the proper names I examined, but it also drastically
+over-generates analyses.  The problem is that to account for all possible
+proper names, including foreign names, to guesser has to be very general.  I
+also wrote a simple guesser for a particular subtype of feminine nouns, and
+that guesser works very well---perhaps if I can find a way to group proper
+nouns into smaller categories that can be guessed, I can avoid over-generating
+so much.  But I'm not optimistic about the prospect of a really tight proper
+name guesser.
+
+In the end, the augmented system was unable to parse fewer than 1\% of the
+tokens in the news articles I tested on.  A large percentage of those
+unparseable words were due to processing errors in my scraping script, which,
+for instance, removed periods from abbreviations, turning the recognizable
+``oz.'' into the unrecognizable ``oz'', or mishandled hyphens (hyphens separate
+stems from endings in some words in Slovene, particularly letters or
+abbreviations like ``a-ja'', and so should not be split, but in other words,
+such as ``22-letna'', a split would be appropriate).  There are still
+occasionally a few new words, like ``popkoncert'' and its inflection
+``popkoncertu'', and misspellings, that are not handled by my analyzer.  But
+the vast majority of words found in contemporary sources of Slovene language
+are recognized and correctly parsed.
 
 \section{Future Work}
 
-The 'ost' guesser gives a good example for how to continue building a better
-unknown guesser.  The test system could also be improved to accurately test how
-well the unknown guesser is doing - see, for example, how frequently the
-guessed analyses match up with the analyses based on Sloleks.  And it might be
-good to only give guesses when the Sloleks output gives nothing; this could be
-done with a priority union, for example.  That's not such a big deal, anyway,
-because downstream uses of the analyzer could decide how to use the analyses
-clearly labeled as guesses.
+The main piece left to build in this analyzer is a robust unseen word guesser.
+As the previous two sections have shown, such a guesser is not really needed
+except in very rare cases, but it would make the analyzer more complete and
+better able to handle new words.  I laid some ground work for implementing a
+guesser, and, as mentioned above, wrote a guesser for a set of feminine nouns.
+That feminine noun guesser took a total of four lines of additional code in two
+files, so I'm optimistic that a reasonable guesser for a large percentage of
+open class words could be built with relatively little effort.  But that is
+left to future work.
 
-
-
+It is also left to future work to improve the test system to accurately test
+how well the unknown guesser is doing---it could check, for example, how
+frequently the guessed analyses match up with the analyses based on Sloleks.
+And it might be good to only give guesses when the Sloleks output gives
+nothing; this could be done with a smart use of FOMA's priority union.
 
 \bibliographystyle{plainnat}
 \bibliography{bib}
