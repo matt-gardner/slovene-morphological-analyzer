@@ -69,6 +69,13 @@ the system, this should not be a lot of work for regular words; an addition of
 four total lines of code in two files produced a guesser for feminine nouns
 ending in "ost" that performs quite well.
 
+# License
+
+The FOMA and other code contained in this repository are available to the
+public under the terms of the GNU General Public License version 3, distributed
+here in the `LICENSE` file.  The Sloleks lexicon is available under a Creative
+Commons license.
+
 # User Guide
 
 ### Processing Sloleks
@@ -126,7 +133,7 @@ with `python scripts/[script].py`.
   the `--no-auto-overrides` option), then re-run this script to reproduce the
   (now hopefully smaller) `*_auto_overrides.lexc` file.
 
-### The `scraping` directory
+### The `scraping/` directory
 
 In this directory there is a script for scraping a few news articles from
 rtvslo.si and running some tests to see what unseen words there are.  This
