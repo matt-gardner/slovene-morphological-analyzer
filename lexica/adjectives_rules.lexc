@@ -13,14 +13,13 @@ LEXICON AdjInfI
 
 LEXICON AdjInf
 
-! The +A on the right means to check for fleeting e
 @D.SUP@+A+General+Positive:@P.FLEETING.REPLACE@@D.SUP@ AdjNormalDefiniteness;
 @D.SUP@+A+General+Comparative:@P.FLEETING.REPLACE@ejš@D.SUP@ AdjNormalDefiniteness;
 @R.SUP@+A+General+Superlative:@P.FLEETING.REPLACE@ejš@R.SUP@ AdjNormalDefiniteness;
 
 LEXICON AdjNoFleetingInf
 
-! No +A on the right here, as these don't have fleeting e's
+! No @P.FLEETING.REPLACE@ on the right here, as these don't have fleeting e's
 @D.SUP@+A+General+Positive:@D.SUP@ AdjNormalDefiniteness;
 @D.SUP@+A+General+Comparative:ejš@D.SUP@ AdjNormalDefiniteness;
 @R.SUP@+A+General+Superlative:ejš@R.SUP@ AdjNormalDefiniteness;
