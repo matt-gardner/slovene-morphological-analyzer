@@ -73,8 +73,11 @@ ending in "ost" that performs quite well.
 
 The FOMA and other code contained in this repository are available to the
 public under the terms of the GNU General Public License version 3, distributed
-here in the `LICENSE` file.  The Sloleks lexicon is available under a Creative
-Commons license.
+here in the `LICENSE` file.  The
+[Sloleks lexicon](http://www.slovenscina.eu/sloleks/opis) is available under
+a Creative Commons license
+([CC-BY](http://creativecommons.org/licenses/by/2.0/), which requires
+attribution).
 
 # User Guide
 
