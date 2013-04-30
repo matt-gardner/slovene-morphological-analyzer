@@ -9,7 +9,31 @@ disambiguation tool written with [FOMA](https://code.google.com/p/foma/), an
 open source reimplementation of Xerox's finite state tool, xfst.  The analyzer
 disambiguates words into the [JOS](http://nl.ijs.si/jos/index-en.html)
 morphosyntactic specifications
-([MSDs](http://nl.ijs.si/jos/msd/html-en/index.html)).
+([MSDs](http://nl.ijs.si/jos/msd/html-en/index.html)).  As an example, one
+might input a word and get back a set of analyses:
+
+    $ foma
+    foma[0]: load slovene.bin
+    foma[1]: up
+    apply up> jezikoslovje
+    jezikoslovje+N+Common+Neut+Sing+Acc
+    jezikoslovje+N+Common+Neut+Sing+Nom
+
+or one could input an analysis and get an inflection:
+
+    foma[1]: down
+    apply down> jezikoslovje+N+Common+Neut+Plural+Gen
+    jezikoslovij
+
+This kind of analyzer is useful for a range of downstream natural language
+processing tasks, like part of speech tagging and parsing, as well as for an
+aid to learners of the language.  Its main benefit over a lookup table is its
+extensibility; in order to add a word to a lookup table, all of its inflections
+must be manually, individually added.  With a finite state analyzer, only the
+lemma needs to be added, and the morphology built into the analyzer will handle
+the inflection.  Finite state analyzers can also give reasonable guesses for
+unseen words, where lookup tables would fail to give any output, though this
+analyzer still has only very limited support for unseen words.
 
 The analyzer was built and tested using the
 [Sloleks](http://www.slovenscina.eu/sloleks/opis) lexicon of Slovene language.
@@ -73,11 +97,10 @@ ending in "ost" that performs quite well.
 
 The FOMA and other code contained in this repository are available to the
 public under the terms of the GNU General Public License version 3, distributed
-here in the `LICENSE` file.  The
-[Sloleks lexicon](http://www.slovenscina.eu/sloleks/opis) is available under
-a Creative Commons license
-([CC-BY](http://creativecommons.org/licenses/by/2.0/), which requires
-attribution).
+here in the `LICENSE` file.  The [Sloleks
+lexicon](http://www.slovenscina.eu/sloleks/opis) is available under a Creative
+Commons license ([CC-BY](http://creativecommons.org/licenses/by/2.0/), which
+requires attribution).
 
 # User Guide
 
