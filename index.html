@@ -1,0 +1,223 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Slovene-morphological-analyzer by matt-gardner</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Slovene-morphological-analyzer</h1>
+        <p>A finite state morphological analyzer for the Slovene language.</p>
+
+        <p class="view"><a href="https://github.com/matt-gardner/slovene-morphological-analyzer">View the Project on GitHub <small>matt-gardner/slovene-morphological-analyzer</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/matt-gardner/slovene-morphological-analyzer/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/matt-gardner/slovene-morphological-analyzer/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/matt-gardner/slovene-morphological-analyzer">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="slovene-morphological-analyzer" class="anchor" href="#slovene-morphological-analyzer"><span class="octicon octicon-link"></span></a>slovene-morphological-analyzer</h1>
+
+<p>A finite state morphological analyzer for the Slovene language, written by
+<a href="http://www.cs.cmu.edu/%7Emg1/">Matt Gardner</a>.</p>
+
+<p>This analyzer is a fast, lightweight and easily extensible morphological
+disambiguation tool written with <a href="https://code.google.com/p/foma/">FOMA</a>, an
+open source reimplementation of Xerox's finite state tool, xfst.  The analyzer
+disambiguates words into the <a href="http://nl.ijs.si/jos/index-en.html">JOS</a>
+morphosyntactic specifications
+(<a href="http://nl.ijs.si/jos/msd/html-en/index.html">MSDs</a>).  As an example, one
+might input a word and get back a set of analyses:</p>
+
+<pre><code>$ foma
+foma[0]: load slovene.bin
+foma[1]: up
+apply up&gt; jezikoslovje
+jezikoslovje+N+Common+Neut+Sing+Acc
+jezikoslovje+N+Common+Neut+Sing+Nom
+</code></pre>
+
+<p>or one could input an analysis and get an inflection:</p>
+
+<pre><code>foma[1]: down
+apply down&gt; jezikoslovje+N+Common+Neut+Plural+Gen
+jezikoslovij
+</code></pre>
+
+<p>This kind of analyzer is useful for a range of downstream natural language
+processing tasks, like part of speech tagging and parsing, as well as for an
+aid to learners of the language.  Its main benefit over a lookup table is its
+extensibility; in order to add a word to a lookup table, all of its inflections
+must be manually, individually added.  With a finite state analyzer, only the
+lemma needs to be added, and the morphology built into the analyzer will handle
+the inflection.  Finite state analyzers can also give reasonable guesses for
+unseen words, where lookup tables would fail to give any output, though this
+analyzer still has only very limited support for unseen words.</p>
+
+<p>The analyzer was built and tested using the
+<a href="http://www.slovenscina.eu/sloleks/opis">Sloleks</a> lexicon of Slovene language.
+This code contains a script that processes Sloleks and outputs a set of FOMA
+lexicon files for each part of speech, including whatever information is
+necessary for a word's inflection (e.g., whether or not a final "e" is
+fleeting, as in "pomemben" -&gt; "pomembna" vs. "rumen" -&gt; "rumena").  Each part
+of speech then has rules for generating the regular and irregular morphology of
+the language.</p>
+
+<p>There are also scripts to test the output of analyzer against the MSDs
+contained in Sloleks.  There are approximately 930,000 unique forms in Sloleks
+(except for those marked as spelling errors, which we have so far ignored),
+with an average of 3 possible MSD analyses for each form.  The test scripts can
+test each part of speech individually, or all of them together, to see if the
+set of analyses for each word matches what is found in Sloleks.  The system
+currently has 100% recall on that test, and 98.8% precision.  That means that
+for every word in Sloleks, this morphological analyzer produces a set of MSDs
+that is a superset of analyses given in Sloleks, and for 98.8%, the sets match
+exactly.  The remaining precision errors are mostly due to overprediction of
+number or gender, where a proper noun only has a singular form, or a possessive
+adjective only has a feminine form, or other similar issues.</p>
+
+<p>100% recall was acheived by running a separate script that found remaining
+errors and automatically generated lexicon override files for the forms that
+were not correctly processed.  This was done after the rules were such that
+about 96.5% of all forms were correctly processed - in lieu of encoding all of
+the long tail of irregular morphology by hand, this was done automatically.</p>
+
+<p>To get some idea of the coverage of this analyzer, a popular Slovene news site,
+rtvslo.si, was scraped for textual content.  In the text of the most popular
+articles, on average only between 2 and 5 percent of the tokens in the article
+are not contained in the 930,000 forms in Sloleks.  The vast majority of these
+tokens are sequences of digits (e.g., "2009") or proper names.  The analyzer
+was thus improved to give guesses for unseen words---the number guesser works
+well, though the proper name guesser currently vastly over-generates analyses.
+But taking those two classes of tokens out of the unseen pool leaves less than
+1% of the tokens unrecognized by this analyzer, and most of those are due to
+processing errors (e.g., taking the period off of "oz.", which would otherwise
+be recognized as an abbreviation, but is left as "oz", which is unrecognized,
+or hyphenated words like "22-letna").  There is a script in this repository
+that will perform this analysis on the current top articles on rtvslo.si.</p>
+
+<p>The resulting analyzer is easily extensible in a number of ways.  If a newer,
+improved version of Sloleks is released, the scripts here will easily process
+it and update the generated lexicon files, assuming the format is the same.  If
+a person wants to tackle some piece of the long tail of irregular morphology
+that is currently left to automated overrides, it is easy to modify a few rules
+in the files pertaining to that part of speech and run tests to see how much
+the analyzer is improved.  And in implementing the number and proper name
+guessers, some initial work was also given to guessing common feminine nouns,
+which would cover the rare cases when a non-proper unseen word is encountered
+in real text.  This is still very preliminary, but future work could expand the
+unseen word guessing capabilities of the analyzer and add tests that compare
+the guesses against the analyses given in Sloleks.  Because of the design of
+the system, this should not be a lot of work for regular words; an addition of
+four total lines of code in two files produced a guesser for feminine nouns
+ending in "ost" that performs quite well.</p>
+
+<h1>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h1>
+
+<p>The FOMA and other code contained in this repository are available to the
+public under the terms of the GNU General Public License version 3, distributed
+here in the <code>LICENSE</code> file.  The <a href="http://www.slovenscina.eu/sloleks/opis">Sloleks
+lexicon</a> is available under a Creative
+Commons license (<a href="http://creativecommons.org/licenses/by/2.0/">CC-BY</a>, which
+requires attribution).</p>
+
+<h1>
+<a name="user-guide" class="anchor" href="#user-guide"><span class="octicon octicon-link"></span></a>User Guide</h1>
+
+<h3>
+<a name="processing-sloleks" class="anchor" href="#processing-sloleks"><span class="octicon octicon-link"></span></a>Processing Sloleks</h3>
+
+<p>From the <code>data/</code> directory, run <code>python create_lexica.py</code> and <code>python
+create_tests.py</code>.  These commands will generate a number of files in the
+<code>lexica/</code> and <code>tests/</code> directories.  These files are checked in to the
+repository, so if you modify the Sloleks processing scripts, you can see the
+difference it made by running <code>git diff</code>.</p>
+
+<h3>
+<a name="modifying-lexical-rules" class="anchor" href="#modifying-lexical-rules"><span class="octicon octicon-link"></span></a>Modifying lexical rules</h3>
+
+<p>For detailed information on <code>.lexc</code> and <code>.foma</code> files, look at FOMA's <a href="https://code.google.com/p/foma/wiki/GettingStarted">Getting
+Started guide</a>.  Here I
+will just explain the layout of the system.  Each part of speech has
+(generally) 4 <code>.lexc</code> files in the <code>lexica/</code> directory.  Using verbs as an
+example, these are:</p>
+
+<ul>
+<li>
+<code>verbs.lexc</code>, a file generated automatically by the <code>create_lexica.py</code>
+script,</li>
+<li>
+<code>verbs_rules.lexc</code>, a file written by hand that contains the basic
+morphological rules to inflect verbs,</li>
+<li>
+<code>verbs_overrides.lexc</code>, a file written by hand that contains irregular
+morphology for a small number of highly irregular words, and</li>
+<li>
+<code>verbs_auto_overrides.lexc</code>, a file generated automatically by running the
+<code>create_auto_overrides.py</code> script (described later).</li>
+</ul><p>There is also a single file containing regular expression rules that perform
+stem changes and other complex morphological processes.  This file is
+<code>foma/slovene.foma</code>.</p>
+
+<h3>
+<a name="the-scripts-directory" class="anchor" href="#the-scripts-directory"><span class="octicon octicon-link"></span></a>The <code>scripts/</code> directory</h3>
+
+<p>The <code>scripts/</code> directory contains four useful scripts, each of which is
+described below.  All of these scripts should be run from the base directory,
+with <code>python scripts/[script].py</code>.</p>
+
+<ul>
+<li>
+<code>make_bin.py</code>: This will combine all of the <code>.lexc</code> and <code>.foma</code> files, run
+them through FOMA, and produce a file called <code>slovene.bin</code>, which is suitable
+for use with <code>flookup</code>, or for loading into <code>foma</code>.  For more information on
+the use of those tools, see FOMA's user guide (linked above).</li>
+<li>
+<code>test.py</code>: This script first calls <code>make_bin.py</code>, then uses the resulting
+binary and the tests in the <code>tests/</code> directory to judge the accuracy of the
+analyzer.  For usage information run <code>python scripts/test.py --help</code>.  The
+results are shown in the <code>results/</code> directory.  The main results file is
+<code>results/[test]_stats.tsv</code>, which is suitable to be viewed with <code>sort</code>.</li>
+<li>
+<code>find_errors.py</code>: This will look through the error file for a particular test
+and select only those whose MSD matches some input.  This is useful, for
+example, if you want to see errors on only a particular kind of pronoun, even
+though you can only run tests on pronouns as a whole.</li>
+<li>
+<code>create_auto_overrides.py</code>: This file looks at the error file for a
+particular test, as well as the test file (originally generated from
+Sloleks), and produces an <code>*_auto_overrides.lexc</code>.  If you are working to
+improve the analyzer, you should run tests without the auto overrides (with
+the <code>--no-auto-overrides</code> option), then re-run this script to reproduce the
+(now hopefully smaller) <code>*_auto_overrides.lexc</code> file.</li>
+</ul><h3>
+<a name="the-scraping-directory" class="anchor" href="#the-scraping-directory"><span class="octicon octicon-link"></span></a>The <code>scraping/</code> directory</h3>
+
+<p>In this directory there is a script for scraping a few news articles from
+rtvslo.si and running some tests to see what unseen words there are.  This
+script is currently written to be run from the <code>scraping/</code> directory, not the
+base directory.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/matt-gardner">matt-gardner</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
